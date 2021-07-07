@@ -1,0 +1,11 @@
+@mixin no-borders() {
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-within {
+    border: none;
+    outline: none;
+  }
+}
