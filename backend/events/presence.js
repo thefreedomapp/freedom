@@ -1,17 +1,28 @@
 const users = require('../models/user');
 
 module.exports = (socket, io) => {
-  var online = [];
+  const online = {
+    onlineUsers: [],
+    keepOnline: {}
+  };
+
   socket.on('online', async (id) => {
     const user = await users.findOne({ id });
     io.emit('online', [user]);
-    online.push(user);
+    online.onlineUsers.push(user);
+    online.keepOnline[id] = setTimeout(offline, 6000, user);
   });
 
-  socket.on('offline', async (id) => {
-    io.emit('offline', await users.findOne({ id }));
-    online = online.filter((user) => user?.id === id);
+  socket.on('keepOnline', async (id) => {
+    clearTimeout(online.keepOnline[id]);
   });
+  function offline(user) {
+    io.emit('offline', user);
+    online.onlineUsers = online.onlineUsers.filter(
+      (onlineUser) => user?.id === onlineUser?.id
+    );
+    delete online.keepOnline[user?.id];
+  }
 
-  io.on('connection', (socket) => socket.emit('online', online));
+  io.on('connection', (socket) => socket.emit('online', online.onlineUsers));
 };
