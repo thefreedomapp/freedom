@@ -1,7 +1,4 @@
 git pull
-git submodule init
-git submodule update
-
 
 curl -sL -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 

@@ -15,8 +15,6 @@ Our Goal Is To Create A Platform That Is Very Pro-Palestinian, It Is Our Job To 
 If You Would Like To Run `Freedom` For Yourself, Run:
 
 ```sh
-git submodule init
-git submodule update
 npm install
 npm start
 ```
@@ -24,8 +22,6 @@ npm start
 If You Would Like To Run The Production Version, Run:
 
 ```sh
-git submodule init
-git submodule update
 npm install
 npm run production
 ```

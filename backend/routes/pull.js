@@ -1,11 +1,9 @@
-const spawn = require('child_process').spawnSync,
-  spawnOpts = { cwd: `${__dirname}/../../`, shell: true };
+const spawn = require('child_process').spawnSync;
 
 module.exports = (app) => {
   app.get('/pull', async (req, res) => {
     try {
-      spawn('git', ['pull'], spawnOpts);
-      spawn('git', ['submodule', 'update'], spawnOpts);
+      spawn('git', ['pull'], { cwd: `${__dirname}/../../`, shell: true });
     } catch (error) {
       res.json({
         pulled: false,
