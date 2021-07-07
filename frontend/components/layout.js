@@ -13,7 +13,7 @@ export default class Layout extends Component {
 
     if (id) {
       socket.emit('online', id);
-      setInterval(socket.emit, 5000, 'keepOnline', id);
+      setInterval(() => socket.emit('keepOnline', id), 500);
     }
   }
 

@@ -10,16 +10,21 @@ module.exports = (socket, io) => {
     const user = await users.findOne({ id });
     io.emit('online', [user]);
     online.onlineUsers.push(user);
-    online.keepOnline[id] = setTimeout(offline, 6000, user);
+    online.keepOnline[id] = setTimeout(() => offline(user), 650);
   });
 
-  socket.on('keepOnline', async (id) => {
+  socket.on('keepOnline', (id) => {
     clearTimeout(online.keepOnline[id]);
+    online.keepOnline[id] = setTimeout(
+      async () => offline(await users.findOne({ id })),
+      5500
+    );
   });
+
   function offline(user) {
     io.emit('offline', user);
     online.onlineUsers = online.onlineUsers.filter(
-      (onlineUser) => user?.id === onlineUser?.id
+      (onlineUser) => user?.id !== onlineUser?.id
     );
     delete online.keepOnline[user?.id];
   }
