@@ -11,7 +11,8 @@ RUN apt-get update -q \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get -q update \
   # Install python
-	&& apt-get install -qy python3 curl \
+	&& apt-get install -qy python3 python3 pip curl \
+  && pip install virtualenv \
   && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME= python3 - \
   # Get latest version of node 16
   && curl -sL https://deb.nodesource.com/setup_16.x | bash \
