@@ -4,6 +4,9 @@ MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 # Become the root user
 USER root
 
+RUN ls \ 
+  && pwd
+
 # Update, so that we can install the packages
 RUN apt-get update -q \
   # Add deadsnakes ppa
