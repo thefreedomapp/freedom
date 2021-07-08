@@ -24,14 +24,11 @@ RUN apt-get update -q \
   && apt-get install -qy nodejs \
   # Install packages
   && $HOME/.local/bin/poetry install  \
-  && npm install
+  && npm install \
+  && echo "export $PATH=\"$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH\"" >> $HOME/.bashrc
 
 # Copy all files into the Home directory
 ADD . $HOME
 
-# Add installed applications to PATH
-# RUN echo "export $PATH=\"$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH\"" >> $HOME/.bashrc
-RUN echo $PATH
-
 # Run: npm run production, after build 
-CMD ['echo', '$PATH']
+ENTRYPOINT npm run production
