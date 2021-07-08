@@ -8,7 +8,7 @@ USER root
 RUN apt-get update -q \
   # Add deadsnakes ppa
   && apt-get install -qy software-properties-common \
-  && add-apt-repository -q ppa:deadsnakes/ppa \
+  && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get -q update \
   # Install python
 	&& apt-get install -qy python3 curl \
