@@ -25,7 +25,7 @@ RUN cd /app/ \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && poetry install  \
+  && $HOME/.local/bin/poetry install  \
   && npm install
 
 
