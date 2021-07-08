@@ -58,8 +58,25 @@ function main({ port, mongouri }) {
   // Connect to the Mongo Database
   require('./dbConnect')(mongouri);
 
-  // Start flask server
-  require;
+  // Start Flask server
+  require('./python')('app.py');
+  console.log(
+    `\nRunning Flask Server On:\n  ${
+      // List the network interfaces in a green color
+      // this is just cosmetic
+      require('chalk').green(
+        Object.values(require('os').networkInterfaces())
+          .map((net) =>
+            net
+              .map((net) =>
+                net.family === 'IPv4' ? `http://${net.address}:${port + 1}` : ''
+              )
+              .filter(Boolean)
+          )
+          .join('\n  ')
+      )
+    }\n`
+  );
 
   app.use(express.json());
   app.use(cookieParser());

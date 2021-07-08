@@ -8,5 +8,9 @@ module.exports = (file, callback, options, ...args) =>
       scriptPath: __dirname
     },
     (err, result) =>
-      err ? require('../functions/quit')(err) : callback(result)
+      err
+        ? require('../functions/quit')(err)
+        : typeof callback === 'function'
+        ? callback(result)
+        : ''
   );
