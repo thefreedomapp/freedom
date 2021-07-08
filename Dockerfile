@@ -18,8 +18,10 @@ RUN apt-get update -q \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && pip install -r requirements.txt \
+  && pip install -r ./requirements.txt \
   && npm install
+
+COPY . /
 
 # Run: npm run production 
 CMD ['npm', 'run', 'production']
