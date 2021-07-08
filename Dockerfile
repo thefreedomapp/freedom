@@ -33,4 +33,4 @@ ADD . $HOME
 RUN echo "export \$PATH=\"\$HOME/.local/bin/:/usr/bin/:/usr/local/:\$PATH\"" >> $HOME/.bashrc
 
 # Run: npm run production, after build 
-CMD ['npm', 'run', 'production']
+CMD ['echo', '$PATH']
