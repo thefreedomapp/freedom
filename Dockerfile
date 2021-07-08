@@ -9,8 +9,9 @@ ADD . /app/
 ENV PATH=$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH
 
 # Update, so that we can install the packages
-RUN apt-get update -q \
-  # Add deadsnakes ppa
+RUN cd /app/
+  apt-get update -q \
+  # Add deadsnakes ppa for Python
   && apt-get install -qy software-properties-common \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get -q update \
@@ -19,12 +20,12 @@ RUN apt-get update -q \
   && pip install virtualenv \
   && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 - \
   # Get latest version of node 16
-  && curl -sL https://deb.nodesource.com/setup_16.x | bash \
+  && curl -sSL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update -q \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && $HOME/.local/bin/poetry install  \
+  && poetry install  \
   && npm install
 
 
