@@ -6,6 +6,11 @@ require('child_process').spawnSync('npm', ['install'], {
 });
 
 (async (func) => {
+  // Check for environment veriables.
+  // This removes the need for stdin.
+  if (process.env.PORT && process.env.mongouri)
+    return func({ port: process.env.PORT, mongouri: process.env.mongouri });
+
   if (
     // Check if the config file exists.
     // if it does, check the types of the port, and mongouri
@@ -37,8 +42,6 @@ require('child_process').spawnSync('npm', ['install'], {
 })(main);
 
 function main({ port, mongouri }) {
-  port = process.env.PORT || port || 8080;
-
   const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
