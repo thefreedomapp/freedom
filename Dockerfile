@@ -4,8 +4,7 @@ MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 # Become the root user
 USER root
 
-RUN ls \ 
-  && pwd
+ADD . $HOME
 
 # Update, so that we can install the packages
 RUN apt-get update -q \
@@ -16,7 +15,7 @@ RUN apt-get update -q \
   # Install python
 	&& apt-get install -qy python3 python3 pip curl \
   && pip install virtualenv \
-  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME= python3 - \
+  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 - \
   # Get latest version of node 16
   && curl -sL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update -q \
