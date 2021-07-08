@@ -1,4 +1,4 @@
-module.exports = (file, ...args) => {
+module.exports = (file, callback, ...args) => {
   return require('python-shell').PythonShell.run(
     'index.py',
     {
@@ -6,6 +6,6 @@ module.exports = (file, ...args) => {
       scriptPath: __dirname
     },
     (err, result) =>
-      err ? require('../functions/quit')(err) : console.log(result.join('\n'))
+      err ? require('../functions/quit')(err) : callback(result)
   );
 };

@@ -1,3 +1,3 @@
 const run = require('.');
 
-run('test.py', 'testetsetset');
+run('test.py', (res) => console.log(res.join('\n')), 'testetsetset');
