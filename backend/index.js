@@ -59,6 +59,20 @@ function main({ port, mongouri }) {
   app.post('/api/routes', (req, res) => res.json(getRoutes(app)));
 
   server.listen(port || 8080, () =>
-    console.log(`Running On http://localhost:${port || 8080}`)
+    console.log(
+      `Running On:\n  ${require('chalk').green(
+        Object.values(require('os').networkInterfaces())
+          .map((net) =>
+            net
+              .map((net) =>
+                net.family === 'IPv4'
+                  ? `http://${net.address}:${port || 8080}`
+                  : ''
+              )
+              .filter(Boolean)
+          )
+          .join(',\n  ')
+      )}`
+    )
   );
 }
