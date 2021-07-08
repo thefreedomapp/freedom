@@ -1,10 +1,9 @@
+const dev = require('../functions/dev')();
+
 module.exports = (app) => {
-  !(
-    process.argv[2] === '--production' ||
-    process.argv[2] === '-p' ||
-    require.main === 'main'
-  ) ||
+  dev ||
     console.log(
+      // Build so that Next doesn't whine that there is no build
       require('chalk').red(
         require('child_process').spawnSync('npm', ['run', 'build'], {
           cwd: `${__dirname}/../../`,
@@ -15,15 +14,10 @@ module.exports = (app) => {
     );
 
   const next = require('next')({
-    dev: !(
-      process.argv[2] === '--production' ||
-      process.argv[2] === '-p' ||
-      require.main === 'main'
-    ),
+    dev: dev,
     dir: `${__dirname}/../../frontend`
   });
 
-  next.prepare().then(() => {
-    app.get('*', next.getRequestHandler());
-  });
+  // On every get request, use the Next request handler, for the frontend
+  next.prepare().then(() => app.get('*', next.getRequestHandler()));
 };

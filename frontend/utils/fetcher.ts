@@ -1,5 +1,6 @@
 /**
  *
+ * @description A Fetcher For `componentdidmount()`
  * @param url The URL To Fetch
  * @param data Data To Pass To Fetch
  * @param parser JSON, Or Text

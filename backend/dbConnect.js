@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Connect to the Mongo Database
 module.exports = (mongouri) => {
   mongoose.set('useCreateIndex', true);
 

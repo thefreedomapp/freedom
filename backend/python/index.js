@@ -1,11 +1,12 @@
-module.exports = (file, callback, ...args) => {
-  return require('python-shell').PythonShell.run(
+module.exports = (file, callback, options, ...args) =>
+  // Run init.py with provided arguments
+  require('python-shell').PythonShell.run(
     'init.py',
     {
+      ...options,
       args: [file, args.join(' ')],
       scriptPath: __dirname
     },
     (err, result) =>
       err ? require('../functions/quit')(err) : callback(result)
   );
-};

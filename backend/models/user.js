@@ -1,5 +1,6 @@
 const m = require('mongoose');
 
+// Create a user schema
 module.exports = m.model(
   'user',
   new m.Schema({

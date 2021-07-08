@@ -1,5 +1,8 @@
 const spawn = require('child_process').spawnSync;
 
+// On a get request to /pull, pull from the git repository
+// I really don't know why you need that comment...
+// Meh, its more documentation...
 module.exports = (app) => {
   app.get('/pull', async (req, res) => {
     try {

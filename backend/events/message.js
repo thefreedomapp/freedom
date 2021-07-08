@@ -18,9 +18,11 @@ module.exports = (socket, io) => {
         message: "Please <a href='/login'>Login</a> To Send A Message!"
       });
 
+    message = DOMPurify(marked(message));
+
     io.emit('message', {
       user,
-      message: DOMPurify(marked(message))
+      message
     });
   });
 };
