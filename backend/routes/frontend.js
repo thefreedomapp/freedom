@@ -2,7 +2,7 @@ module.exports = (app) => {
   !(
     process.argv[2] === '--production' ||
     process.argv[2] === '-p' ||
-    require.main !== 'main'
+    require.main === 'main'
   ) ||
     console.log(
       require('chalk').red(
@@ -18,7 +18,7 @@ module.exports = (app) => {
     dev: !(
       process.argv[2] === '--production' ||
       process.argv[2] === '-p' ||
-      require.main !== 'main'
+      require.main === 'main'
     ),
     dir: `${__dirname}/../../frontend`
   });

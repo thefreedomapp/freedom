@@ -71,7 +71,7 @@ function main({ port, mongouri }) {
               )
               .filter(Boolean)
           )
-          .join(',\n  ')
+          .join('\n  ')
       )}`
     )
   );

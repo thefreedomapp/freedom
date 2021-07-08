@@ -10,15 +10,30 @@ module.exports = (socket, io) => {
     const user = await users.findOne({ id });
     io.emit('online', [user]);
     online.onlineUsers.push(user);
-    online.keepOnline[id] = setTimeout(() => offline(user), 650);
+    online.keepOnline[id]
+      ? (online.keepOnline[id].onlineTimout = setTimeout(
+          () => offline(user),
+          650
+        ))
+      : (online.keepOnline[id] = {
+          onlineTimout: setTimeout(() => offline(user), 650)
+        });
   });
 
   socket.on('keepOnline', (id) => {
-    clearTimeout(online.keepOnline[id]);
-    online.keepOnline[id] = setTimeout(
-      async () => offline(await users.findOne({ id })),
-      5500
-    );
+    clearTimeout(online.keepOnline[id]?.onlineTimout);
+    clearTimeout(online.keepOnline[id]?.keepOnlineTimout);
+    online.keepOnline[id]
+      ? (online.keepOnline[id].keepOnlineTimout = setTimeout(
+          async () => offline(await users.findOne({ id })),
+          650
+        ))
+      : (online.keepOnline[id] = {
+          keepOnlineTimout: setTimeout(
+            async () => offline(await users.findOne({ id })),
+            650
+          )
+        });
   });
 
   function offline(user) {
