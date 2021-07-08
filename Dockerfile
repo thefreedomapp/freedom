@@ -8,17 +8,18 @@ USER root
 RUN apt-get update -q \
   # Add deadsnakes ppa
   && apt-get install -qy software-properties-common \
-  && add-apt-repository ppa:deadsnakes/ppa \
-  && apt-get update \
+  && add-apt-repository -q ppa:deadsnakes/ppa \
+  && apt-get -q update \
   # Install python
-	&& apt-get install -qy python3 curl python3-pip \
+	&& apt-get install -qy python3 curl \
+  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME= python - \
   # Get latest version of node 16
   && curl -sL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update -q \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && pip install -r ./requirements.txt \
+  && $HOME/.local/bin/poetry install  \
   && npm install
 
 COPY . /

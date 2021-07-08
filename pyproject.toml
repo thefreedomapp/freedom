@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "freedom"
+version = "0.1.0"
+description = "a social media platform, where people can discuss about issues and conflicts."
+authors = ["MTGSquad, And TheBotlyNoob"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^2.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
