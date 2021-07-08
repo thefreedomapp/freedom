@@ -4,11 +4,13 @@ const DOMPurify = require('dompurify')(
   marked = require('marked'),
   users = require('../models/user'),
   msg = require('../models/message'),
-  newID = require('../functions/newMessage');
+  { nanoid } = require('nanoid');
 
 module.exports = async (socket, io) => {
   socket.on('message', async ({ message, id }, callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
+
+    var messages = [];
 
     const user = await users.findOne({
       id
@@ -20,17 +22,22 @@ module.exports = async (socket, io) => {
         message: "Please <a href='/login'>Login</a> To Send A Message!"
       });
 
-    message = DOMPurify(marked(message));
-
-    await msg.create({
+    message = await msg.create({
       author: user,
-      content: message,
-      id: newID(1000)
+      content: DOMPurify(marked(message)),
+      id: nanoid(1000)
     });
 
-    io.emit('message', {
-      user,
-      message
-    });
+    messages.push(message);
+
+    io.on('connection', (socket) => socket.emit('message', messages));
+
+    io.emit('message', [
+      {
+        user,
+        message,
+        id
+      }
+    ]);
   });
 };

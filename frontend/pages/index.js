@@ -32,7 +32,7 @@ export default class MainPage extends Component {
       (op) =>
         (document.getElementById(
           'output'
-        ).innerHTML += `<span><br/>${op.user.username}: ${op.message}</span>`)
+        ).innerHTML += `<span><br/>${op.user.username}: ${op.content}</span>`)
     );
 
     this.socket.on('online', (users) =>
