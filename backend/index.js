@@ -53,14 +53,14 @@ function main({ port, mongouri }) {
     nodir: true
   }).map((event) => events.push(require(event)));
 
-  io.setMaxListeners(30);
+  io.setMaxListeners(Infinity);
   io.on('connection', (socket) => events.map((event) => event(socket, io)));
 
   app.post('/api/routes', (req, res) => res.json(getRoutes(app)));
 
   server.listen(port || 8080, () =>
     console.log(
-      `Running On:\n  ${require('chalk').green(
+      `\nRunning On:\n  ${require('chalk').green(
         Object.values(require('os').networkInterfaces())
           .map((net) =>
             net
@@ -72,7 +72,7 @@ function main({ port, mongouri }) {
               .filter(Boolean)
           )
           .join('\n  ')
-      )}`
+      )}\n\n`
     )
   );
 }

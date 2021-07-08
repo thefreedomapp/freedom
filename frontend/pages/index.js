@@ -36,17 +36,16 @@ export default class MainPage extends Component {
     );
 
     this.socket.on('online', (users) =>
-      users.map((user) =>
-        user !== null
-          ? (document.getElementById(
-              'online'
-            ).innerHTML += `<span id='${user.id}' class='onlineUser'><br />${user.username}</span>`)
-          : ''
+      users.map(
+        (user) =>
+          (document.getElementById(
+            'online'
+          ).innerHTML += `<span id='${user?.id}' class='onlineUser'><br />${user?.username}</span>`)
       )
     );
 
     this.socket.on('offline', (user) =>
-      user ? document.getElementById(user.id)?.remove() : ''
+      document.getElementById(user?.id)?.remove()
     );
   }
 

@@ -20,3 +20,10 @@ code {
     'Proxima Nova', 'Dank Mono', 'Pragmata Pro', 'Courier New', Courier,
     monospace;
 }
+
+.status {
+  position: fixed;
+  bottom: 0;
+  left: 15px;
+  border: none;
+}
