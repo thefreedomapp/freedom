@@ -30,7 +30,7 @@ RUN apt-get update -q \
 ADD . $HOME
 
 # Add installed applications to PATH
-RUN echo "export \$PATH=\"\$HOME/.local/bin/:/usr/bin/:\$PATH\"" >> $HOME/.bashrc
+RUN echo "export \$PATH=\"\$HOME/.local/bin/:/usr/bin/:/usr/local/:\$PATH\"" >> $HOME/.bashrc
 
 # Run: npm run production, after build 
 CMD ['npm', 'run', 'production']

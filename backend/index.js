@@ -37,6 +37,8 @@ require('child_process').spawnSync('npm', ['install'], {
 })(main);
 
 function main({ port, mongouri }) {
+  port = process.env.PORT || port || 8080;
+
   const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
@@ -74,7 +76,7 @@ function main({ port, mongouri }) {
   // On a get request to /api/routes, we list the routes
   app.post('/api/routes', (req, res) => res.json(getRoutes(app)));
 
-  server.listen(port || 8080, () =>
+  server.listen(port, () =>
     console.log(
       `\nRunning On:\n  ${
         // List the network interfaces in a green color
@@ -84,9 +86,7 @@ function main({ port, mongouri }) {
             .map((net) =>
               net
                 .map((net) =>
-                  net.family === 'IPv4'
-                    ? `http://${net.address}:${port || 8080}`
-                    : ''
+                  net.family === 'IPv4' ? `http://${net.address}:${port}` : ''
                 )
                 .filter(Boolean)
             )
