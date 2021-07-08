@@ -1,6 +1,6 @@
 module.exports = (file, callback, ...args) => {
   return require('python-shell').PythonShell.run(
-    'index.py',
+    'init.py',
     {
       args: [file, args.join(' ')],
       scriptPath: __dirname
