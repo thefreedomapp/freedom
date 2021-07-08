@@ -6,7 +6,6 @@ authors = ["MTGSquad, And TheBotlyNoob"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.9"
 Flask = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
