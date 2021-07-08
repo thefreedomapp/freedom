@@ -58,6 +58,9 @@ function main({ port, mongouri }) {
   // Connect to the Mongo Database
   require('./dbConnect')(mongouri);
 
+  // Start flask server
+  require;
+
   app.use(express.json());
   app.use(cookieParser());
 

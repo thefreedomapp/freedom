@@ -5,3 +5,4 @@ package-lock.json
 yarn.lock
 __pycache__
 Pipfile.lock
+poetry.lock
