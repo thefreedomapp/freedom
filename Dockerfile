@@ -9,8 +9,8 @@ ADD . /app/
 ENV PATH=$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH
 
 # Update, so that we can install the packages
-RUN cd /app/
-  apt-get update -q \
+RUN cd /app/ \
+  && apt-get update -q \
   # Add deadsnakes ppa for Python
   && apt-get install -qy software-properties-common \
   && add-apt-repository ppa:deadsnakes/ppa \
