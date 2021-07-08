@@ -16,8 +16,10 @@ require('child_process').spawnSync('npm', ['install'], {
     // if it does, check the types of the port, and mongouri
     // If it doesn't exist, ask for the values, and store them in the config file
     !fs.existsSync(`${__dirname}/../config.json`) ||
-    typeof fs.readFileSync(`${__dirname}/../config.json`).port !== 'number' ||
-    typeof fs.readFileSync(`${__dirname}/../config.json`).mongouri !== 'string'
+    typeof JSON.parse(fs.readFileSync(`${__dirname}/../config.json`)).port !==
+      'number' ||
+    typeof JSON.parse(fs.readFileSync(`${__dirname}/../config.json`))
+      .mongouri !== 'string'
   )
     fs.writeFileSync(
       `${__dirname}/../config.json`,
