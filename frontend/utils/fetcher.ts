@@ -13,7 +13,7 @@ export default function fetcher(
   data: object,
   parser: string,
   callback: Function
-) {
+): Function {
   // eslint-disable-next-line
   return async () => {
     if (callback instanceof Function)
