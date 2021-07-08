@@ -9,7 +9,7 @@ RUN apt-get update -q \
   # Add deadsnakes ppa
   && apt-get install -qy software-properties-common \
   && add-apt-repository ppa:deadsnakes/ppa \
-  && apt update
+  && apt update \
   # Install python
 	&& apt-get install -qy python3 \
   # Get latest version of node 16
