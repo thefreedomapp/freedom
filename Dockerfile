@@ -5,7 +5,8 @@ MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 USER root
 
 # Copy all files into the Home directory
-ADD . $HOME
+ADD . /app/
+ENV PATH=$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH
 
 # Update, so that we can install the packages
 RUN apt-get update -q \
@@ -24,11 +25,11 @@ RUN apt-get update -q \
   && apt-get install -qy nodejs \
   # Install packages
   && $HOME/.local/bin/poetry install  \
-  && npm install \
-  && echo "export $PATH=\"$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH\"" >> $HOME/.bashrc
+  && npm install
+
 
 # Copy all files into the Home directory
-ADD . $HOME
+ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT npm run production
+ENTRYPOINT npm run production --prefix=/app/
