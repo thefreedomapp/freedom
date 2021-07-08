@@ -47,7 +47,7 @@
   },
   "scripts": {
     "start": "nodemon --watch \"backend/**/*\" --ext \"*\" --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
-    "production": "nodemon --watch \"./**/*\" --ext \"*\" -i \"config.json\" -i \"package-lock.json\" --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
+    "production": "node --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write . && eslint --fix",
     "app": "electron-builder --linux --windows --projectDir electron"
