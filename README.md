@@ -8,7 +8,7 @@ Our Goal Is To Create A Platform That Is Very Pro-Palestinian, It Is Our Job To 
 
 ## Logo:
 
-![Palestine Watermelon Symbol](https://raw.githubusercontent.com/freedom-app/frontend/master/images/watermelon.png)
+![Palestine Watermelon Symbol](./frontend/images/watermelon.png)
 
 ## Running For Yourself
 
