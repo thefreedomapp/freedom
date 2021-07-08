@@ -4,6 +4,7 @@ MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 # Become the root user
 USER root
 
+# Copy all files into the Home directory
 ADD . $HOME
 
 # Update, so that we can install the packages
@@ -25,7 +26,11 @@ RUN apt-get update -q \
   && $HOME/.local/bin/poetry install  \
   && npm install
 
-COPY . /
+# Copy all files into the Home directory
+ADD . $HOME
 
-# Run: npm run production 
+# Add installed applications to PATH
+RUN echo "export \$PATH=\"\$HOME/.local/bin/:/usr/bin/:\$PATH\"" >> $HOME/.bashrc
+
+# Run: npm run production, after build 
 CMD ['npm', 'run', 'production']
