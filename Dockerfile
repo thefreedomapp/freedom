@@ -16,7 +16,7 @@ RUN cd /app/ \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get -q update \
   # Install python
-	&& apt-get install -qy python3 python3 pip curl \
+	&& apt-get install -qy python3 python3-pip curl \
   && pip install virtualenv \
   && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 - \
   # Get latest version of node 16
@@ -33,4 +33,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT poetry run npm run production
+ENTRYPOINT find .
