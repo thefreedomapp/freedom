@@ -32,4 +32,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT /app/poetry/bin/poetry npm run production
+ENTRYPOINT /app/poetry/bin/poetry run npm run production
