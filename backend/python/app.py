@@ -4,11 +4,15 @@ import os
 from waitress import serve
 from importlib import import_module
 
-app = Flask(__name__)
+def __init__(*args, **kwargs):
+  app = Flask(__name__)
 
-routes = os.listdir(f'{os.path.dirname(os.path.realpath(__file__))}/routes')
+  routes = []
+  for route in os.scandir(f'{os.path.dirname(os.path.realpath(__file__))}/routes'):
+    if route.is_file(follow_symlinks=False):
+      routes.append(route)
 
-for route in routes:
-  import_module(f'routes.{route.replace(".py", "")}').__init__(app)
+  for route in routes:
+    import_module(f'routes.{route.name.replace(".py", "")}').__init__(app)
 
-serve(app, host='0.0.0.0', port=load(open(f'{os.path.dirname(os.path.realpath(__file__))}/../../config.json', 'r'))['port'] + 1)
+  serve(app, host='0.0.0.0', port=load(open(f'{os.path.dirname(os.path.realpath(__file__))}/../../config.json', 'r'))['port'] + 1)
