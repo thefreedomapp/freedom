@@ -33,4 +33,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT find .
+ENTRYPOINT find ./app/ ! -path '*/node_modules/*'
