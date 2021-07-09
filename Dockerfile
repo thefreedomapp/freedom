@@ -6,7 +6,6 @@ USER root
 
 # Copy all files into the Home directory
 ADD . /app/
-ENV PATH=$HOME/.local/bin/:/usr/bin/:/usr/local/:$PATH
 
 # Update, so that we can install the packages
 RUN cd /app/ \
@@ -18,14 +17,14 @@ RUN cd /app/ \
   # Install python
 	&& apt-get install -qy python3 python3-pip curl \
   && pip install virtualenv \
-  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 - \
+  && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME=/app/poetry python3 - \
   # Get latest version of node 16
   && curl -sSL https://deb.nodesource.com/setup_16.x | bash \
   && apt-get update -q \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && $HOME/.local/bin/poetry install  \
+  && /app/poetry/poetry install  \
   && npm install
 
 
@@ -33,4 +32,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT find ./app/ ! -path '*/node_modules/*'
+ENTRYPOINT /app/poetry/poetry npm run production
