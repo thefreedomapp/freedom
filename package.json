@@ -46,8 +46,8 @@
     "socket.io-client": "^4.1.2"
   },
   "scripts": {
-    "start": "nodemon --watch \"backend/**/*\" --ext \"*\" -i \"__pycache__\" --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
-    "production": "node --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
+    "start": "nodemon --watch \"backend/**/*\" --ext \"*\" -i \"./**/__pycache__\" --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
+    "production": "nodemon --watch \"./**/*\" --ext \"*\" -i \"config.json\" -i \"package-lock.json\" -i \"./**/__pycache__\" --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write . && eslint --fix",
     "app": "electron-builder --linux --windows --projectDir electron"
