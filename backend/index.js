@@ -103,7 +103,7 @@ function main({ port, mongouri }) {
 
   server.listen(port, () =>
     console.log(
-      `\nRunning On:\n  ${
+      `\nRunning Express Server On:\n  ${
         // List the network interfaces in a green color
         // this is just cosmetic
         require('chalk').green(
