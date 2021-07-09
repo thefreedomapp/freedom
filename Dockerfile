@@ -24,7 +24,7 @@ RUN cd /app/ \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && /app/poetry/poetry install  \
+  && /app/poetry/bin/poetry install  \
   && npm install
 
 
@@ -32,4 +32,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT /app/poetry/poetry npm run production
+ENTRYPOINT /app/poetry/bin/poetry npm run production
