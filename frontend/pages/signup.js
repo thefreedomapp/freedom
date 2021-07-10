@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Button, Layout } from '../components';
+import { Layout } from '../components';
+import { Button } from 'elementz';
 import hash from 'utils/hashing.ts';
 import cookies from 'js-cookie';
 import io from 'socket.io-client';

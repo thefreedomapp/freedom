@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Layout, Button } from 'components';
+import { Layout } from 'components';
+import { Button } from 'elementz';
 import io from 'socket.io-client';
 import cookies from 'js-cookie';
 
