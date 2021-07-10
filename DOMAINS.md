@@ -1,7 +1,5 @@
-# Domains
-
-These are the domains we will buy:
-
-- freedom.app
-- freedomapp.com
-- freedom.dev
+|                               DOMAINS                              |
+| :----------------------------------------------------------------: |
+|          freedom.pk     - Status: Unavailable                      |
+|          f.pk     - Status: Available                              |
+|          freedomapp.pk     - Status: Available                     |
