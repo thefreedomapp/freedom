@@ -27,12 +27,13 @@ export default class MainPage extends Component {
       )
     );
 
-    this.socket.on(
-      'message',
-      (op) =>
-        (document.getElementById(
-          'output'
-        ).innerHTML += `<span><br/>${op.user.username}: ${op.content}</span>`)
+    this.socket.on('message', (msgs) =>
+      msgs.map(
+        (msg) =>
+          (document.getElementById(
+            'output'
+          ).innerHTML += `<span><br/>${msg.author.username}: ${msg.content}</span>`)
+      )
     );
 
     this.socket.on('online', (users) =>

@@ -1,11 +1,10 @@
-const users = require('../models/user');
-
-module.exports = (socket, io) => {
-  const online = {
+const users = require('../models/user'),
+  online = {
     onlineUsers: [],
     keepOnline: {}
   };
 
+module.exports = (socket, io) => {
   socket.on('online', async (id) => {
     const user = await users.findOne({ id });
     io.emit('online', [user]);

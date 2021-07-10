@@ -1,3 +1,3 @@
 def __init__(*args, **kwargs):
   # Print the arguments
-  print(' '.join(*args))
+  print(f"Args: {' '.join(args)}\nKwargs: {' '.join(kwargs)}")

@@ -10,8 +10,6 @@ module.exports = async (socket, io) => {
   socket.on('message', async ({ message, id }, callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
 
-    var messages = [];
-
     const user = await users.findOne({
       id
     });
@@ -28,16 +26,10 @@ module.exports = async (socket, io) => {
       id: nanoid(1000)
     });
 
-    messages.push(message);
+    io.on('connection', async (socket) =>
+      socket.emit('message', await msg.find({}).exec())
+    );
 
-    io.on('connection', (socket) => socket.emit('message', messages));
-
-    io.emit('message', [
-      {
-        user,
-        message,
-        id
-      }
-    ]);
+    io.emit('message', [message]);
   });
 };
