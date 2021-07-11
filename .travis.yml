@@ -13,4 +13,4 @@ node_js:
 install: npm install
 
 script: >-
-  echo "const builder=require('electron-builder');if(process.env.TRAVIS_OS_NAME==='osx')builder.build({projectDir:'electron',targets:['macos']});else builder.build({projectDir:'electron',targets:[process.env.TRAVIS_OS_NAME]})" | node
+  node ci.js
