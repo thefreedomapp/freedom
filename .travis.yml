@@ -7,5 +7,5 @@ os:
 
 install: npm ci
 
-script:
-  - echo "console.log(process.env.TRAVIS_OS_NAME)" | node
+script: >-
+  echo "console.log(process.env.TRAVIS_OS_NAME)" | node
