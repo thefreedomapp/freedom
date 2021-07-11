@@ -12,5 +12,4 @@ node_js:
 
 install: npm install
 
-script: >-
-  node ci.js
+script: node ci.js

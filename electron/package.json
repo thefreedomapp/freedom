@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "a social media platform, where people can discuss about issues and conflicts.",
   "main": "index.js",
-  "scripts": {
-    "start": "electron ."
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freedom-app/freedom.git"
   },
-  "author": "MTGSquad, And TheBotlyNoob",
+  "author": "Freedom Team",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^13.1.5"
+    "electron": "^13.1.6"
   }
 }

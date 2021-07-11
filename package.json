@@ -50,7 +50,7 @@
     "production": "nodemon --watch \"./**/*\" --ext \"*\" -i \"config.json\" -i \"package-lock.json\" -i \"./**/__pycache__\" --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write . && eslint --fix",
-    "app": "electron-builder --linux --windows --projectDir electron"
+    "dev-electron": "electron ./electron"
   },
   "repository": {
     "type": "git",
@@ -61,7 +61,7 @@
     "react",
     "next.js"
   ],
-  "author": "MTGSquad, And TheBotlyNoob",
+  "author": "Freedom Team",
   "license": "MIT",
   "devDependencies": {
     "electron": "^13.1.6",
