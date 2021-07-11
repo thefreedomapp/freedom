@@ -64,6 +64,7 @@
   "author": "MTGSquad, And TheBotlyNoob",
   "license": "MIT",
   "devDependencies": {
+    "electron": "^13.1.6",
     "electron-builder": "^22.11.7",
     "elementz": "^2.0.4",
     "eslint": "^7.30.0",
