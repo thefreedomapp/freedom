@@ -5,7 +5,12 @@ os:
   - linux
   - osx
 
-install: npm ci
+dist: focal
+
+node_js:
+  - 14
+
+install: npm install
 
 script: >-
   echo "console.log(process.env.TRAVIS_OS_NAME)" | node
