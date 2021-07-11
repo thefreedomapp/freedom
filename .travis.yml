@@ -1,0 +1,11 @@
+language: node_js
+
+os:
+  - windows
+  - linux
+  - osx
+
+install: npm ci
+
+script:
+  - echo "console.log(process.env.TRAVIS_OS_NAME)" | node
