@@ -19,8 +19,7 @@ RUN cd /app/ \
   && pip install virtualenv \
   && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME=/app/poetry python3 - \
   # Get latest version of node 16
-  && curl -sSL https://deb.nodesource.com/setup_16.x | bash \
-  && apt-get update -q \
+  && curl -sSL https://deb.nodesource.com/setup_16.x | bash  \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
