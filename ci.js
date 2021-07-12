@@ -40,7 +40,7 @@ function release(os) {
     repo: 'freedom',
     owner: 'freedom-app',
     assets: require('glob')
-      .sync(`electron/dist/freedom-app Setup*`)
+      .sync(`electron/dist/freedom-app*`)
       .filter((asset) => !asset.endsWith('.blockmap')),
     endpoint: 'https://api.github.com',
     auth: { token: process.env.GH_TOKEN },

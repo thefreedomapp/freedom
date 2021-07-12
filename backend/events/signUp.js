@@ -42,7 +42,7 @@ module.exports = (socket) => {
               created: true,
               user: await users.create({
                 name,
-                username,
+                username: username.replace(/\</g, '&lt;'),
                 email,
                 password,
                 pfp,
