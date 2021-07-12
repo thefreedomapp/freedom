@@ -6,3 +6,4 @@ yarn.lock
 __pycache__
 Pipfile.lock
 poetry.lock
+dist/
