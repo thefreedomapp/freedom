@@ -65,7 +65,7 @@
   "author": "Freedom Team",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^13.1.6",
+    "electron": "13.1.6",
     "elementz": "^2.0.4",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",

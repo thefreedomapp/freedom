@@ -10,6 +10,6 @@
   "author": "Freedom Team",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^13.1.6"
+    "electron": "13.1.6"
   }
 }
