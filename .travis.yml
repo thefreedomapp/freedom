@@ -12,4 +12,4 @@ node_js:
 
 install: npm install
 
-script: node ci.js
+script: node --trace-uncaught --trace-warnings --unhandled-rejections=strict  ci.js
