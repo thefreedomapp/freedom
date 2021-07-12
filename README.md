@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/freedom-app/freedom.svg?branch=master)](https://app.travis-ci.com/freedom-app/freedom)
+
 # Freedom.
 
 A Social Media Platform, Where People Can Discuss About Issues And Conflicts.

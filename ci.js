@@ -26,7 +26,7 @@ const builder = require('electron-builder'),
   else throw 'Unsupported Platform! Please Use Linux, Windows, Or Macos.';
 
   // Create release
-  //release(os);
+  release(os);
 })();
 
 function release(os) {
@@ -39,12 +39,19 @@ function release(os) {
     prerelease: false,
     repo: 'freedom',
     owner: 'freedom-app',
-    assets: require('glob').sync(`electron/dist/freedom-app Setup*`),
-    endpoint: 'https://api.github.com'
+    assets: require('glob')
+      .sync(`electron/dist/freedom-app Setup*`)
+      .filter((asset) => !asset.endsWith('.blockmap')),
+    endpoint: 'https://api.github.com',
+    auth: { token: process.env.GH_TOKEN },
+    yes: true
   };
 
-  require('gh-release')(options, function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
+  require('gh-release')(options, (err, result) =>
+    err
+      ? require('./backend/functions/quit')(err)
+      : console.log(
+          require('chalk').green(`Created Release At ${result.html_url}`)
+        )
+  );
 }
