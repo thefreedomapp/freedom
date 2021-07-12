@@ -40,8 +40,7 @@ function release(os) {
     repo: 'freedom',
     owner: 'freedom-app',
     assets: require('glob').sync(`electron/dist/freedom-app Setup*`),
-    endpoint: 'https://api.github.com',
-    auth: { token: process.env.GH_TOKEN }
+    endpoint: 'https://api.github.com'
   };
 
   require('gh-release')(options, function (err, result) {
