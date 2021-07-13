@@ -31,4 +31,4 @@ RUN cd /app/ \
 ADD . /app/
 
 # Run: npm run production, after build 
-ENTRYPOINT cd /app/ && /app/poetry/bin/poetry run npm run production
+ENTRYPOINT /app/poetry/bin/poetry run npm run production --prefix=/app/
