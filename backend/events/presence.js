@@ -5,6 +5,8 @@ const users = require('../models/user'),
   };
 
 module.exports = (socket, io) => {
+  socket.emit('online', online.onlineUsers);
+
   socket.on('online', async (id) => {
     const user = await users.findOne({ id });
     io.emit('online', [user]);
@@ -42,6 +44,4 @@ module.exports = (socket, io) => {
     );
     delete online.keepOnline[user?.id];
   }
-
-  io.on('connection', (socket) => socket.emit('online', online.onlineUsers));
 };

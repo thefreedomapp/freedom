@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Layout } from '../components';
-import { Button } from 'elementz';
+//import { button } from 'elementz';
 import hash from 'utils/hashing.ts';
 import cookies from 'js-cookie';
 import io from 'socket.io-client';
@@ -78,7 +78,7 @@ export default class Signup extends Component {
           onChange={(e) => this.setState({ name: e.target.value })}
         ></input>
         <br />
-        <Button id='signup'>Sign Up</Button>
+        <button id='signup'>Sign Up</button>
         <span
           id='output'
           dangerouslySetInnerHTML={{ __html: this.state.data }}

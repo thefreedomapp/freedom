@@ -7,6 +7,8 @@ const DOMPurify = require('dompurify')(
   { nanoid } = require('nanoid');
 
 module.exports = async (socket, io) => {
+  socket.emit('message', await msg.find({}).exec());
+
   socket.on('message', async ({ message, id }, callback) => {
     callback = typeof callback === 'function' ? callback : () => {};
 
@@ -25,10 +27,6 @@ module.exports = async (socket, io) => {
       content: DOMPurify(marked(message)),
       id: nanoid(1000)
     });
-
-    io.on('connection', async (socket) =>
-      socket.emit('message', await msg.find({}).exec())
-    );
 
     io.emit('message', [message]);
   });

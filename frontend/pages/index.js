@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Layout } from 'components';
-import { Button } from 'elementz';
+//import { button } from 'elementz';
 import io from 'socket.io-client';
 import cookies from 'js-cookie';
 
@@ -73,7 +73,7 @@ export default class MainPage extends Component {
           onChange={(e) => this.setState({ message: e.target.value })}
         ></input>
         <br />
-        <Button id='test'>Send Message</Button>
+        <button id='test'>Send Message</button>
         <div
           id='output'
           dangerouslySetInnerHTML={{ __html: this.state.data }}
