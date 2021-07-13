@@ -1,9 +1,13 @@
 import { Component } from 'react';
 import { Layout } from 'components';
-//import { button } from 'elementz';
 import hash from 'utils/hashing.ts';
+import dynamic from 'next/dynamic';
 import cookies from 'js-cookie';
 import io from 'socket.io-client';
+
+const Button = dynamic(() => import('elementz/lib/Components/Button'), {
+  ssr: false
+});
 
 export default class Login extends Component {
   constructor(props) {
@@ -19,16 +23,16 @@ export default class Login extends Component {
     if (cookies.get('id')) return window.location.replace('/');
 
     this.socket = io();
+  }
 
-    document.getElementById('login').addEventListener('click', () =>
-      this.socket.emit(
-        'login',
-        {
-          email: this.state.email,
-          password: hash(this.state.password)
-        },
-        this.login.bind(this)
-      )
+  onClick() {
+    this.socket.emit(
+      'login',
+      {
+        email: this.state.email,
+        password: hash(this.state.password)
+      },
+      this.login.bind(this)
     );
   }
 
@@ -62,7 +66,9 @@ export default class Login extends Component {
           onChange={(e) => this.setState({ password: e.target.value })}
         ></input>
         <br />
-        <button id='login'>Login</button>
+        <Button className='login' onClick={() => this.onClick()}>
+          Login
+        </Button>
         <span
           id='output'
           dangerouslySetInnerHTML={{ __html: this.state.data }}
