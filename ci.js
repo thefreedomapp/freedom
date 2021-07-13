@@ -1,57 +1,50 @@
 const builder = require('electron-builder'),
   // For local testing
-  os = process.env.TRAVIS_OS_NAME ?? process.platform,
-  Platform = builder.Platform;
+  os =
+    process.platform === 'darwin'
+      ? 'MAC'
+      : process.platform === 'linux'
+      ? 'LINUX'
+      : process.platform === 'win32'
+      ? 'WINDOWS'
+      : require('./backend/functions/quit')(
+          new Error(
+            'Unsupported Platform! Please Use Linux, Windows, Or Macos.'
+          )
+        ),
+  Platform = builder.Platform,
+  { Octokit } = require('octokit');
 
 (async () => {
-  // If the os is Macos run the builder in Macos mode
-  if (os === 'osx')
-    await builder.build({
-      projectDir: 'electron',
-      targets: Platform.MAC.createTarget()
-    });
-  // If the os is Windows run the builder in Windows mode
-  else if (os === 'win32' || os === 'windows')
-    await builder.build({
-      projectDir: 'electron',
-      targets: Platform.WINDOWS.createTarget()
-    });
-  // If the os is linux run the builder in Linux mode
-  else if (os === 'linux')
-    await builder.build({
-      projectDir: 'electron',
-      targets: Platform.LINUX.createTarget()
-    });
-  // If the os is unsupoported (such as FreeBSD, etc...) say the supported oses
-  else throw 'Unsupported Platform! Please Use Linux, Windows, Or Macos.';
+  await builder.build({
+    projectDir: 'electron',
+    targets: Platform[os].createTarget()
+  });
 
   // Create release
   release(os);
 })();
 
-function release(os) {
-  const options = {
-    tag_name: os,
-    target_commitish: 'master',
-    name: `v${require('./package.json').version}`,
-    body: `Freedom installation binary for ${os}\n`,
-    draft: false,
-    prerelease: false,
-    repo: 'freedom',
-    owner: 'freedom-app',
-    assets: require('glob')
-      .sync(`electron/dist/freedom-app*`)
-      .filter((asset) => !asset.endsWith('.blockmap')),
-    endpoint: 'https://api.github.com',
-    auth: { token: process.env.GH_TOKEN },
-    yes: true
-  };
+async function release(os) {
+  var release;
+  const octokit = new Octokit({
+    auth: process.env.GH_TOKEN,
+    userAgent: `freedom-app/v${require('./package.json').version}`
+  });
 
-  require('gh-release')(options, (err, result) =>
-    err
-      ? require('./backend/functions/quit')(err)
-      : console.log(
-          require('chalk').green(`Created Release At ${result.html_url}`)
-        )
+  try {
+    release = await octokit.rest.repos.createRelease({
+      owner: 'freedom-app',
+      repo: 'freedom',
+      name: `v${require('./package.json').version}`,
+      body: `Freedom Binary For ${os}`,
+      tag_name: os
+    });
+  } catch (e) {}
+
+  console.log(
+    require('chalk').green(
+      `\n\nCreated Release For ${os} At ${release.data.html_url}`
+    )
   );
 }
