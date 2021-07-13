@@ -24,7 +24,7 @@ export default class MainPage extends Component {
     this.socket.on('message', (msgs) =>
       msgs.map((msg) =>
         this.setState({
-          messages: `${this.state.messages}<span><br/>${msg.author.username}: ${msg.content}</span>`
+          messages: `${this.state.messages}<span><br/>${msg.author}: ${msg.content}</span>`
         })
       )
     );
