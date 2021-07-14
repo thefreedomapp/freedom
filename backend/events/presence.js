@@ -18,7 +18,7 @@ module.exports = (socket, io) => {
 
   socket.on('keepOnline', (id) => {
     online.keepOnline[id]?.map((timeout) => clearTimeout(timeout));
-    online.keepOnline[id]
+    typeof online.keepOnline[id] === 'array'
       ? online.keepOnline[id].push(
           setTimeout(async () => offline(await users.findOne({ id })), 650)
         )
