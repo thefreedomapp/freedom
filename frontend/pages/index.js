@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Layout } from 'components';
-import { componentDidMount } from 'utils';
 import dynamic from 'next/dynamic';
 import io from 'socket.io-client';
 import cookies from 'js-cookie';
