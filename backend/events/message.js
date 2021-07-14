@@ -17,10 +17,7 @@ module.exports = async (socket, io) => {
     });
 
     if (!user)
-      return callback({
-        sent: false,
-        message: "Please <a href='/login'>Login</a> To Send A Message!"
-      });
+      return callback("Please <a href='/login'>Login</a> To Send A Message!");
 
     message = await msg.create({
       author: user.username,

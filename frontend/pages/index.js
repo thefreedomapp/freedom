@@ -47,7 +47,11 @@ export default class MainPage extends Component {
         message: this.state.message ?? '',
         id: cookies.get('id')
       },
-      (data) => data.sent || cookies.remove('id')
+      (err) => {
+        this.setState({
+          messages: `${err}<br/>${this.state.messages}`
+        });
+      }
     );
   }
 
