@@ -1,9 +1,12 @@
 config.json
 node_modules/
-package-lock.json
 .next/
-yarn.lock
 __pycache__
-Pipfile.lock
-poetry.lock
 dist/
+*.o
+*.exe
+*.so
+*.obj
+*.out
+*.dll
+build/

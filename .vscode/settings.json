@@ -1,4 +1,8 @@
 {
   "editor.detectIndentation": false,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "python.analysis.extraPaths": [
+    "./backend/C"
+  ],
+  "C_Cpp.errorSquiggles": "Disabled"
 }

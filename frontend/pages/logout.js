@@ -1,7 +1,7 @@
 import { remove } from 'js-cookie';
 import { Component } from 'react';
 
-export default class logout extends Component {
+export default class Logout extends Component {
   componentDidMount() {
     remove('id');
     window.location.replace('/login');
