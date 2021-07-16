@@ -1,5 +1,7 @@
+# Config files
 config.json
-node_modules/
+
+# Build folders
 .next/
 __pycache__
 dist/
@@ -10,3 +12,11 @@ dist/
 *.out
 *.dll
 build/
+
+# Package folders
+node_modules/
+
+# Lock files
+yarn.lock
+package-lock.json
+poetry.lock
