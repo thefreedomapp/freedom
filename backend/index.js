@@ -8,7 +8,7 @@ require('child_process').spawnSync('npm', ['install'], {
 (async (func) => {
   // Check for environment veriables.
   // This removes the need for stdin.
-  if (process.env.PORT && process.env.mongouri)
+  if (process.env.PORT && process.env.MONGO_URL)
     return func({ port: process.env.PORT, mongouri: process.env.mongouri });
 
   if (

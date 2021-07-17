@@ -1,5 +1,6 @@
-import RecordRTC, { CanvasRecorder } from 'recordrtc';
+import RecordRTC from 'recordrtc';
 import io from 'socket.io-client';
+import ss from 'socket.io-stream';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
@@ -8,13 +9,16 @@ const Button = dynamic(() => import('elementz/lib/Components/Button'), {
 export default class Vc {
   componentDidMount() {
     this.socket = io();
-    CanvasRecorder;
   }
   async onClick() {
     const recorder = RecordRTC(
       await navigator.mediaDevices.getUserMedia({ audio: true }),
       { type: 'audio', MimeType: 'audio/wav' }
     );
+
+    await recorder.startRecording();
+
+    ss(this.socket).emit();
   }
   render() {
     return <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>;

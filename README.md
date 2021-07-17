@@ -34,6 +34,6 @@ poetry run npm run production
 
 > **NOTE:** If you would like to run in development mode, you should run `poetry run npm start`
 
-> If you don't have access to `stdin`, set environment variables of `PORT` for the port, and `mongouri` for the MongoDB URI
+> If you don't have access to `stdin`, set environment variables of `PORT` for the port, and `MONGO_URL` for the MongoDB URI
 
 > **NOTE:** For Right Now, The Testing Server Is Running [Here](https://freedom-tests.molai.dev)

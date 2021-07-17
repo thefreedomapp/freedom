@@ -1,4 +1,4 @@
 {
   "port": 80,
-  "mongouri": "mongo+srv uri here"
+  "mongouri": "MongoDB URI Here"
 }
