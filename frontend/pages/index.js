@@ -29,10 +29,12 @@ export default class MainPage extends Component {
     );
 
     this.socket.on('online', (users) =>
-      users.map((user) =>
-        this.setState({
-          users: `${this.state.users}<span id='${user.id}' class='onlineUser'><br />${user.username}</span>`
-        })
+      users.map(
+        (user) =>
+          !user ||
+          this.setState({
+            users: `${this.state.users}<span id='${user.id}' class='onlineUser'><br />${user.username}</span>`
+          })
       )
     );
 

@@ -7,24 +7,31 @@ const DOMPurify = require('dompurify')(
   { nanoid } = require('nanoid');
 
 module.exports = async (socket, io) => {
+  // On connection emit the message event to the socket, with all messages sent as the data
   socket.emit('message', await msg.find({}).exec());
 
+  // On the socket event: message, run a function
   socket.on('message', async ({ message, id }, callback) => {
+    // If the callback is undefined, or isn't a function, make it an empty function
     callback = typeof callback === 'function' ? callback : () => {};
 
+    // Find a user with the provided id
     const user = await users.findOne({
       id
     });
 
+    // If the user doesn't exist, return an error
     if (!user)
       return callback("Please <a href='/login'>Login</a> To Send A Message!");
 
+    // Create a message object
     message = await msg.create({
       author: user.username,
       content: DOMPurify(marked(message)),
       id: nanoid(1000)
     });
 
+    // Emit the message to all connected sockets
     io.emit('message', [message]);
   });
 };
