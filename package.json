@@ -54,7 +54,7 @@
   },
   "scripts": {
     "start": "nodemon --watch \"backend/**/*\" --ext \"*\" -i \"./**/__pycache__\" --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
-    "production": "nodemon --watch \"./**/*\" --ext \"*\" -i \"config.json\" -i \"package-lock.json\" -i \"./**/__pycache__\" --trace-uncaught --trace-warnings --unhandled-rejections=strict backend/index.js --production",
+    "production": "node --unhandled-rejections=strict backend/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write .",
     "dev-electron": "electron ./electron",
