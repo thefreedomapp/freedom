@@ -1,6 +1,7 @@
 import RecordRTC from 'recordrtc';
 import io from 'socket.io-client';
 import ss from 'socket.io-stream';
+import dynamic from 'next/dynamic';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
