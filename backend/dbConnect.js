@@ -11,7 +11,7 @@ module.exports = (mongouri) => {
       useFindAndModify: false
     })
     .then(() => {
-      console.log('Connected to MongoDB');
+      console.log(`Connected to MongoDB with a URI of: ${mongouri}`);
     })
     .catch((err) => {
       console.log(err);

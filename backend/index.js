@@ -11,9 +11,7 @@ require('child_process').spawnSync('npm', ['install'], {
   if (process.env.PORT && process.env.MONGO_URL)
     return func({
       port: process.env.PORT,
-      mongouri: process.env.MONGO_URL.includes('/')
-        ? process.env.MONGO_URL
-        : `${process.env.MONGO_URL}/FreedomDB`
+      mongouri: process.env.MONGO_URL
     });
 
   if (
