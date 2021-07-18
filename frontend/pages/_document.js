@@ -9,7 +9,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <script async src='/js/global.js'></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
