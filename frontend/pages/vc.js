@@ -11,6 +11,7 @@ export default class Vc {
   componentDidMount() {
     this.socket = io();
   }
+
   async onClick() {
     const recorder = RecordRTC(
       await navigator.mediaDevices.getUserMedia({ audio: true }),
