@@ -74,10 +74,6 @@ function main({ port, mongouri }) {
     nodir: true
   }).map((event) => events.push(require(event)));
 
-  // Set the maximum event listners to Infinity
-  // else we reach the max too fast
-  io.setMaxListeners(Infinity);
-
   // On connection, run the socket.io events
   io.on('connection', (socket) => events.map((event) => event(socket, io)));
 
