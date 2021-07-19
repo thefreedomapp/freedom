@@ -1,7 +1,7 @@
 # Config files
 config.json
 
-# Build folders
+# Build folders/files
 .next/
 __pycache__
 dist/
@@ -11,6 +11,7 @@ dist/
 *.obj
 *.out
 *.dll
+*.node
 build/
 
 # Package folders
