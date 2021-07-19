@@ -27,12 +27,35 @@ To Install `Freedom` You Should Run:
 ```
 npm install
 poetry install
+```
+
+## To Run In Production
+
+To Run `Freedom` In Production You Should Run:
+
+```
 poetry run npm run production
 ```
 
-> **NOTE:** If you are running on Windows, you should run `poetry run npm.exe run production` or else you will get an error
+On Windows You Should Run:
 
-> **NOTE:** If you would like to run in development mode, you should run `poetry run npm start`
+```
+poetry run npm.exe run production
+```
+
+## To Run In Development
+
+To Run `Freedom` In Development Mode You Should Run:
+
+```
+poetry run npm start
+```
+
+On Windows You Should Run:
+
+```
+poetry run npm.exe start
+```
 
 > If you don't have access to `stdin`, set environment variables of `PORT` for the port, and `MONGO_URL` for the MongoDB URI
 
