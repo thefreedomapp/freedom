@@ -1,8 +1,12 @@
 {
-  "name": "freedom-app",
+  "name": "@freedom-app/app",
   "version": "0.0.2",
   "description": "a social media platform, where people can discuss about issues and conflicts.",
   "main": "backend/index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/dompurify": "^2.2.3",
