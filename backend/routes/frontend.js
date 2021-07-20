@@ -1,4 +1,4 @@
-const dev = require('../functions/dev')();
+const dev = require('../utils/dev')();
 
 module.exports = (app) => {
   dev ||

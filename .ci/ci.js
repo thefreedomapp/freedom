@@ -7,7 +7,7 @@ const builder = require('electron-builder'),
       ? 'LINUX'
       : process.platform === 'win32'
       ? 'WINDOWS'
-      : require('../backend/functions/quit')(
+      : require('../backend/utils/quit')(
           new Error(
             'Unsupported Platform! Please Use Linux, Windows, Or Macos.'
           )

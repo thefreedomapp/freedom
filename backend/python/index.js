@@ -9,7 +9,7 @@ module.exports = (file, callback, options, ...args) =>
     },
     (err, result) =>
       err
-        ? require('../functions/quit')(err)
+        ? require('../utils/quit')(err)
         : typeof callback === 'function'
         ? callback(result)
         : ''
