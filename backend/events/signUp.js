@@ -1,5 +1,6 @@
 const users = require('../models/user'),
-  { nanoid } = require('nanoid');
+  { nanoid } = require('nanoid'),
+  log = require('../utils/logging');
 
 module.exports = (socket) => {
   // On the socket event: signUp, run a function
@@ -43,19 +44,24 @@ module.exports = (socket) => {
             });
 
           // If the user doesn't exit, create the user with the info provided
-          if (!data)
+          if (!data) {
+            const user = await users.create({
+              name,
+              username: username.replace(/\</g, '&lt;'),
+              email,
+              password,
+              pfp,
+              id: nanoid(100)
+            });
+
             callback({
               message: 'User Successfully Created.',
               created: true,
-              user: await users.create({
-                name,
-                username: username.replace(/\</g, '&lt;'),
-                email,
-                password,
-                pfp,
-                id: nanoid(100)
-              })
+              user
             });
+
+            log.info(`Created User: ${user.username}`);
+          }
         }
       );
     }

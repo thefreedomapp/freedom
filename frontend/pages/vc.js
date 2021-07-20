@@ -13,7 +13,9 @@ export default class Vc extends Component {
   }
 
   async onClick() {
-    ss(this.socket).emit('vc-stream', ss.createStream().pipe(), () => {});
+    ss(this.socket).emit('vc-stream', ss.createStream().pipe(), {
+      hello: 'world'
+    });
   }
   render() {
     return <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>;

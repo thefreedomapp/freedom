@@ -49,6 +49,8 @@ module.exports = (socket) => {
           message: `Successfully Removed! The Username: ${data.username} Is Now Available!`,
           removed: true
         });
+
+        log.info(`Removed User: ${data.username}`);
       }
     );
   });

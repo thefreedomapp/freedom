@@ -1,10 +1,5 @@
 const fs = require('fs');
 
-require('child_process').spawnSync('npm', ['install'], {
-  cwd: `${__dirname}/../`,
-  shell: true
-});
-
 (async (func) => {
   // Check for environment veriables.
   // This removes the need for stdin.
@@ -54,7 +49,8 @@ function main({ port, mongouri }) {
     io = new (require('socket.io').Server)(server),
     glob = require('glob').sync,
     { getRoutes } = require('get-routes'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    log = require('./utils/logging');
 
   var events = [];
 
@@ -81,8 +77,8 @@ function main({ port, mongouri }) {
   app.post('/api/routes', (req, res) => res.json(getRoutes(app)));
 
   server.listen(port, () =>
-    console.log(
-      `\nRunning Express Server On:\n  ${
+    log.info(
+      `Running Express Server On:\n         ${
         // List the network interfaces in a green color
         // this is just cosmetic
         require('chalk').green(
@@ -94,9 +90,9 @@ function main({ port, mongouri }) {
                 )
                 .filter(Boolean)
             )
-            .join('\n  ')
+            .join('\n         ')
         )
-      }\n\n`
+      }\n`
     )
   );
 }
