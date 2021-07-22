@@ -13,20 +13,7 @@ export default class Vc extends Component {
     this.socket = io();
   }
 
-  async onClick() {
-    const stream = ss.createStream();
-    ss(this.socket).emit('vc-stream', stream, {
-      hello: 'world'
-    });
-    try {
-      stream.pipe(
-        await navigator.mediaDevices.getUserMedia({
-          audio: true,
-          video: false
-        })
-      );
-    } catch (e) {}
-  }
+  async onClick() {}
   render() {
     return (
       <Layout>
