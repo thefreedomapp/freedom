@@ -50,6 +50,8 @@ function main({ port, mongouri }) {
     glob = require('glob').sync,
     { getRoutes } = require('get-routes'),
     cookieParser = require('cookie-parser'),
+    // Start the WebRTC server
+    peer = require('peer').ExpressPeerServer(server),
     log = require('./utils/logging');
 
   var events = [];

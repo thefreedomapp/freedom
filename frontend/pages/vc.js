@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { Layout } from 'components';
 import dynamic from 'next/dynamic';
 import { Component } from 'react';
 
@@ -14,7 +15,12 @@ export default class Vc extends Component {
   async onClick() {
     alert('This feature is still in development!');
   }
+
   render() {
-    return <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>;
+    return (
+      <Layout>
+        <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>
+      </Layout>
+    );
   }
 }
