@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { Layout } from 'components';
 import hash from 'utils/hashing.ts';
 import dynamic from 'next/dynamic';
-import cookies from 'js-cookie';
-import io from 'socket.io-client';
+import { set } from 'js-cookie';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
@@ -20,13 +19,11 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    if (cookies.get('id')) return window.location.replace('/');
-
-    this.socket = io();
+    if (window.id) return (window.location.href = '/');
   }
 
   onClick() {
-    this.socket.emit(
+    socket.emit(
       'login',
       {
         email: this.state.email,
@@ -39,8 +36,8 @@ export default class Login extends Component {
   login(data) {
     if (!data.logged_in) return this.setState({ data: data.message });
 
-    cookies.set('id', data.user.id);
-    window.location.replace('/');
+    set('id', data.user.id);
+    window.location.href = '/';
   }
 
   render() {

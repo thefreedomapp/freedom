@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Layout } from 'components';
 import dynamic from 'next/dynamic';
-import io from 'socket.io-client';
 import cookies from 'js-cookie';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
@@ -18,17 +17,14 @@ export default class MainPage extends Component {
     };
   }
   componentDidMount() {
-    this.socket = io();
-
-    this.socket.on('message', (msgs) =>
+    socket.on('message', (msgs) =>
       msgs.map((msg) =>
         this.setState({
           messages: `${this.state.messages}<span><br/>${msg.author}: ${msg.content}</span>`
         })
       )
     );
-
-    this.socket.on('online', (users) =>
+    socket.on('online', (users) =>
       users.map(
         (user) =>
           !user ||
@@ -37,17 +33,14 @@ export default class MainPage extends Component {
           })
       )
     );
-
-    this.socket.on('offline', (user) =>
-      document.getElementById(user?.id)?.remove()
-    );
+    socket.on('offline', (user) => document.getElementById(user?.id)?.remove());
   }
 
   onClick() {
-    this.socket.send(
+    socket.send(
       {
         message: this.state.message ?? '',
-        id: cookies.get('id')
+        id
       },
       (err) => {
         this.setState({

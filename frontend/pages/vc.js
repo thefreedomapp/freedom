@@ -1,4 +1,3 @@
-import io from 'socket.io-client';
 import { Layout } from 'components';
 import dynamic from 'next/dynamic';
 import { Component } from 'react';
@@ -8,9 +7,7 @@ const Button = dynamic(() => import('elementz/lib/Components/Button'), {
 });
 
 export default class Vc extends Component {
-  componentDidMount() {
-    this.socket = io();
-  }
+  componentDidMount() {}
 
   async onClick() {
     alert('This feature is still in development!');

@@ -1,25 +1,39 @@
 import { Component } from 'react';
-import io from 'socket.io-client';
 import { get } from 'js-cookie';
-import Peer from 'peerjs';
+import io from 'socket.io-client';
+
 export default class Layout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      ready: false
+    };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = get('id');
 
     if (!id) return;
 
-    socket.emit('online', id);
-    setInterval(() => socket.emit('keepOnline', id), 500);
-    window.peer = new Peer(id, { host: '/' });
     window.socket = io();
     window.id = id;
+
+    this.setState({ ready: true });
+    socket.emit('online', id);
+    setInterval(() => socket.emit('keepOnline', id), 500);
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return (
+      <div>
+        {this.state.ready ? (
+          this.props.children
+        ) : (
+          <h2>
+            Loading <code>freedom</code>, Please Wait...
+          </h2>
+        )}
+      </div>
+    );
   }
 }
