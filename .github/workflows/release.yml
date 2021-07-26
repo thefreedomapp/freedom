@@ -23,12 +23,12 @@ jobs:
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/build.js
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
-          with:
-            name: ${{ matrix.platform }}
-            path: |
-              electron/dist/
-              !electron/dist/*-unpacked/
-              !electron/dist/*debug*
+        with:
+          name: ${{ matrix.platform }}
+          path: |
+            electron/dist/
+            !electron/dist/*-unpacked/
+            !electron/dist/*debug*
   release:
     needs: [build]
     runs-on: ubuntu-latest
