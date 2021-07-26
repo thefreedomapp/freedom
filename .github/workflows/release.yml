@@ -2,7 +2,6 @@ on: push
 
 jobs:
   build:
-    needs: [install]
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
