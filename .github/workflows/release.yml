@@ -13,5 +13,5 @@ jobs:
           version: 14
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
+        run: |
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/ci.js
