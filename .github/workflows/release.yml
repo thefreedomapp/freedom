@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: debug
+        run: ls electron/dist/*
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
