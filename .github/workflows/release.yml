@@ -2,6 +2,7 @@ on: push
 
 jobs:
   build:
+    needs: [install]
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
@@ -14,4 +15,5 @@ jobs:
       - env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          npm install
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/ci.js
