@@ -10,9 +10,9 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v1
       - name: Setup Node
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
         with:
           version: 14
       - name: Build
@@ -21,19 +21,29 @@ jobs:
         run: |
           npm install
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/build.js
+        - name: Upload Artifacts
+          uses: actions/upload-artifact@v2
+            with:
+              name: ${{ matrix.platform }}
+              path: |
+                electron/dist/
+                !electron/dist/*-unpacked/
+                !electron/dist/*debug*
   release:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
-      - name: debug
-        run: ls electron/dist/*
+        uses: actions/checkout@v1
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+          with:
+            path: dist/
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: electron/dist/freedom-app*
+          file: dist/**/*
           tag: ${GITHUB_SHA::8}
           overwrite: true
           file_glob: true
