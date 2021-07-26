@@ -4,8 +4,9 @@ const m = require('mongoose');
 module.exports = m.model(
   'message',
   new m.Schema({
-    author: Object,
+    author: String,
     content: String,
-    id: String
+    id: String,
+    thread: Object
   })
 );
