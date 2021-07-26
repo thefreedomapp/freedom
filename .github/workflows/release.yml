@@ -7,6 +7,7 @@ jobs:
         platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
+      - name: Build
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
