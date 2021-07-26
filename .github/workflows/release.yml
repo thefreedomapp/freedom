@@ -21,17 +21,17 @@ jobs:
         run: |
           npm install
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/build.js
-    release:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@master
-        - name: Release
-          uses: marvinpinto/action-automatic-releases@latest
-          with:
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
-            prerelease: false,
-            automatic_release_tag: ${GITHUB_SHA::8}
-            files: |
-              electron/dist/freedom-app*
-              electron/dist/latest-*.yml
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: false,
+          automatic_release_tag: ${GITHUB_SHA::8}
+          files: |
+            electron/dist/freedom-app*
+            electron/dist/latest-*.yml
