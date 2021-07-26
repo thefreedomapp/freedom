@@ -60,8 +60,11 @@
     "build": "cd frontend && next build",
     "lint": "prettier --write .",
     "dev-electron": "electron ./electron",
-    "postinstall": "node -p \"const fs=require('fs');try{fs.renameSync('build/Release/C.node','backend/C/C.node');fs.rmSync('build/',{recursive:!0});}catch(e){if(e instanceof TypeError)throw new TypeError('You Need To Be On Node 14+!')}\"",
+    "postinstall": "node -p \"const fs=require('fs');fs.renameSync('build/Release/C.node','backend/C/C.node');fs.rmSync('build/',{recursive:!0});\"",
     "types": "node installTypes.js"
+  },
+  "engines": {
+    "node": ">= 14"
   },
   "repository": {
     "type": "git",

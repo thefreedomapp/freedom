@@ -5,7 +5,7 @@
       "cflags!": [ "-fno-exceptions" ],
       "cflags_cc!": [ "-fno-exceptions" ],
       "sources": [
-        "backend/Cpp/all.cc"
+        "backend/C/all.cc"
       ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")"
