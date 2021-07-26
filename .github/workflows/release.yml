@@ -1,4 +1,4 @@
-on: 
+on:
   - push
   - workflow_dispatch
 
@@ -10,14 +10,28 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           version: 14
-      - name: Build And Release
+      - name: Build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install
-          node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/ci.js
+          node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/build.js
+    release:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@master
+        - name: Release
+          uses: marvinpinto/action-automatic-releases@latest
+          with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            prerelease: false,
+            automatic_release_tag: ${GITHUB_SHA::8}
+            files: |
+              electron/dist/freedom-app*
+              electron/dist/latest-*.yml
