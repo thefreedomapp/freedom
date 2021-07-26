@@ -6,6 +6,7 @@ module.exports = m.model(
   new m.Schema({
     author: Object,
     content: String,
-    id: String
+    id: String,
+    thread: Object
   })
 );
