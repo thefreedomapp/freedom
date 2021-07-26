@@ -5,6 +5,11 @@ os:
   - linux
   - osx
 
+arch:
+  - arm64
+  - ppc64le
+  - s390x
+
 dist: focal
 
 node_js:
