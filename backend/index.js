@@ -54,7 +54,7 @@ function main({ port, mongouri }) {
     peer = require('peer').ExpressPeerServer(server),
     log = require('./utils/logging');
 
-  var events = [];
+  let events = [];
 
   // Connect to the Mongo Database
   require('./dbConnect')(mongouri);

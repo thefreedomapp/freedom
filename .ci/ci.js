@@ -13,6 +13,7 @@ const builder = require('electron-builder'),
           )
         ),
   Platform = builder.Platform,
+  deleteTagAndRelease = require('delete-tag-and-release'),
   { Octokit } = require('octokit');
 
 (async () => {
@@ -27,24 +28,28 @@ const builder = require('electron-builder'),
 })();
 
 async function release(os) {
-  // TODO: Remove previous tag, and release on every run
-  var release;
+  let release;
   // Setup Octokit with the GitHub token
   const octokit = new Octokit({
     auth: process.env.GH_TOKEN,
     userAgent: `freedom-app/v${require('../package.json').version}`
   });
 
-  try {
-    // Create the release, and tag
-    release = await octokit.rest.repos.createRelease({
-      owner: 'freedom-app',
-      repo: 'freedom',
-      name: `v${require('../package.json').version}`,
-      body: `Freedom Binary For ${os}`,
-      tag_name: os
-    });
-  } catch (e) {}
+  // Delete the release
+  deleteTagAndRelease({
+    GITHUB_REPOSITORY: 'freedom-app/freedom',
+    TAG_NAME: os,
+    GITHUB_TOKEN: process.env.GH_TOKEN
+  });
+
+  // Create the release, and tag
+  release = await octokit.rest.repos.createRelease({
+    owner: 'freedom-app',
+    repo: 'freedom',
+    name: `v${require('../package.json').version}`,
+    body: `Freedom Binary For ${os}`,
+    tag_name: os
+  });
 
   // Log the release URL
   console.log(

@@ -6,7 +6,7 @@ const log = require('../utils/logging');
 // Meh, its more documentation...
 module.exports = (app) => {
   app.get('/pull', async (req, res) => {
-    var pulled;
+    let pulled;
 
     try {
       pulled = spawn('git', ['pull'], {
