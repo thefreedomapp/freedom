@@ -22,7 +22,6 @@ jobs:
         run: |
           npm install
           node --unhandled-rejections=strict --trace-uncaught --trace-warnings .ci/build.js
-      - run: ls -laR electron/dist/
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
