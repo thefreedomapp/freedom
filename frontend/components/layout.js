@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { get } from 'js-cookie';
+import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 export default class Layout extends Component {
@@ -25,7 +26,7 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <div>
+      <Provider>
         {this.state.ready ? (
           this.props.children
         ) : (
@@ -33,7 +34,7 @@ export default class Layout extends Component {
             Loading <code>freedom</code>, Please Wait...
           </h2>
         )}
-      </div>
+      </Provider>
     );
   }
 }
