@@ -4,6 +4,7 @@ on:
 
 jobs:
   build:
+    if: ${{ contains(github.event.commits[0].message, '[release]') }}
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
