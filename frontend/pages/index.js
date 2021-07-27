@@ -69,16 +69,14 @@ export default class MainPage extends Component {
                 `}</style>
         <input
           placeholder='Send A Message!'
-          onChange={(e) => this.setState({ message: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ message: e.target.value })}></input>
         <br />
         <Button className='test' onClick={() => this.onClick()}>
           Send Message
         </Button>
         <div
           id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.messages }}
-        ></div>
+          dangerouslySetInnerHTML={{ __html: this.state.messages }}></div>
         <div id='online'>
           <h2>Online Users</h2>
           <hr />

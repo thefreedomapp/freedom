@@ -59,31 +59,26 @@ export default class Signup extends Component {
                 `}</style>
         <input
           placeholder='username'
-          onChange={(e) => this.setState({ username: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ username: e.target.value })}></input>
         <br />
         <input
           placeholder='email'
-          onChange={(e) => this.setState({ email: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ email: e.target.value })}></input>
         <br />
         <input
           placeholder='password'
-          onChange={(e) => this.setState({ password: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ password: e.target.value })}></input>
         <br />
         <input
           placeholder='full name'
-          onChange={(e) => this.setState({ name: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ name: e.target.value })}></input>
         <br />
         <Button id='signup' onClick={() => this.onClick()}>
           Sign Up
         </Button>
         <span
           id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.data }}
-        ></span>
+          dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
       </Layout>
     );
   }

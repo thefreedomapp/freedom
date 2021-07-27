@@ -55,21 +55,18 @@ export default class Login extends Component {
                 `}</style>
         <input
           placeholder='email'
-          onChange={(e) => this.setState({ email: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ email: e.target.value })}></input>
         <br />
         <input
           placeholder='password'
-          onChange={(e) => this.setState({ password: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ password: e.target.value })}></input>
         <br />
         <Button className='login' onClick={() => this.onClick()}>
           Login
         </Button>
         <span
           id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.data }}
-        ></span>
+          dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
       </Layout>
     );
   }

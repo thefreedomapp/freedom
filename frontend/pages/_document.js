@@ -19,8 +19,7 @@ class MyDocument extends Document {
             height='61'
             frameBorder='0'
             scrolling='no'
-            className='status'
-          ></iframe>
+            className='status'></iframe>
         </body>
       </Html>
     );

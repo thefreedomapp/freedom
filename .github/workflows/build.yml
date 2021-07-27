@@ -40,7 +40,7 @@ jobs:
         with:
           path: dist/
       - name: Get Release Name
-        run: echo '::set-output name=SHA::v$(node -p "require('./package.json').version")'
+        run: echo '::set-output name=SHA::v'$(node -p "require('./package.json').version")
         id: SHA
       - name: Release
         uses: svenstaro/upload-release-action@v2

@@ -21,4 +21,4 @@ const builder = require('electron-builder'),
   });
 })();
 
-// 
+//
