@@ -29,6 +29,7 @@ jobs:
             electron/dist/
             !electron/dist/*-unpacked/
             !electron/dist/*debug*
+            !electron/dist/*/
   release:
     needs: [build]
     runs-on: ubuntu-latest
@@ -39,6 +40,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: dist/
+      - run: ls -laR dist/
       - name: Get Release Name
         run: echo '::set-output name=SHA::v'$(node -p "require('./package.json').version")
         id: SHA
