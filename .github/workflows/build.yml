@@ -28,7 +28,10 @@ jobs:
         with:
           name: ${{ matrix.platform }}
           path: |
-            electron/dist/*.{exe,snap,AppImage}
+            electron/dist/*.exe
+            electron/dist/*.snap
+            electron/dist/*.AppImage
+            electron/dist/*.dmg
             electron/dist/latest-*.yml
   release:
     needs: [build]
