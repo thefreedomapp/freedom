@@ -27,10 +27,8 @@ jobs:
         with:
           name: ${{ matrix.platform }}
           path: |
-            electron/dist/
-            !electron/dist/*-unpacked/
-            !electron/dist/*debug*
-            !electron/dist/*/
+            electron/dist/*.{exe,snap,AppImage}
+            electron/dist/latest-*.yml
   release:
     needs: [build]
     runs-on: ubuntu-latest
