@@ -44,7 +44,7 @@ jobs:
           path: dist/
       - run: ls -laR dist/
       - name: Get Release Name
-        run: echo "::set-output name=VER::v$(node -p "require('./package.json').version"): ${{ github.event.commits[0].message }}"
+        run: 'echo "::set-output name=VER::v$(node -p "require(''./package.json'').version"): ${{ github.event.commits[0].message }}'
         id: VER
       - name: Release
         uses: svenstaro/upload-release-action@v2
