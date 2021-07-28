@@ -16,7 +16,8 @@ export default class Signup extends Component {
       username: '',
       password: '',
       name: '',
-      pfp: ''
+      pfp: '',
+      data: <></>
     };
   }
 
@@ -38,7 +39,7 @@ export default class Signup extends Component {
   }
 
   signup(data) {
-    if (!data.created) return this.setState({ data: data.message });
+    if (!data.created) return this.setState({ data: <>{data.message}</> });
 
     cookies.set('id', data.user.id);
     window.location.href = '/';
@@ -76,9 +77,7 @@ export default class Signup extends Component {
         <Button id='signup' onClick={() => this.onClick()}>
           Sign Up
         </Button>
-        <span
-          id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
+        <span id='output'>{this.state.data}</span>
       </Layout>
     );
   }

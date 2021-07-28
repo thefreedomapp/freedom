@@ -14,7 +14,8 @@ export default class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      data: <></>
     };
   }
 
@@ -34,7 +35,7 @@ export default class Login extends Component {
   }
 
   login(data) {
-    if (!data.logged_in) return this.setState({ data: data.message });
+    if (!data.logged_in) return this.setState({ data: <>{data.message}</> });
 
     set('id', data.user.id);
     window.location.href = '/';
@@ -64,9 +65,7 @@ export default class Login extends Component {
         <Button className='login' onClick={() => this.onClick()}>
           Login
         </Button>
-        <span
-          id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
+        <span id='output'>{this.state.data}</span>
       </Layout>
     );
   }

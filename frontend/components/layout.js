@@ -27,16 +27,11 @@ export default class Layout extends Component {
   }
 
   render() {
+    if (this.state.ready === true) return this.props.children;
     return (
-      <div>
-        {this.state.ready ? (
-          this.props.children
-        ) : (
-          <h2>
-            Loading <code>freedom</code>, Please Wait...
-          </h2>
-        )}
-      </div>
+      <h1>
+        Loading <b>Freedom</b>, Please Wait...
+      </h1>
     );
   }
 }

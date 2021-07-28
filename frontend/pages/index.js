@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Layout } from 'components';
 import dynamic from 'next/dynamic';
-import cookies from 'js-cookie';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
@@ -20,7 +19,15 @@ export default class MainPage extends Component {
     socket.on('message', (msgs) =>
       msgs.map((msg) =>
         this.setState({
-          messages: `${this.state.messages}<span><br/>${msg.author}: ${msg.content}</span>`
+          messages: (
+            <>
+              {this.state.messages}
+              <span>
+                <br />
+                {msg.author}: {msg.content}
+              </span>
+            </>
+          )
         })
       )
     );
@@ -29,7 +36,15 @@ export default class MainPage extends Component {
         (user) =>
           !user ||
           this.setState({
-            users: `${this.state.users}<span id='${user.id}' class='onlineUser'><br />${user.username}</span>`
+            users: (
+              <>
+                {this.state.users}
+                <span id={user.id} className='onlineUser'>
+                  <br />
+                  {user.username}
+                </span>
+              </>
+            )
           })
       )
     );
@@ -44,7 +59,13 @@ export default class MainPage extends Component {
       },
       (err) => {
         this.setState({
-          messages: `${err}<br/>${this.state.messages}`
+          messages: (
+            <>
+              {err}
+              <br />
+              {this.state.messages}
+            </>
+          )
         });
       }
     );
@@ -74,13 +95,11 @@ export default class MainPage extends Component {
         <Button className='test' onClick={() => this.onClick()}>
           Send Message
         </Button>
-        <div
-          id='output'
-          dangerouslySetInnerHTML={{ __html: this.state.messages }}></div>
+        <div id='output'>{this.state.messages}</div>
         <div id='online'>
           <h2>Online Users</h2>
           <hr />
-          <div dangerouslySetInnerHTML={{ __html: this.state.users }}></div>
+          <div>{this.state.users}</div>
         </div>
       </Layout>
     );
