@@ -41,16 +41,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: dist/
-      - run: ls -laR dist/
+      - run: 'echo "${{ steps.VER.outputs.VER }}: ${{ github.event.commits[0].message }}"'
       - name: Get Release Name
-        run: 'echo "::set-output name=VER::v$(node -p "require(''./package.json'').version"): ${{ github.event.commits[0].message }}"'
+        run: echo "::set-output name=VER::v$(node -p "require('./package.json').version")"
         id: VER
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/**/*
-          tag: ${{ steps.VER.outputs.VER }}
+          tag: '${{ steps.VER.outputs.VER }}: ${{ github.event.commits[0].message }}'
           overwrite: true
           file_glob: true
           body: ''
