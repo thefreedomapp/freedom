@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { get } from 'js-cookie';
 import io from 'socket.io-client';
 
 export default class Layout extends Component {
@@ -11,17 +10,22 @@ export default class Layout extends Component {
   }
 
   async componentDidMount() {
-    const id = get('id');
+    if ((await (await fetch('/api/isDev')).json()).isDev)
+      setInterval(() => {
+        console.clear();
+        console.log(`${stopSign()}\n     
+    Keep your account safe! Do not send any information from
+    here to anyone or paste any text here.
+
+    If someone is asking you to copy or paste text here then
+    you're giving someone access to your account.
+    
+    If you know what you're doing, come work with us! https://freedomapp.cc/jobs`);
+      }, 1000);
+
+    const id = require('js-cookie').get('id');
     require('peerjs');
 
-    console.log(`${stopSign()}\n     
-      Keep your account safe! Do not send any information from
-      here to anyone or paste any text here.
-
-      If someone is asking you to copy or paste text here then
-      you're giving someone access to your account.
-      
-      If you know what you're doing, come work with us! https://freedomapp.cc/jobs`);
     window.socket = io();
     window.peer = new Peer(id, { host: '/', path: '/peerjs', port: 80 });
     window.id = id;
@@ -33,7 +37,7 @@ export default class Layout extends Component {
   }
 
   render() {
-    if (this.state.ready === true) return this.props.children;
+    if (this.state.ready === true) return <div>{this.props.children}</div>;
     return (
       <h1>
         Loading <b>Freedom</b>, Please Wait...

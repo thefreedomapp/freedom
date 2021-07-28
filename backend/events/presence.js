@@ -3,6 +3,7 @@ const users = require('../models/user'),
     onlineUsers: [],
     keepOnline: {}
   };
+const fs = require('memfs');
 
 module.exports = (socket, io) => {
   // On connection emit the online event to the socket, with the online users as the data
