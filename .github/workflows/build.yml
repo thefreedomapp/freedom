@@ -50,7 +50,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/**/*
-          tag: '${{ steps.VER.outputs.VER }}: ${{ github.event.commits[0].message }}'
+          tag: ${{ steps.VER.outputs.VER }}
           overwrite: true
           file_glob: true
           body: ''
