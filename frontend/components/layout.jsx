@@ -14,14 +14,20 @@ export default class Layout extends Component {
     const id = get('id');
     require('peerjs');
 
-    if (!id) return;
+    console.log(`${stopSign()}\n     
+      Keep your account safe! Do not send any information from
+      here to anyone or paste any text here.
 
-    console.log(typeof Peer);
+      If someone is asking you to copy or paste text here then
+      you're giving someone access to your account.
+      
+      If you know what you're doing, come work with us! https://freedomapp.cc/jobs`);
     window.socket = io();
     window.peer = new Peer(id, { host: '/', path: '/peerjs', port: 80 });
     window.id = id;
 
     this.setState({ ready: true });
+    if (!id) return;
     socket.emit('online', id);
     setInterval(() => socket.emit('keepOnline', id), 500);
   }
@@ -34,4 +40,29 @@ export default class Layout extends Component {
       </h1>
     );
   }
+}
+
+// Long lines of text, ignore this function
+function stopSign() {
+  return `
+
+
+    ██████████████████████████████████████████████████████████    
+  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  
+██░░░░░░██████░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████▒▒▒▒▒▒██
+██░░░░██░░░░░░░░░░██████████░░░░████████▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██
+██░░░░██░░░░░░░░░░░░░░██░░░░░░██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██
+██░░░░██░░░░░░░░░░░░░░██░░░░░░██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██
+██░░░░░░██████░░░░░░░░██░░▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██
+██░░░░░░░░░░░░██░░░░░░██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██████████▒▒▒▒▒▒██
+██░░░░░░░░░░░░██░░░░▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+██░░░░░░░░░░░░██░░▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+██░░░░████████░░░░▒▒▒▒██▒▒▒▒▒▒▒▒████████▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+  ██░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██  
+    ██████████████████████████████████████████████████████████    
+
+
+
+
+`;
 }
