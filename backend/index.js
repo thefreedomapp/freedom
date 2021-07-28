@@ -53,7 +53,7 @@ function main({ port, mongouri }) {
     { getRoutes } = require('get-routes'),
     cookieParser = require('cookie-parser'),
     // Start the WebRTC server
-    peer = require('peer').ExpressPeerServer(server),
+    peer = require('peer').ExpressPeerServer(server, { path: '/peerjs' }),
     log = require('./utils/logging');
 
   let events = [];
@@ -61,6 +61,7 @@ function main({ port, mongouri }) {
   // Connect to the Mongo Database
   require('./dbConnect')(mongouri);
 
+  app.use('/', peer);
   app.use(express.json());
   app.use(cookieParser());
 

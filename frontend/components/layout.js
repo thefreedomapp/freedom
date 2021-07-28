@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { get } from 'js-cookie';
-import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 export default class Layout extends Component {
@@ -13,10 +12,13 @@ export default class Layout extends Component {
 
   async componentDidMount() {
     const id = get('id');
+    require('peerjs');
 
     if (!id) return;
 
+    console.log(typeof Peer);
     window.socket = io();
+    window.peer = new Peer(id, { host: '/', path: '/peerjs' });
     window.id = id;
 
     this.setState({ ready: true });
@@ -26,7 +28,7 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <Provider>
+      <div>
         {this.state.ready ? (
           this.props.children
         ) : (
@@ -34,7 +36,7 @@ export default class Layout extends Component {
             Loading <code>freedom</code>, Please Wait...
           </h2>
         )}
-      </Provider>
+      </div>
     );
   }
 }
