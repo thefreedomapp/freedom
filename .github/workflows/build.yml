@@ -44,14 +44,14 @@ jobs:
           path: dist/
       - run: ls -laR dist/
       - name: Get Release Name
-        run: echo '::set-output name=SHA::v'$(node -p "require('./package.json').version")
-        id: SHA
+        run: echo "::set-output name=VER::v$(node -p "require('./package.json').version"): ${{ github.event.commits[0].message }}"
+        id: VER
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dist/**/*
-          tag: ${{ steps.SHA.outputs.SHA }}
+          tag: ${{ steps.VER.outputs.VER }}
           overwrite: true
           file_glob: true
           body: ''
