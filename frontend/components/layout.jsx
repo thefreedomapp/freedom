@@ -10,7 +10,7 @@ export default class Layout extends Component {
   }
 
   async componentDidMount() {
-    if ((await (await fetch('/api/isDev')).json()).isDev)
+    if (!(await (await fetch('/api/isDev')).json()).isDev)
       setInterval(() => {
         console.clear();
         console.log(`${stopSign()}\n     

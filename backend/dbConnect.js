@@ -8,6 +8,7 @@ module.exports = (mongouri) => {
   mongoose
     .connect(mongouri, {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
       useFindAndModify: false
     })
     .then(() => {
