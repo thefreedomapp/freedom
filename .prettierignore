@@ -21,6 +21,3 @@ node_modules/
 yarn.lock
 package-lock.json
 poetry.lock
-
-# Because prettier is stupid
-.github/workflows/build.yml
