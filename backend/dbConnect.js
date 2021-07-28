@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const log = require('./utils/logging');
 
 // Connect to the Mongo Database
 module.exports = (mongouri) => {
@@ -7,13 +8,12 @@ module.exports = (mongouri) => {
   mongoose
     .connect(mongouri, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
       useFindAndModify: false
     })
     .then(() => {
-      console.log(`Connected to MongoDB with a URI of: ${mongouri}`);
+      log.debug(`Connected to MongoDB with a URI of: ${mongouri}`);
     })
     .catch((err) => {
-      console.log(err);
+      log.error(err);
     });
 };
