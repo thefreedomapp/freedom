@@ -25,6 +25,7 @@
     "@types/sass": "^1.16.1",
     "chalk": "^4.1.1",
     "cookie-parser": "^1.4.5",
+    "dockerode": "^3.3.0",
     "dompurify": "^2.3.0",
     "electron-builder": "^22.11.7",
     "elementz": "^2.0.5",
