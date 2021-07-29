@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Layout } from 'components';
 import dynamic from 'next/dynamic';
+import parse from 'html-react-parser';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
@@ -25,7 +26,7 @@ export default class MainPage extends Component {
               {this.state.messages}
               <span>
                 <br />
-                {msg.author}: {msg.content}
+                {msg.author}: {parse(msg.content)}
               </span>
             </>
           )
@@ -62,7 +63,7 @@ export default class MainPage extends Component {
         this.setState({
           messages: (
             <>
-              {err}
+              {parse(err)}
               <br />
               {this.state.messages}
             </>

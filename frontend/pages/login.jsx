@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Layout } from 'components';
 import hash from 'utils/hashing.ts';
 import dynamic from 'next/dynamic';
+import parse from 'html-react-parser';
 
 const Button = dynamic(() => import('elementz/lib/Components/Button'), {
   ssr: false
@@ -34,7 +35,8 @@ export default class Login extends Component {
   }
 
   login(data) {
-    if (!data.logged_in) return this.setState({ data: <>{data.message}</> });
+    if (!data.logged_in)
+      return this.setState({ data: <>{parse(data.message)}</> });
 
     require('js-cookie').set('id', data.user.id);
     window.location.href = '/';
