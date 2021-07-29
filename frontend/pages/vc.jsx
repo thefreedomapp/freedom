@@ -18,7 +18,7 @@ export default class Vc extends Component {
       username: ''
     };
   }
-  componentDidMount() {}
+  componentMount() {}
 
   async onClick() {
     console.log(this.state.username);
@@ -26,7 +26,7 @@ export default class Vc extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout mount={() => this.componentMount()}>
         <Input
           onChange={(e) => this.setState({ username: e.target.value })}></Input>
         <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>

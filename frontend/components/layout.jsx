@@ -28,10 +28,11 @@ export default class Layout extends Component {
 
     window.socket = io();
     window.peer = new window.Peer(id, { host: '/', path: '/peerjs', port: 80 });
-    //window.id = id;
+    window.id = id;
 
-    console.log(peer);
     this.setState({ ready: true });
+    this.props.mount();
+
     if (!id) return;
     socket.emit('online', id);
     setInterval(() => socket.emit('keepOnline', id), 500);

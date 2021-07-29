@@ -15,7 +15,7 @@ export default class MainPage extends Component {
       users: ''
     };
   }
-  componentDidMount() {
+  componentMount() {
     console.log('dsa');
     socket.on('message', (msgs) =>
       msgs.map((msg) =>
@@ -74,7 +74,7 @@ export default class MainPage extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout mount={() => this.componentMount()}>
         <style>{`
                     input {
                         margin-bottom: 10px;

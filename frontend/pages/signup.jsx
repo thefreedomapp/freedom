@@ -21,7 +21,7 @@ export default class Signup extends Component {
     };
   }
 
-  componentDidMount() {
+  componentMount() {
     if (cookies.get('id')) return (window.location.href = '/');
   }
   onClick() {
@@ -47,7 +47,7 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout mount={() => this.componentMount()}>
         <style>{`
                     input {
                         margin: 10px;

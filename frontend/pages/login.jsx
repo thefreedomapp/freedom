@@ -18,7 +18,7 @@ export default class Login extends Component {
     };
   }
 
-  componentDidMount() {
+  componentMount() {
     if (window.id) return (window.location.href = '/');
   }
 
@@ -42,7 +42,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout mount={() => this.componentMount()}>
         <style>{`
                     input {
                         margin: 10px;
