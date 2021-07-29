@@ -1,6 +1,7 @@
 const users = require('../models/user'),
   { nanoid } = require('nanoid'),
-  log = require('../utils/logging');
+  log = require('../utils/logging'),
+  fs = require('fs');
 
 module.exports = (socket) => {
   // On the socket event: signUp, run a function
@@ -11,13 +12,7 @@ module.exports = (socket) => {
       callback = typeof callback === 'function' ? callback : () => {};
 
       // If any of the required arguments don't exist, return an error
-      if (
-        name === undefined ||
-        username === undefined ||
-        email === undefined ||
-        password === undefined ||
-        pfp === undefined
-      )
+      if (!name || !username || !email || !password)
         return callback({
           message: 'Missing Required Arguments!',
           created: false
@@ -50,8 +45,14 @@ module.exports = (socket) => {
               username: username.replace(/\</g, '&lt;'),
               email,
               password,
-              pfp,
-              id: nanoid(100)
+              pfp:
+                pfp ||
+                fs.readFileSync(
+                  `${__dirname}/../../frontend/images/watermelon.png`,
+                  { encoding: 'base64' }
+                ),
+              userId: nanoid(100),
+              id: (await users.countDocuments({}).exec()) + 1
             });
 
             callback({

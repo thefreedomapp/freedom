@@ -38,7 +38,7 @@ export default class Login extends Component {
     if (!data.logged_in)
       return this.setState({ data: <>{parse(data.message)}</> });
 
-    require('js-cookie').set('id', data.user.id);
+    require('js-cookie').set('id', data.user.userId);
     window.location.href = '/';
   }
 
