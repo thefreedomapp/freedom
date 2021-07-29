@@ -51,8 +51,8 @@ module.exports = (socket) => {
                   `${__dirname}/../../frontend/images/watermelon.png`,
                   { encoding: 'base64' }
                 ),
-              userId: nanoid(100),
-              id: (await users.countDocuments({}).exec()) + 1
+              id: nanoid(100),
+              userId: (await users.countDocuments({}).exec()) + 1
             });
 
             callback({
