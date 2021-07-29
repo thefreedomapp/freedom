@@ -17,7 +17,7 @@ module.exports = (app) => {
     );
 
   const next = require('next')({
-    dev: dev,
+    dev,
     dir: `${__dirname}/../../frontend`
   });
 

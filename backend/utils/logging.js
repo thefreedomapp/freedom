@@ -12,7 +12,7 @@ module.exports = {
   // If we are in development mode, log this in green, with a prefixed with: [DEBUG]:
   // If we aren't in development mode, don't log this
   debug: (...data) =>
-    dev || console.log(chalk.green('\n[DEBUG]:'), ...data, '\n'),
+    !dev || console.log(chalk.green('\n[DEBUG]:'), ...data, '\n'),
   // Warn with a yellow color and prefixed with: [WARN]:
   warn: (...data) => console.trace(chalk.yellow('\n[WARN]:'), ...data, '\n')
 };

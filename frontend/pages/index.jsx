@@ -16,6 +16,7 @@ export default class MainPage extends Component {
     };
   }
   componentDidMount() {
+    console.log('dsa');
     socket.on('message', (msgs) =>
       msgs.map((msg) =>
         this.setState({
