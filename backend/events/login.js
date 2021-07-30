@@ -31,7 +31,7 @@ module.exports = (socket) => {
         if (err)
           return callback({
             message: `Internal Server Error: ${JSON.stringify(error)}`,
-            changed: false
+            logged_in: false
           });
 
         // If the provided password doesn't match the user's password, return an error

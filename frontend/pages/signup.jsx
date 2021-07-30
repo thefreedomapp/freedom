@@ -35,7 +35,7 @@ export default class Signup extends Component {
         username: this.state.username,
         pfp: this.state.pfp
       },
-      () => this.signup()
+      this.signup.bind(this)
     );
   }
 
