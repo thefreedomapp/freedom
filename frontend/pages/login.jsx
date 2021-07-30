@@ -30,7 +30,7 @@ export default class Login extends Component {
         email: this.state.email,
         password: hash(this.state.password)
       },
-      this.login.bind(this)
+      () => this.login()
     );
   }
 
