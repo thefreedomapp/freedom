@@ -1,5 +1,10 @@
 # Freedom.
 
+<a href="https://gitpod.io/#https://github.com/freedom-app/freedom">
+  <img src="https://raw.githubusercontent.com/mtgsquad/cdn-content/main/download%20(1).jpg" alt="open with gitpod">
+</a>
+
+
 ![Palestine Watermelon Symbol](./frontend/images/watermelon.png)
 
 A Social Media Platform, Where People Can Discuss About Issues And Conflicts.
