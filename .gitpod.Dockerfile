@@ -4,6 +4,9 @@ MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 # Become the root user
 USER root
 
+# Set PATH environment variable
+ENV PATH="/app/poetry/bin/:$PATH"
+
 # Copy all files into the Home directory
 ADD . /app/
 
@@ -23,7 +26,7 @@ RUN cd /app/ \
   # Install Nodejs, and npm
   && apt-get install -qy nodejs \
   # Install packages
-  && /app/poetry/bin/poetry install  \
+  && poetry install  \
   && npm install --force
 
 
