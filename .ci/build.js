@@ -20,5 +20,3 @@ const builder = require('electron-builder'),
     targets: Platform[os].createTarget()
   });
 })();
-
-//

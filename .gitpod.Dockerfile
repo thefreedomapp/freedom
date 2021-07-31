@@ -32,5 +32,3 @@ RUN cd /app/ \
 
 # Copy all files into the Home directory
 ADD . /app/
-
-WORKDIR /app/
