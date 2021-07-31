@@ -52,6 +52,7 @@ module.exports = (socket) => {
                   { encoding: 'base64' }
                 ),
               id: nanoid(64),
+              identifier: nanoid(4),
               userId: (await users.countDocuments({}).exec()) + 1
             });
 

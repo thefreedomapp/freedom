@@ -8,6 +8,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/dockerode": "^3.2.7",
     "@types/dompurify": "^2.2.3",

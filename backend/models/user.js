@@ -5,6 +5,7 @@ module.exports = m.model(
   'user',
   new m.Schema({
     name: String,
+    identifier: Number,
     username: String,
     email: String,
     password: String,
