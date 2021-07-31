@@ -1,10 +1,5 @@
 # Freedom.
 
-<a href="https://gitpod.io/#https://github.com/freedom-app/freedom">
-  <img src="https://raw.githubusercontent.com/mtgsquad/cdn-content/main/download%20(1).jpg" alt="open with gitpod">
-</a>
-
-
 ![Palestine Watermelon Symbol](./frontend/images/watermelon.png)
 
 A Social Media Platform, Where People Can Discuss About Issues And Conflicts.
@@ -14,6 +9,8 @@ A Social Media Platform, Where People Can Discuss About Issues And Conflicts.
 Our Goal Is To Create A Platform That Is Very Pro-Palestinian, It Is Our Job To Make Their Voice Heard.
 
 ## Running For Yourself
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/freedom-app/freedom)
 
 ### Dependencies
 
