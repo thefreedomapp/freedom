@@ -9,7 +9,7 @@ deps.map((dep) => {
     encoding: 'utf8'
   }).stderr.split('\n')[0];
 
-  line.includes('npm WARN deprecated @types/')
+  line.includes('npm WARN deprecated')
     ? spawn('npm', ['uninstall', `@types/${dep}`], {
         shell: true,
         cwd: __dirname,
