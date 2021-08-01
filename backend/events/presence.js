@@ -14,9 +14,11 @@ module.exports = (socket, io) => {
     // Find a user with the provided id
     const user = await users.findOne({ id });
     // Emit the online event to every connected socket, other than this one
-    socket.broadcast.emit('online', [user]);
+    socket.broadcast.emit('online', [
+      { username: user.codeName, id: user.userId }
+    ]);
     // Push the online user to the list of online users
-    online.onlineUsers.push(user);
+    online.onlineUsers.push({ username: user.codeName, id: user.userId });
     // If the user's id is in the keepOnline object, and it is an array,
     // push a timeout that runs the offline function to it,
     // if it is not an array,
@@ -27,7 +29,9 @@ module.exports = (socket, io) => {
   });
 
   // On the socket event: keepOnline, run a function
-  socket.on('keepOnline', (id) => {
+  socket.on('keepOnline', async (id) => {
+    var user = await users.findOne({ id });
+    user = { username: user.codeName, id: user.userId };
     // Go through every offline timout, and clear it
     online.keepOnline[id]?.map((timeout) => clearTimeout(timeout));
     // If the user's id is in the keepOnline object, and it is an array,
@@ -35,12 +39,8 @@ module.exports = (socket, io) => {
     // if it is not an array,
     // make it an array with a timeout that runs the offline function
     typeof online.keepOnline[id] === 'array'
-      ? online.keepOnline[id].push(
-          setTimeout(async () => offline(await users.findOne({ id })), 650)
-        )
-      : (online.keepOnline[id] = [
-          setTimeout(async () => offline(await users.findOne({ id })), 650)
-        ]);
+      ? online.keepOnline[id].push(setTimeout(() => offline(user), 650))
+      : (online.keepOnline[id] = [setTimeout(async () => offline(user), 650)]);
   });
 
   function offline(user) {
