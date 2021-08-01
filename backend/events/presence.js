@@ -3,7 +3,6 @@ const users = require('../models/user'),
     onlineUsers: [],
     keepOnline: {}
   };
-const fs = require('memfs');
 
 module.exports = (socket, io) => {
   // On connection emit the online event to the socket, with the online users as the data
@@ -13,6 +12,7 @@ module.exports = (socket, io) => {
   socket.on('online', async (id) => {
     // Find a user with the provided id
     const user = await users.findOne({ id });
+    console.log(12312381203981029);
     // Emit the online event to every connected socket, other than this one
     socket.broadcast.emit('online', [
       { username: user.codename, id: user.userId }

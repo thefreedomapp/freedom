@@ -27,7 +27,7 @@ export default class Layout extends Component {
     require('peerjs');
 
     window.socket = io();
-    window.peer = new window.Peer(id, { host: '/', path: '/peerjs', port: 80 });
+    //window.peer = new window.Peer(id, { host: '/', path: '/peerjs', port: 80 });
     window.id = id;
 
     this.setState({ ready: true });
