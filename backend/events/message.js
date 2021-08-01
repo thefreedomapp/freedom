@@ -28,7 +28,7 @@ module.exports = async (socket, io) => {
     message = await msg.create({
       author: {
         username: user.username,
-        codeName: user.codeName,
+        codename: user.codename,
         userId: user.userId
       },
       content: DOMPurify(marked(message)),

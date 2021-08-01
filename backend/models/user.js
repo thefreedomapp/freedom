@@ -7,7 +7,7 @@ module.exports = m.model(
     name: String,
     identifier: String,
     username: String,
-    codeName: String,
+    codename: String,
     email: String,
     password: String,
     pfp: String,
