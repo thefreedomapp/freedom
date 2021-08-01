@@ -26,7 +26,11 @@ module.exports = async (socket, io) => {
 
     // Create a message object
     message = await msg.create({
-      author: user.username,
+      author: {
+        username: user.username,
+        codeName: user.codeName,
+        userId: user.userId
+      },
       content: DOMPurify(marked(message)),
       id: nanoid(1000)
     });
