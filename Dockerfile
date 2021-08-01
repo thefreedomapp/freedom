@@ -1,4 +1,4 @@
-FROM gitpod/workspace-base:latest
+FROM ubuntu:20.04
 MAINTAINER TheBotlyNoob <thebotlynoob@gmail.com>
 
 # Become the root user
