@@ -23,7 +23,7 @@ export default class Layout extends Component {
     If you know what you're doing, come work with us! https://freedomapp.cc/jobs`);
       }, 1000);
 
-    const id = require('js-cookie').get('id');
+    const id = localStorage.getItem('id');
     require('peerjs');
 
     window.socket = io();
