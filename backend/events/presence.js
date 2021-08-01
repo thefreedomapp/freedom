@@ -2,7 +2,8 @@ const users = require('../models/user'),
   online = {
     onlineUsers: [],
     keepOnline: {}
-  };
+  },
+  log = require('../utils/logging');
 
 module.exports = (socket, io) => {
   // On connection emit the online event to the socket, with the online users as the data
@@ -12,7 +13,7 @@ module.exports = (socket, io) => {
   socket.on('online', async (id) => {
     // Find a user with the provided id
     const user = await users.findOne({ id });
-    console.log(12312381203981029);
+    log.info(`${user.codename} Is Online`);
     // Emit the online event to every connected socket, other than this one
     socket.broadcast.emit('online', [
       { username: user.codename, id: user.userId }

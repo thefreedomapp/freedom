@@ -24,7 +24,7 @@ export default class Layout extends Component {
       }, 1000);
 
     const id = localStorage.getItem('id');
-    require('peerjs');
+    //require('peerjs');
 
     window.socket = io();
     //window.peer = new window.Peer(id, { host: '/', path: '/peerjs', port: 80 });
