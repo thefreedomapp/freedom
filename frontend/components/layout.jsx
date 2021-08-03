@@ -24,10 +24,13 @@ export default class Layout extends Component {
       }, 1000);
 
     const id = localStorage.getItem('id');
-    //require('peerjs');
+    require('peerjs');
 
     window.socket = io();
-    //window.peer = new window.Peer(id, { host: '/', path: '/peerjs', port: 80 });
+    window.peer = new window.Peer(id, {
+      host: '/',
+      port: !window.location.port ? 81 : parseInt(window.location.port) + 1
+    });
     window.id = id;
 
     this.setState({ ready: true });
