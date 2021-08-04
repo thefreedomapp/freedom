@@ -4,10 +4,6 @@ import hash from 'utils/hashing.ts';
 import dynamic from 'next/dynamic';
 import parse from 'html-react-parser';
 
-const Button = dynamic(() => import('elementz/lib/Components/Button'), {
-  ssr: false
-});
-
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -64,9 +60,9 @@ export default class Login extends Component {
           placeholder='password'
           onChange={(e) => this.setState({ password: e.target.value })}></input>
         <br />
-        <Button className='login' onClick={() => this.onClick()}>
+        <button className='login' onClick={() => this.onClick()}>
           Login
-        </Button>
+        </button>
         <span id='output'>{this.state.data}</span>
       </Layout>
     );

@@ -3,17 +3,14 @@ import { Layout } from 'components';
 import dynamic from 'next/dynamic';
 import parse from 'html-react-parser';
 
-const Button = dynamic(() => import('elementz/lib/Components/Button'), {
-  ssr: false
-});
-
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      messages: '',
-      users: ''
+      messages: <></>,
+      users: <></>,
+      error: <></>
     };
   }
   componentMount() {
@@ -62,13 +59,7 @@ export default class MainPage extends Component {
       },
       (err) => {
         this.setState({
-          messages: (
-            <>
-              {parse(err)}
-              <br />
-              {this.state.messages}
-            </>
-          )
+          error: <>{parse(err)}</>
         });
       }
     );
@@ -95,9 +86,11 @@ export default class MainPage extends Component {
           placeholder='Send A Message!'
           onChange={(e) => this.setState({ message: e.target.value })}></input>
         <br />
-        <Button className='test' onClick={() => this.onClick()}>
+        <button className='test' onClick={() => this.onClick()}>
           Send Message
-        </Button>
+        </button>
+        <div id='error'>{this.state.error}</div>
+        <br />
         <div id='output'>{this.state.messages}</div>
         <div id='online'>
           <h2>Online Users</h2>

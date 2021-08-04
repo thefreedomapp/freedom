@@ -11,10 +11,6 @@ module.exports = (mongouri) => {
       useUnifiedTopology: true,
       useFindAndModify: false
     })
-    .then(() => {
-      log.debug(`Connected to MongoDB with a URI of: ${mongouri}`);
-    })
-    .catch((err) => {
-      log.error(err);
-    });
+    .then(() => log.debug(`Connected to MongoDB with a URI of: ${mongouri}`))
+    .catch((err) => log.error(err));
 };

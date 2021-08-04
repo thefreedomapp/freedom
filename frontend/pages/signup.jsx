@@ -4,9 +4,6 @@ import hash from 'utils/hashing.ts';
 import dynamic from 'next/dynamic';
 import parse from 'html-react-parser';
 
-const Button = dynamic(() => import('elementz/lib/Components/Button'), {
-  ssr: false
-});
 export default class Signup extends Component {
   constructor(props) {
     super(props);
@@ -76,9 +73,9 @@ export default class Signup extends Component {
           placeholder='full name'
           onChange={(e) => this.setState({ name: e.target.value })}></input>
         <br />
-        <Button id='signup' onClick={() => this.onClick()}>
+        <button id='signup' onClick={() => this.onClick()}>
           Sign Up
-        </Button>
+        </button>
         <span id='output'>{this.state.data}</span>
       </Layout>
     );
