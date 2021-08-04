@@ -21,7 +21,9 @@ export default class Vc extends Component {
   componentMount() {}
 
   async onClick() {
-    socket.emit('usernameToID', this.state.username, (id) => alert(id));
+    socket.emit('usernameToID', this.state.username, (data) => {
+      if (!data.exists);
+    });
   }
 
   render() {
@@ -29,6 +31,7 @@ export default class Vc extends Component {
       <Layout mount={() => this.componentMount()}>
         <Input
           onChange={(e) => this.setState({ username: e.target.value })}></Input>
+        <br />
         <Button onClick={() => this.onClick()}>Click Me To Start VC</Button>
       </Layout>
     );

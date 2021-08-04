@@ -4,7 +4,7 @@ module.exports = (file, callback, options, ...args) =>
     'init.py',
     {
       ...options,
-      args: [file, args.join(' ')],
+      args: [file, ...args],
       scriptPath: __dirname
     },
     (err, result) =>
