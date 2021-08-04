@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Layout } from '../components';
 import hash from 'utils/hashing.ts';
-import dynamic from 'next/dynamic';
 import parse from 'html-react-parser';
 
 export default class Signup extends Component {

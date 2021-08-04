@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Layout } from 'components';
-import dynamic from 'next/dynamic';
 import parse from 'html-react-parser';
 
 export default class MainPage extends Component {

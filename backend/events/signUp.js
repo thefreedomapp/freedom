@@ -1,7 +1,8 @@
 const users = require('../models/user'),
   { nanoid } = require('nanoid'),
   log = require('../utils/logging'),
-  fs = require('fs');
+  fs = require('fs'),
+  emailChecker = require('email-check');
 
 module.exports = (socket) => {
   // On the socket event: signUp, run a function
@@ -30,7 +31,8 @@ module.exports = (socket) => {
       // Find a user with the provided email, then run a function with the user
       await users.findOne(
         {
-          email
+          identifier,
+          username
         },
         async (err, data) => {
           // If the user exists, return an error
@@ -49,6 +51,17 @@ module.exports = (socket) => {
 
           // If the user doesn't exit, create the user with the info provided
           if (!data) {
+            if (
+              (await emailChecker(email, {
+                from: 'email-check@freedomapp.cc'
+              })) === false
+            ) {
+              return callback({
+                created: false,
+                message: "Email Doesn't Work!"
+              });
+            }
+
             const user = await users.create({
               name,
               username,
