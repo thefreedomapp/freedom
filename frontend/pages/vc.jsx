@@ -19,13 +19,19 @@ export default class Vc extends Component {
       if (!data.exists)
         return this.setState({ error: <>{parse(data.message)}</> });
       else this.setState({ error: <></> });
+      alert(data.id);
       const conn = peer.connect(data.id);
+      console.log('connection');
       conn.on('open', () => {
-        conn.send('hello!');
+        // here you have conn.id
+        alert('connected! 2');
+        conn.send('hi! 2');
       });
       peer.on('connection', (conn) => {
         conn.on('data', (data) => {
-          alert(data);
+          // Will print 'hi!'
+          alert('connected! 1');
+          console.log(data);
         });
       });
     });

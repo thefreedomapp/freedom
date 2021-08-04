@@ -53,13 +53,14 @@
     "string_decoder": "^1.3.0"
   },
   "scripts": {
-    "start": "nodemon --watch \"./backend/\" -e \"*\" -i \"config.json\" -i \"package-lock.json\" -i \"build/\" -i \"__pycache__/\" --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
-    "production": "node --trace-uncaught --trace-deprecation --trace-warnings --unhandled-rejections=strict backend/index.js --production",
+    "start": "nodemon --watch \"./backend/\" -e \"*\" -i \"config.json\" --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
+    "production": "npm run compress && nodemon --watch \"./backend/\" -e \"*\" -i \"config.json\" --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict dist/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write .",
     "dev-electron": "electron ./electron",
     "postinstall": "node -e \"const fs=require('fs');fs.renameSync('build/Release/C.node','backend/C/C.node');fs.rmSync('build/',{recursive:!0});\"",
-    "types": "node installTypes.js"
+    "types": "node installTypes.js",
+    "compress": "minify backend -d dist"
   },
   "engines": {
     "node": ">= 14"
@@ -77,6 +78,8 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.3.1",
+    "babel-minify": "^0.5.1",
+    "babel-preset-env": "^1.7.0",
     "electron": "13.1.7",
     "eslint": "^7.31.0",
     "eslint-config-next": "^11.0.1",
