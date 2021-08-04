@@ -12,6 +12,6 @@ module.exports = m.model(
     password: String,
     pfp: String,
     id: String,
-    userid: String
+    userid: Number
   })
 );

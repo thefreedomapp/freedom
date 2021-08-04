@@ -21,10 +21,7 @@ export default class Vc extends Component {
   componentMount() {}
 
   async onClick() {
-    console.log(this.state.username);
-    console.log(
-      socket.emit('usernameToID', this.state.username, (id) => alert(id))
-    );
+    socket.emit('usernameToID', this.state.username, (id) => alert(id));
   }
 
   render() {

@@ -22,7 +22,7 @@ export default class Signup extends Component {
   }
 
   componentMount() {
-    if (localStorage.getItem('id')) return (window.location.href = '/');
+    if (window.id && window.auth) return (window.location.href = '/');
   }
   onClick() {
     socket.emit(
@@ -42,7 +42,8 @@ export default class Signup extends Component {
     if (!data.created)
       return this.setState({ data: <>{parse(data.message)}</> });
 
-    localStorage.setItem('id', data.user.id);
+    localStorage.setItem('auth', data.user.id);
+    localStorage.setItem('id', data.user.userid);
     window.location.href = '/';
   }
 

@@ -23,6 +23,7 @@ export default class Layout extends Component {
     If you know what you're doing, come work with us! https://freedomapp.cc/jobs`);
       }, 1000);
 
+    const auth = localStorage.getItem('auth');
     const id = localStorage.getItem('id');
     require('peerjs');
 
@@ -31,14 +32,15 @@ export default class Layout extends Component {
       host: '/',
       port: !window.location.port ? 81 : parseInt(window.location.port) + 1
     });
+    window.auth = auth;
     window.id = id;
 
     this.setState({ ready: true });
     this.props.mount();
 
-    if (!id) return;
-    socket.emit('online', id);
-    setInterval(() => socket.emit('keepOnline', id), 500);
+    if (!auth) return;
+    socket.emit('online', auth);
+    setInterval(() => socket.emit('keepOnline', auth), 500);
   }
 
   render() {

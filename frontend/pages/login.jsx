@@ -20,7 +20,7 @@ export default class Login extends Component {
   }
 
   componentMount() {
-    if (window.id) return (window.location.href = '/');
+    if (window.id && window.auth) return (window.location.href = '/');
   }
 
   onClick() {
@@ -38,7 +38,8 @@ export default class Login extends Component {
     if (!data.logged_in)
       return this.setState({ data: <>{parse(data.message)}</> });
 
-    localStorage.setItem('id', data.user.id);
+    localStorage.setItem('auth', data.user.id);
+    localStorage.setItem('id', data.user.userid);
     window.location.href = '/';
   }
 
