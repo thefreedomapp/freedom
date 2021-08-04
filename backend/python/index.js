@@ -1,4 +1,4 @@
-module.exports = (file, options, ...args) =>
+module.exports = (file, ...args) =>
   new Promise((resolve, reject) =>
     // Run init.py with provided arguments
     require('python-shell').PythonShell.run(
