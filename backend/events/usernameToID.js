@@ -5,5 +5,5 @@ module.exports = (socket) =>
     // If the callback is undefined, or isn't a function, make it an empty function
     callback = typeof callback === 'function' ? callback : () => {};
     // Return the user's id
-    callback((await users.findOne({ codename: username }).exec()).userId);
+    callback((await users.findOne({ codename: username }).exec()).userid);
   });

@@ -11,6 +11,7 @@ module.exports = m.model(
     email: String,
     password: String,
     pfp: String,
-    id: String
+    id: String,
+    userid: String
   })
 );

@@ -29,7 +29,7 @@ module.exports = async (socket, io) => {
       author: {
         username: user.username,
         codename: user.codename,
-        userId: user.userId
+        userid: user.userid
       },
       content: DOMPurify(marked(message)),
       id: nanoid(1000)

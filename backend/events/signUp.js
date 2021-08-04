@@ -17,6 +17,15 @@ module.exports = (socket) => {
           message: 'Missing Required Arguments!',
           created: false
         });
+      console.log(await users.countDocuments({}).exec());
+
+      username = username.replace(/\</g, '&lt;');
+      pfp =
+        pfp ||
+        fs.readFileSync(`${__dirname}/../../frontend/images/watermelon.png`, {
+          encoding: 'base64'
+        });
+      identifier = nanoid(4);
 
       // Find a user with the provided email, then run a function with the user
       await users.findOne(
@@ -42,19 +51,14 @@ module.exports = (socket) => {
           if (!data) {
             const user = await users.create({
               name,
-              username: username.replace(/\</g, '&lt;'),
+              username,
               email,
               password,
-              pfp:
-                pfp ||
-                fs.readFileSync(
-                  `${__dirname}/../../frontend/images/watermelon.png`,
-                  { encoding: 'base64' }
-                ),
+              pfp,
               id: nanoid(64),
-              codename: `${this.username}#${this.identifier}`,
-              identifier: nanoid(4),
-              userId: (await users.countDocuments({}).exec()) + 1
+              codename: `${username}#${identifier}`,
+              identifier,
+              userid: (await users.countDocuments({}).exec()) + 1
             });
 
             callback({

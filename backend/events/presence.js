@@ -16,10 +16,10 @@ module.exports = (socket, io) => {
     log.info(`${user.codename} Is Online`);
     // Emit the online event to every connected socket, other than this one
     socket.broadcast.emit('online', [
-      { username: user.codename, id: user.userId }
+      { username: user.codename, id: user.userid }
     ]);
     // Push the online user to the list of online users
-    online.onlineUsers.push({ username: user.codename, id: user.userId });
+    online.onlineUsers.push({ username: user.codename, id: user.userid });
     // If the user's id is in the keepOnline object, and it is an array,
     // push a timeout that runs the offline function to it,
     // if it is not an array,
@@ -32,7 +32,7 @@ module.exports = (socket, io) => {
   // On the socket event: keepOnline, run a function
   socket.on('keepOnline', async (id) => {
     var user = await users.findOne({ id });
-    user = { username: user.codename, id: user.userId };
+    user = { username: user.codename, id: user.userid };
     // Go through every offline timout, and clear it
     online.keepOnline[id]?.map((timeout) => clearTimeout(timeout));
     // If the user's id is in the keepOnline object, and it is an array,
