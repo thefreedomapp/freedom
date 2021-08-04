@@ -10,5 +10,4 @@ if you find a bug, please make a issue.
 
 If you can fix it, then make a issue, and then a pull request which fixes that issue.
 
-> **Hope that freedom works well! Happy testing!**
-> **_- molai.dev_**
+> **Hope that freedom works well! Happy testing!** > **_- molai.dev_**
