@@ -18,7 +18,6 @@ module.exports = (socket) => {
           message: 'Missing Required Arguments!',
           created: false
         });
-      console.log(await users.countDocuments({}).exec());
 
       username = username.replace(/\</g, '&lt;');
       pfp =
