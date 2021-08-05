@@ -68,7 +68,7 @@ function main({ port, mongouri }) {
   // Set web routes
   glob(`${__dirname}/routes/**/*`, {
     nodir: true
-  }).map((route) => require(route)(app));
+  }).map((route) => app.use('/', require(route)(express.Router())));
 
   // Set socket.io events
   glob(`${__dirname}/events/**/*`, {

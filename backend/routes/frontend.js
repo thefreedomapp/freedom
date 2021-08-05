@@ -1,7 +1,7 @@
 const dev = require('../utils/dev')();
 const log = require('../utils/logging');
 
-module.exports = (app) => {
+module.exports = (router) => {
   dev ||
     log.info(
       `Building The Frontend...\n${
@@ -22,5 +22,6 @@ module.exports = (app) => {
   });
 
   // On every get request, use the Next request handler, for the frontend
-  next.prepare().then(() => app.get('*', next.getRequestHandler()));
+  next.prepare().then(() => router.get('*', next.getRequestHandler()));
+  return router;
 };
