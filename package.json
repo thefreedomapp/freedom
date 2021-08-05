@@ -8,7 +8,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@josee9988/minifyall": "^1.2.2",
+    "@node-minify/babel-minify": "^6.2.0",
+    "@node-minify/clean-css": "^6.2.0",
+    "@node-minify/core": "^6.2.0",
+    "@node-minify/html-minifier": "^6.2.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/dompurify": "^2.2.3",
     "@types/express": "^4.17.13",
@@ -61,7 +64,7 @@
     "dev-electron": "electron ./electron",
     "postinstall": "node -e \"const fs=require('fs');fs.renameSync('build/Release/C.node','backend/C/C.node');fs.rmSync('build/',{recursive:!0});\"",
     "types": "node installTypes.js",
-    "compress": "minify backend -d dist"
+    "compress": "node compress.js"
   },
   "engines": {
     "node": ">= 14"
