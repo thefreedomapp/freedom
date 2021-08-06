@@ -11,9 +11,9 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <script
-            data-ad-client='ca-pub-7979230612831330'
             async
-            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7979230612831330'
+            crossOrigin='anonymous'></script>
         </Head>
         <body>
           <Main />

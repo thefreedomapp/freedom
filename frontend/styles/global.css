@@ -41,3 +41,17 @@ input {
   left: 15px;
   border: none;
 }
+
+.leftAd {
+  position: fixed;
+  left: 20px;
+}
+
+.rightAd {
+  position: fixed;
+  right: 20px;
+}
+
+.fixedAd {
+  position: fixed;
+}

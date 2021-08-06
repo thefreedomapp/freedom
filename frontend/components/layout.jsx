@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Ad } from 'components';
 import io from 'socket.io-client';
 
 export default class Layout extends Component {
@@ -53,6 +54,7 @@ export default class Layout extends Component {
             Loading <b>Freedom</b>, Please Wait...
           </h1>
         )}
+        <Ad left></Ad>
       </div>
     );
   }

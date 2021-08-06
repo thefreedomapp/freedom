@@ -1,3 +1,4 @@
 import Layout from './layout.jsx';
+import Ad from './ad.jsx';
 
-export { Layout };
+export { Layout, Ad };
