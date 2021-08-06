@@ -12,6 +12,7 @@ dist/
 *.out
 *.dll
 *.node
+*.min*
 build/
 
 # Package folders
