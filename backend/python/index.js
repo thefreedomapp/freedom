@@ -4,7 +4,6 @@ module.exports = (file, ...args) =>
     require('python-shell').PythonShell.run(
       'init.py',
       {
-        ...options,
         args: [file, ...args],
         scriptPath: __dirname
       },
