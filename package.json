@@ -23,7 +23,6 @@
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/sass": "^1.16.1",
-    "bulma": "^0.9.3",
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.5",
     "dompurify": "^2.3.0",
