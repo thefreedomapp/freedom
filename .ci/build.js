@@ -1,4 +1,4 @@
-const builder = require('electron-builder'),
+const { build, Platform} = require('electron-builder'),
   // Get system os
   os =
     process.platform === 'darwin'
@@ -11,11 +11,10 @@ const builder = require('electron-builder'),
           new Error(
             'Unsupported Platform! Please Use Linux, Windows, Or Macos.'
           )
-        ),
-  Platform = builder.Platform;
+        );
 (async () => {
   // Build an electron
-  await builder.build({
+  await build({
     projectDir: 'electron',
     targets: Platform[os].createTarget()
   });
