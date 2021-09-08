@@ -7,8 +7,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Brandon Grotesque', 'Quicksand', 'Proxima Nova', 'Dank Mono',
-    'Pragmata Pro', monospace;
+  font-family: 'Quicksand', 'Proxima Nova', 'Dank Mono', 'Pragmata Pro',
+    monospace;
   text-align: center;
 }
 
@@ -35,23 +35,13 @@ input {
   margin: 4px;
 }
 
+input {
+  color: black;
+}
+
 .status {
   position: fixed;
   bottom: 0;
   left: 15px;
   border: none;
-}
-
-.leftAd {
-  position: fixed;
-  left: 20px;
-}
-
-.rightAd {
-  position: fixed;
-  right: 20px;
-}
-
-.fixedAd {
-  position: fixed;
 }

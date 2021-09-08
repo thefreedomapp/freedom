@@ -18,16 +18,13 @@ RUN cd /app/ \
   && add-apt-repository ppa:deadsnakes/ppa \
   && apt-get -q update \
   # Install python
-	&& apt-get install -qy python3 python3-pip curl git \
+	&& apt-get install -qy python python-pip python3 python3-pip curl \
   && pip install virtualenv \
   && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | POETRY_HOME=/app/poetry python3 - \
   # Get latest version of node 16
   && curl -sSL https://deb.nodesource.com/setup_16.x | bash  \
   # Install Nodejs, and npm
-  && apt-get install -qy nodejs \
-  # Install packages
-  && poetry install  \
-  && npm install --force
+  && apt-get install -qy nodejs
 
 
 # Copy all files into the Home directory

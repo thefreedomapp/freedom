@@ -1,3 +1,4 @@
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -11,9 +12,9 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <script
-            async
-            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7979230612831330'
-            crossOrigin='anonymous'></script>
+            src='https://kit.fontawesome.com/f9cf38b42f.js'
+            crossOrigin='anonymous'
+            async></script>
         </Head>
         <body>
           <Main />
