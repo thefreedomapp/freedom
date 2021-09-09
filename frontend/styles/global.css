@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', 'Proxima Nova', 'Dank Mono', 'Pragmata Pro',
-    monospace;
+    'Courier New', Courier;
   text-align: center;
 }
 
@@ -19,13 +19,12 @@ body,
 
 code {
   font-family: 'Operator Mono SSm Lig', 'Brandon Grotesque', 'Quicksand',
-    'Proxima Nova', 'Dank Mono', 'Pragmata Pro', 'Courier New', Courier,
-    monospace;
+    'Proxima Nova', 'Dank Mono', 'Pragmata Pro', 'Courier New', Courier;
 }
 
 button,
 input {
-  border: 1px solid grey;
+  border: 1px solid black;
   border-radius: 15px;
   padding: 4px;
   margin: 4px;
@@ -33,6 +32,11 @@ input {
 
 input {
   color: black;
+}
+
+button {
+  font-family: 'Proxima Nova', 'Quicksand', 'Dank Mono', 'Pragmata Pro',
+    'Courier New', Courier;
 }
 
 .status {

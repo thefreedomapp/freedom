@@ -2208,7 +2208,7 @@ pre[class*='language-'] {
 .gold {
   color: #ffc548;
 }
-.molai {
+.freedom {
   color: #ff4473;
 }
 .function {
@@ -2227,8 +2227,6 @@ hr {
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-  margin: 30px 0;
-  padding: 0.5em 1em;
   width: 100%;
 }
 .nav-left > .logo {
