@@ -61,7 +61,7 @@ module.exports = (socket) => {
               });
             }
 
-            const user = await users.create({
+            const user = new users({
               name,
               username,
               email,

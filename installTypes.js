@@ -3,7 +3,7 @@ const spawn = require('child_process').spawnSync,
 
 deps.map((dep) => {
   if (dep.startsWith('@types/')) return;
-  const line = spawn('npm', ['install', `@types/${dep}`], {
+  const line = spawn('npm', ['-D', 'install', `@types/${dep}`], {
     shell: true,
     cwd: __dirname,
     encoding: 'utf8'

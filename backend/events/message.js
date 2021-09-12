@@ -25,7 +25,7 @@ module.exports = async (socket, io) => {
       return callback("Please <a href='/login'>Login</a> To Send A Message!");
 
     // Create a message object
-    message = await msg.create({
+    message = new msg({
       author: {
         username: user.username,
         codename: user.codename,

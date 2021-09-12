@@ -24,7 +24,8 @@ RUN cd /app/ \
   && apt-get install -qy nodejs \
   # Install packages
   && /app/poetry/bin/poetry install  \
-  && npm install
+  && npm install \
+  && npm dedupe --production
 
 
 # Copy all files into the Home directory
