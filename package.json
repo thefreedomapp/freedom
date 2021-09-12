@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "nodemon --watch \"./backend/\" -e \"*\" -i \"config.json\" --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
-    "production": "npm run compress && node --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict dist/index.js --production",
+    "production": "node --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict dist/index.js --production",
     "build": "cd frontend && next build",
     "lint": "prettier --write .",
     "dev-electron": "electron ./electron",

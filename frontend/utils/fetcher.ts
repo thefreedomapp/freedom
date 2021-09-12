@@ -9,17 +9,15 @@
  */
 
 export default function fetcher(
-  url: string,
-  data: object,
+  url: RequestInfo,
+  data: RequestInit,
   parser: string,
   callback: Function
 ): Function {
   // eslint-disable-next-line
   return async () => {
     if (callback instanceof Function)
-      return callback(
-        await (await fetch(url ?? '', data ?? {}))[parser ?? 'json']()
-      );
-    else return await (await fetch(url ?? '', data ?? {}))[parser ?? 'json']();
+      return callback(await (await fetch(url, data ?? {}))[parser ?? 'json']());
+    else return await (await fetch(url, data ?? {}))[parser ?? 'json']();
   };
 }

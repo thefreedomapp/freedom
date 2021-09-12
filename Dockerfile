@@ -25,6 +25,7 @@ RUN cd /app/ \
   # Install packages
   && /app/poetry/bin/poetry install  \
   && npm install \
+  && npm run compress \
   && npm dedupe --production
 
 
