@@ -54,7 +54,7 @@ export default class MainPage extends Component {
     socket.send(
       {
         message: this.state.message ?? '',
-        id
+        id: auth
       },
       (err) => {
         this.setState({

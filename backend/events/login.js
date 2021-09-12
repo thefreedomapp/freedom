@@ -2,7 +2,7 @@ const user = require('../models/user');
 
 module.exports = (socket) => {
   // On the socket event: login, run a function
-  socket.on('login', async ({ email, password }, callback) => {
+  socket.once('login', async ({ email, password }, callback) => {
     // If the callback is undefined, or isn't a function, make it an empty function
     callback = typeof callback === 'function' ? callback : () => {};
 
