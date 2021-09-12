@@ -1,4 +1,5 @@
 const m = require('mongoose');
+const { number } = require('prop-types');
 
 module.exports = m.model(
   'petition',
@@ -6,6 +7,7 @@ module.exports = m.model(
     id: String,
     threads: Object,
     owner: Object,
-    likes: Number
+    likes: Number,
+    dislikes: Number
   })
 );
