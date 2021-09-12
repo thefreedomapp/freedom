@@ -4,7 +4,12 @@ const thread = require('../models/thread');
 module.exports = (owner) => {
   const guild = new petition({
     id: nanoid(64),
-    threads: {},
+    threads: {
+      "general": new thread({
+        id: nanoid(64),
+        messages: [];
+      })
+    },
     owner,
     likes: 0,
     dislikes: 0 
