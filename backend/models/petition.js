@@ -5,7 +5,7 @@ module.exports = m.model(
   'petition',
   new m.Schema({
     id: String,
-    threads: Object,
+    thread: Object,
     owner: Object,
     likes: Number,
     dislikes: Number
