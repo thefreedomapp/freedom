@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.15",
+    "autoprefixer": "^10.3.4",
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.5",
     "dompurify": "^2.3.1",
@@ -27,6 +28,7 @@
     "nodemon": "^2.0.12",
     "peer": "^0.6.1",
     "peerjs": "^1.3.2",
+    "postcss": "^8.3.6",
     "prettier": "^2.4.0",
     "prompts": "^2.4.1",
     "prop-types": "^15.7.2",
@@ -36,7 +38,8 @@
     "sass": "^1.39.2",
     "simple-peer": "^9.11.0",
     "socket.io": "^4.2.0",
-    "socket.io-client": "^4.2.0"
+    "socket.io-client": "^4.2.0",
+    "tailwindcss": "^2.2.15"
   },
   "scripts": {
     "start": "nodemon --watch \"./backend/\" -e \"*\" -i \"config.json\" --trace-deprecation --trace-uncaught --max-old-space-size=8192 --trace-warnings --unhandled-rejections=strict backend/index.js",
@@ -80,13 +83,10 @@
     "@types/react-dom": "^17.0.9",
     "@types/sass": "^1.16.1",
     "@types/simple-peer": "^9.11.3",
-    "autoprefixer": "^10.3.4",
     "electron": "14.0.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
-    "postcss": "^8.3.6",
-    "prettier-eslint": "^13.0.0",
-    "tailwindcss": "^2.2.15"
+    "prettier-eslint": "^13.0.0"
   }
 }
