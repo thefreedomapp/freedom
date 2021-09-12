@@ -5,7 +5,7 @@ module.exports = m.model(
   'thread',
   new m.Schema({
     id: String,
-    messages: petitions,
-    petition: Object
+    messages: Object,
+    petition: petitions
   })
 );
