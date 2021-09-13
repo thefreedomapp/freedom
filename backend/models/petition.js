@@ -7,7 +7,7 @@ module.exports = m.model(
   new m.Schema({
     id: String,
     threads: Object,
-    owner: users,
+    owner: Object,
     likes: Number
   })
 );
