@@ -21,7 +21,7 @@ export default class MainPage extends Component {
               {this.state.messages}
               <span>
                 <br />
-                {msg.author.username}: {parse(msg.content)}
+                 {msg.author.username}: {parse(msg.content)}
               </span>
             </>
           )

@@ -55,10 +55,14 @@ export default class Layout extends Component {
           </div>
           <div className='nav-middle'>
             <span data-toggle='modal'>
-              <a href='#projects'>Projects</a>
+              <a href='mailto:mahir@molai.dev'>Support</a>
             </span>{' '}
             <span data-toggle='modal'>
-              <a href='https://blog.molai.dev'>Blog</a>
+            {(() => {
+              if(this.state.)
+               
+            })()}
+              <a href='https://blog.molai.dev'></a>
             </span>
           </div>
           <div className='nav-right'>
