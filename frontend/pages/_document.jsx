@@ -10,12 +10,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <script
-            src='https://kit.fontawesome.com/f9cf38b42f.js'
-            crossOrigin='anonymous'
-            async></script>
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

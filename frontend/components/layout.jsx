@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import io from 'socket.io-client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+// import { Login, Logout } from 'react-icons/md';
 export default class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ready: false
+      ready: false,
+      loggedIn: false
     };
   }
 
@@ -36,7 +36,11 @@ export default class Layout extends Component {
     this.setState({ ready: true });
     this.props.mount();
 
+    this.setState({ loggedIn: (window.loggedIn = false) });
+
     if (!auth) return;
+
+    this.setState({ loggedIn: (window.loggedIn = true) });
     socket.emit('online', auth);
     setInterval(() => socket.emit('keepOnline', auth), 500);
   }
@@ -55,32 +59,28 @@ export default class Layout extends Component {
           </div>
           <div className='nav-middle'>
             <span data-toggle='modal'>
-              <a href='mailto:mahir@molai.dev'>Support</a>
-            </span>{' '}
-            <span data-toggle='modal'>
             {(() => {
-              if(this.state.)
+              if(this.state.loggedIn) {
+                return;
+              } else return <a href='/signup'>Signup</a>;
                
             })()}
-              <a href='https://blog.molai.dev'></a>
+            </span>
+            {'   '}
+            <span data-toggle='modal'>
+              <a href='mailto:mahir@molai.dev'>Support</a>
+            </span>{'   '}
+            <span data-toggle='modal'>
+            {(() => {
+              if(this.state.loggedIn) {
+                return <a href='/logout'>Logout</a>;
+              } else return <a href='/login'>Login</a>;
+               
+            })()}
             </span>
           </div>
           <div className='nav-right'>
-            <a
-              href='https://twitter.com/@DevMolai'
-              target='_blank'
-              rel='noreferrer'>
-              <i className='fab fa-twitter' aria-hidden='true'></i>
-            </a>
-            <a
-              href='https://www.youtube.com/channel/UC2VmvzguTHSq232VFAhJGrQ'
-              target='_blank'
-              rel='noreferrer'>
-              <i className='fab fa-youtube' aria-hidden='true'></i>
-            </a>{' '}
-            <a href='mailto:mahir@molai.dev' target='_blank' rel='noreferrer'>
-              <i className='fas fa-envelope' aria-hidden='true'></i>
-            </a>
+            {/* {this.state.loggedIn ? <Logout /> : <Login />} */}
           </div>
         </nav>
 
@@ -88,7 +88,7 @@ export default class Layout extends Component {
           this.props.children
         ) : (
           <h1>
-            Loading <b>Freedom</b>, Please Wait...
+            Loading <span className='freedom'>Freedom</span>, Please Wait...
           </h1>
         )}
       </>
