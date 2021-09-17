@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import io from 'socket.io-client';
-// import { Login, Logout } from 'react-icons/md';
+import { CgLogIn, CgLogOut } from 'react-icons/cg';
 export default class Layout extends Component {
   constructor(props) {
     super(props);
@@ -66,7 +66,15 @@ export default class Layout extends Component {
             </span>
           </div>
           <div className='nav-right'>
-            {/* {this.state.loggedIn ? <Logout /> : <Login />} */}
+            {this.state.loggedIn ? (
+              <a href='/logout'>
+                <CgLogOut className='loginIcon' />
+              </a>
+            ) : (
+              <a href='/login'>
+                <CgLogIn className='loginIcon' />
+              </a>
+            )}
           </div>
         </nav>
 

@@ -18,7 +18,7 @@ export default class Signup extends Component {
   }
 
   componentMount() {
-    if (!window.loggedIn) return (window.location.href = '/login');
+    if (window.loggedIn) return (window.location.href = '/');
   }
   onClick() {
     socket.emit(

@@ -45,3 +45,8 @@ button {
   left: 15px;
   border: none;
 }
+
+.loginIcon {
+  font-size: 2em;
+  margin: 3px;
+}
