@@ -34,7 +34,7 @@ export default class Layout extends Component {
     window.id = id;
 
     this.setState({ ready: true });
-    this.props.mount();
+    (this.props.mount || (() => {}))();
 
     this.setState({ loggedIn: (window.loggedIn = false) });
 
@@ -59,24 +59,7 @@ export default class Layout extends Component {
           </div>
           <div className='nav-middle'>
             <span data-toggle='modal'>
-            {(() => {
-              if(this.state.loggedIn) {
-                return;
-              } else return <a href='/signup'>Signup</a>;
-               
-            })()}
-            </span>
-            {'   '}
-            <span data-toggle='modal'>
               <a href='mailto:mahir@molai.dev'>Support</a>
-            </span>{'   '}
-            <span data-toggle='modal'>
-            {(() => {
-              if(this.state.loggedIn) {
-                return <a href='/logout'>Logout</a>;
-              } else return <a href='/login'>Login</a>;
-               
-            })()}
             </span>
           </div>
           <div className='nav-right'>
