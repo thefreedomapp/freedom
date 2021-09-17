@@ -36,9 +36,9 @@ export default class MainPage extends Component {
             users: (
               <>
                 {this.state.users}
-                <span id={user.userid} className='onlineUser'>
+                <span id={user.userId} className='onlineUser'>
                   <br />
-                  {user.username}
+                  {user.codename}
                 </span>
               </>
             )
@@ -46,7 +46,7 @@ export default class MainPage extends Component {
       )
     );
     socket.on('offline', (user) =>
-      document.getElementById(user?.userid)?.remove()
+      document.getElementById(user?.userId)?.remove()
     );
   }
 

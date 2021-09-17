@@ -8,8 +8,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/react-fontawesome": "^0.1.15",
     "autoprefixer": "^10.3.4",
     "chalk": "^4.1.2",
     "cookie-parser": "^1.4.5",
@@ -26,7 +24,6 @@
     "nan": "^2.15.0",
     "nanoid": "^3.1.25",
     "next": "^11.1.2",
-    "nodemon": "^2.0.12",
     "peer": "^0.6.1",
     "peerjs": "^1.3.2",
     "postcss": "^8.3.6",
@@ -36,6 +33,7 @@
     "python-shell": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "sass": "^1.39.2",
     "simple-peer": "^9.11.0",
     "socket.io": "^4.2.0",
@@ -88,6 +86,7 @@
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "nodemon": "^2.0.12",
     "prettier-eslint": "^13.0.0"
   }
 }

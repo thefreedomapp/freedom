@@ -15,7 +15,7 @@ export default class Login extends Component {
   }
 
   componentMount() {
-    if (window.id && window.auth) return (window.location.href = '/');
+    if (window.loggedIn) return (window.location.href = '/');
   }
 
   onClick() {
