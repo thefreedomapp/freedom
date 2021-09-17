@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Layout } from 'components';
 import parse from 'html-react-parser';
 
-export default class MainPage extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ export default class MainPage extends Component {
               {this.state.messages}
               <span>
                 <br />
-                 {msg.author.username}: {parse(msg.content)}
+                {msg.author.username}: {parse(msg.content)}
               </span>
             </>
           )
