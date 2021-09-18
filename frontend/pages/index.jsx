@@ -5,8 +5,18 @@ export default class MainPage extends Component {
   render() {
     return (
       <Layout>
-        <h1>Freedom.</h1>
-        <h4>The social media website, built for activists.</h4>
+        {(() => {
+          if(window.loggedIn) {
+            return <h1>Freedom.</h1> ||
+            <h3><a href="/app">Go to the app!</a></h3>
+          } else {
+            return <h1>Freedom.</h1> ||
+            <h3>A man who believes in freedom will do anything under the sun to acquire, or preserve his freedom.
+              <br />
+              <i>- Malcom X</i>
+            </h3>
+          }
+        })()}
       </Layout>
     );
   }

@@ -75,6 +75,8 @@ export default class Signup extends Component {
         <button id='signup' onClick={() => this.onClick()}>
           Sign Up
         </button>
+        <br />
+        <h3>Already have an account? <a className="xtraRed" href="/login">Login.</a></h3>
         <span id='output'>{this.state.data}</span>
       </Layout>
     );
