@@ -10,7 +10,7 @@ export default class MainPage extends Component {
   }
 
   mount() {
-    this.setState({ loggedIn });
+    this.setState({ loggedIn: window.loggedIn });
   }
 
   render() {

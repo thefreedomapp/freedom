@@ -65,11 +65,11 @@ export default class Layout extends Component {
           <div className='nav-right'>
             {this.state.loggedIn ? (
               <a href='/logout'>
-                <span>Login</span> <CgLogOut className='loginIcon' />
+                <span>Logout</span> <CgLogOut className='loginIcon' />
               </a>
             ) : (
               <a href='/login'>
-                <span>Logout</span> <CgLogIn className='loginIcon' />
+                <span>Login</span> <CgLogIn className='loginIcon' />
               </a>
             )}
           </div>
