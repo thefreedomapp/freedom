@@ -63,7 +63,12 @@ export default class Login extends Component {
           Login
         </button>
         <br />
-        <h3>Don't have an account? <a className="xtraRed" href="/signup">Signup.</a></h3>
+        <h3>
+          Don&apos;t have an account?
+          <a className='xtraRed' href='/signup'>
+            Signup.
+          </a>
+        </h3>
         <span id='output'>{this.state.data}</span>
       </Layout>
     );
