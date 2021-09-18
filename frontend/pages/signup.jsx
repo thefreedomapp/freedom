@@ -58,25 +58,35 @@ export default class Signup extends Component {
                 `}</style>
         <input
           placeholder='username'
-          onChange={(e) => this.setState({ username: e.target.value })}></input>
+          onChange={(e) => this.setState({ username: e.target.value })}
+        ></input>
         <br />
         <input
           placeholder='email'
-          onChange={(e) => this.setState({ email: e.target.value })}></input>
+          onChange={(e) => this.setState({ email: e.target.value })}
+        ></input>
         <br />
         <input
           placeholder='password'
-          onChange={(e) => this.setState({ password: e.target.value })}></input>
+          onChange={(e) => this.setState({ password: e.target.value })}
+        ></input>
         <br />
         <input
           placeholder='full name'
-          onChange={(e) => this.setState({ name: e.target.value })}></input>
+          onChange={(e) => this.setState({ name: e.target.value })}
+        ></input>
         <br />
         <button id='signup' onClick={() => this.onClick()}>
           Sign Up
         </button>
         <br />
-        <h3>Already have an account? <a className="xtraRed" href="/login">Login.</a></h3>
+        <h3>
+          Already have an account?
+          <br />
+          <a className='xtraRed' href='/login'>
+            Login.
+          </a>
+        </h3>
         <span id='output'>{this.state.data}</span>
       </Layout>
     );

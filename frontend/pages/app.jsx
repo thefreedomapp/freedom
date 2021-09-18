@@ -83,7 +83,8 @@ export default class App extends Component {
                 `}</style>
         <input
           placeholder='Send A Message!'
-          onChange={(e) => this.setState({ message: e.target.value })}></input>
+          onChange={(e) => this.setState({ message: e.target.value })}
+        ></input>
         <br />
         <button className='test' onClick={() => this.onClick()}>
           Send Message
