@@ -53,11 +53,13 @@ export default class Login extends Component {
                 `}</style>
         <input
           placeholder='email'
-          onChange={(e) => this.setState({ email: e.target.value })}></input>
+          onChange={(e) => this.setState({ email: e.target.value })}
+        ></input>
         <br />
         <input
           placeholder='password'
-          onChange={(e) => this.setState({ password: e.target.value })}></input>
+          onChange={(e) => this.setState({ password: e.target.value })}
+        ></input>
         <br />
         <button className='login' onClick={() => this.onClick()}>
           Login
@@ -65,6 +67,7 @@ export default class Login extends Component {
         <br />
         <h3>
           Don&apos;t have an account?
+          <br />
           <a className='xtraRed' href='/signup'>
             Signup.
           </a>

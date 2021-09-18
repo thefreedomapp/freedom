@@ -41,7 +41,8 @@ export default class Vc extends Component {
     return (
       <Layout mount={() => this.componentMount()}>
         <input
-          onChange={(e) => this.setState({ username: e.target.value })}></input>
+          onChange={(e) => this.setState({ username: e.target.value })}
+        ></input>
         <br />
         <button onClick={() => this.onClick()}>Click Me To Start VC</button>
         <div id='error'>{this.state.error}</div>
