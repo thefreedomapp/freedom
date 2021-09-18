@@ -1,4 +1,4 @@
-const dev = require('../utils/dev')();
+const dev = require('../utils/dev');
 const log = require('../utils/logging');
 
 module.exports = (app) => {

@@ -5,17 +5,17 @@ export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      quote: ''
     };
   }
 
-  mount() {
-    this.setState({ loggedIn: window.loggedIn });
+  componentMount() {
+    this.setState({ quote: window.quote });
   }
 
   render() {
     return (
-      <Layout mount={() => this.mount()}>
+      <Layout mount={() => this.componentMount()}>
         {this.state.loggedIn ? (
           <>
             <h1>Freedom.</h1>
@@ -27,10 +27,9 @@ export default class MainPage extends Component {
           <>
             <h1>Freedom.</h1>
             <h3>
-              A man who believes in freedom will do anything under the sun to
-              acquire, or preserve his freedom.
+              {this.state.quote.quote}
               <br />
-              <i>- Malcom X</i>
+              <i>- {this.state.quote.author}</i>
             </h3>
           </>
         )}

@@ -6,7 +6,8 @@ export default class Layout extends Component {
     super(props);
     this.state = {
       ready: false,
-      loggedIn: false
+      loggedIn: false,
+      quote: ''
     };
   }
 
@@ -30,8 +31,12 @@ export default class Layout extends Component {
       host: '/',
       port: !window.location.port ? 81 : parseInt(window.location.port) + 1
     });
+
     window.auth = auth;
     window.id = id;
+    this.setState({
+      quote: (window.quote = await (await fetch('/api/quote')).json())
+    });
 
     this.setState({ ready: true });
     (this.props.mount || (() => {}))();
