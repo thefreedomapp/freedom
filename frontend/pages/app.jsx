@@ -36,7 +36,7 @@ export default class App extends Component {
             users: (
               <>
                 {this.state.users}
-                <span id={user.userId} className='onlineUser'>
+                <span id={user.userid} className='onlineUser'>
                   <br />
                   {user.codename}
                 </span>
@@ -46,7 +46,7 @@ export default class App extends Component {
       )
     );
     socket.on('offline', (user) =>
-      document.getElementById(user?.userId)?.remove()
+      document.getElementById(user?.userid)?.remove()
     );
   }
 
@@ -83,8 +83,7 @@ export default class App extends Component {
                 `}</style>
         <input
           placeholder='Send A Message!'
-          onChange={(e) => this.setState({ message: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ message: e.target.value })}></input>
         <br />
         <button className='test' onClick={() => this.onClick()}>
           Send Message

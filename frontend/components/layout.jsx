@@ -39,15 +39,16 @@ export default class Layout extends Component {
     });
 
     this.setState({ ready: true });
-    (this.props.mount || (() => {}))();
 
     this.setState({ loggedIn: (window.loggedIn = false) });
 
-    if (!auth) return;
+    if (auth) {
+      this.setState({ loggedIn: (window.loggedIn = true) });
+      socket.emit('online', auth);
+      setInterval(() => socket.emit('keepOnline', auth), 500);
+    }
 
-    this.setState({ loggedIn: (window.loggedIn = true) });
-    socket.emit('online', auth);
-    setInterval(() => socket.emit('keepOnline', auth), 500);
+    (this.props.mount || (() => {}))();
   }
 
   render() {

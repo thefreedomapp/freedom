@@ -20,6 +20,7 @@ export default class Signup extends Component {
   componentMount() {
     if (window.loggedIn) return (window.location.href = '/');
   }
+
   onClick() {
     socket.emit(
       'signUp',
@@ -30,7 +31,7 @@ export default class Signup extends Component {
         username: this.state.username,
         pfp: this.state.pfp
       },
-      this.signup.bind(this)
+      () => this.signup()
     );
   }
 
@@ -58,23 +59,19 @@ export default class Signup extends Component {
                 `}</style>
         <input
           placeholder='username'
-          onChange={(e) => this.setState({ username: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ username: e.target.value })}></input>
         <br />
         <input
           placeholder='email'
-          onChange={(e) => this.setState({ email: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ email: e.target.value })}></input>
         <br />
         <input
           placeholder='password'
-          onChange={(e) => this.setState({ password: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ password: e.target.value })}></input>
         <br />
         <input
           placeholder='full name'
-          onChange={(e) => this.setState({ name: e.target.value })}
-        ></input>
+          onChange={(e) => this.setState({ name: e.target.value })}></input>
         <br />
         <button id='signup' onClick={() => this.onClick()}>
           Sign Up
