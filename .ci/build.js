@@ -1,4 +1,4 @@
-const { build, Platform} = require('electron-builder'),
+const { build, Platform } = require('electron-builder'),
   // Get system os
   os =
     process.platform === 'darwin'
