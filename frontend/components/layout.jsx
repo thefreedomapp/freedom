@@ -88,6 +88,10 @@ export default class Layout extends Component {
             Loading <span className='freedom'>Freedom</span>, Please Wait...
           </h1>
         )}
+
+        <footer>
+          <p style='font-size: 20px;'><b>Copyright © 2021. All rights reserved. Developed by JM Development.</b></p>
+        </footer>
       </>
     );
   }
