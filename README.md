@@ -1,3 +1,5 @@
+## This is the old repository, please move to https://github.com/freedom-app/freedom
+
 # Freedom.
 
 ![Palestine Watermelon Symbol](./frontend/images/watermelon.png)
