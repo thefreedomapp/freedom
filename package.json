@@ -45,7 +45,6 @@
     "build": "cd frontend && next build",
     "lint": "prettier --write .",
     "dev-electron": "electron ./electron",
-    "postinstall": "node postinstall.js",
     "types": "node installTypes.js",
     "compress": "node compress.js"
   },
