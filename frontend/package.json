@@ -8,9 +8,10 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "npm install --prefix frontend",
-    "start": "cargo run --manifest-path=backend/Cargo.toml",
-    "fmt": "prettier --write ."
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "engines": {
     "node": ">= 16"
@@ -19,9 +20,18 @@
     "type": "git",
     "url": "https://github.com/freedom-app/freedom.git"
   },
+  "keywords": [
+    "react",
+    "next.js"
+  ],
   "author": "Freedom Team",
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "@astrojs/renderer-preact": "^0.5.0",
+    "@astrojs/renderer-vue": "^0.4.0",
+    "astro": "^0.23.2"
+  },
+  "dependencies": {
+    "@freedom-app/app": "file:.."
   }
 }

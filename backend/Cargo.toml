@@ -1,0 +1,17 @@
+[package]
+name = "freedom"
+authors = [
+  "Jay Jackson <TheBotlyNoob> (jj@jj.is-a.dev)",
+  "Mahir Molai <molai.dev> (mahir@molai.dev)",
+]
+edition = "2021"
+version = "0.0.0"
+
+[dependencies]
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+warp = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+once_cell = "1.9"
+
+[build-dependencies]
+which = "4.2"

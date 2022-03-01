@@ -1,23 +1,13 @@
-FROM ubuntu:20.04
+FROM rust:slim
 
-# Become the root user
-USER root
+USER 0
 
-# Copy all files into the Home directory
-ADD . /app/
-WORKDIR /app
+RUN apt-get update && apt-get install -y curl \
+  && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+  && apt-get install -y nodejs
 
-# Update, so that we can install the packages
-RUN apt-get update -q \
-  # Add deadsnakes ppa for Python
-  && apt-get install -qy rust \
-  && npm install \
-  && npm run compress \
-  && npm dedupe --production
+ADD . /src
+WORKDIR /src
 
-
-# Copy all files into the Home directory
-ADD . /app/
-
-# Run: npm run production, after build 
-ENTRYPOINT cd /app/ && /app/poetry/bin/poetry run npm run production
+RUN npm install --path /src/frontend
+RUN cargo build --release --manifest-path=/src/backend/Cargo.toml

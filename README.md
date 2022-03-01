@@ -18,10 +18,3 @@ The Dependencies For `Freedom` Are:
 
 - Rustlang
 - Node.js 16+
-
-### Installation
-```bash
-npm install
-```
-
-> If you don't have access to `stdin`, set environment variables of `PORT` for the port, and `MONGO_URL` for the MongoDB URI
