@@ -1,13 +1,16 @@
 #![feature(panic_info_message)]
 
 use once_cell::sync::Lazy;
-use std::{env, path, sync::Once};
+use std::{
+  env,
+  path::{Path, PathBuf},
+  sync::Once,
+};
 use warp::Filter;
 
 pub mod api;
 
-pub static FRONTEND_DIST: Lazy<path::PathBuf> =
-  Lazy::new(|| path::Path::new(env!("FRONTEND_DIST")).to_owned());
+pub static FRONTEND_DIST: Lazy<PathBuf> = Lazy::new(|| Path::new(env!("FRONTEND_DIST")).to_owned());
 pub const DISCORD: &str = "TheBotlyNoob#1553";
 pub const GITHUB: &str = "https://github.com/freedom-app/freedom";
 
