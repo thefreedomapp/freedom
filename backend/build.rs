@@ -2,6 +2,7 @@ use std::{path::Path, process::Command};
 
 fn build_frontend(frontend_dir: &Path) -> Result<(), std::io::Error> {
   println!("cargo:rerun-if-changed={}", frontend_dir.display());
+  println!("cargo:rerun-if-changed=build.rs");
 
   let npm = &*which::which("npm").unwrap();
 

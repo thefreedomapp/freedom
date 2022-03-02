@@ -2,6 +2,9 @@
 
 use once_cell::sync::Lazy;
 use std::{env, path, sync::Once};
+use warp::Filter;
+
+pub mod api;
 
 pub static FRONTEND_DIST: Lazy<path::PathBuf> =
   Lazy::new(|| path::Path::new(env!("FRONTEND_DIST")).to_owned());
@@ -23,7 +26,7 @@ async fn main() {
 
   eprintln!("Listening on http://127.0.0.1:{}", port);
 
-  warp::serve(warp::fs::dir(&*FRONTEND_DIST))
+  warp::serve(api::filter().or(warp::fs::dir(&*FRONTEND_DIST)))
     .run(([127, 0, 0, 1], port))
     .await
 }
