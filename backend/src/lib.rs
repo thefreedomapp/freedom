@@ -1,13 +1,18 @@
 // This only contains the proc macros
 
-use proc_macro::TokenStream;
+use proc_macro::{TokenStream, TokenTree};
+use proc_macro2::TokenStream as TokenStream2;
 
 #[proc_macro]
 pub fn add_api_route(input: TokenStream) -> TokenStream {
-  let input = syn::parse_macro_input!(input as syn::Path);
+  let input = TokenStream2::from(input).to_string().replace(' ', "");
+
+  let path = input.replace("::", "/");
 
   let output = quote::quote! {
-    println!("{}", stringify!(#input))
+    let #input = "dw";
+
+    println!("{}", #input);
   };
 
   TokenStream::from(output)

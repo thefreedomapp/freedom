@@ -32,7 +32,7 @@ async fn main() -> Result<(), std::io::Error> {
 
   let api_docs_ui = api_service.swagger_ui();
 
-  freedom_macros::add_api_route!();
+  freedom_macros::add_api_route!(Hello);
 
   let app = poem::Route::new()
     .nest(
