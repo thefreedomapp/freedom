@@ -32,15 +32,13 @@ async fn main() -> Result<(), std::io::Error> {
 
   let api_docs_ui = api_service.swagger_ui();
 
-  freedom_macros::add_api_route!();
-
   let app = poem::Route::new()
     .nest(
       "/",
       poem::endpoint::StaticFilesEndpoint::new(&*FRONTEND_DIST).index_file("index.html"),
     )
     .nest("/api", api_service)
-    .nest("/api/docs", api_docs_ui);
+    .nest("/docs/api", api_docs_ui);
 
   println!("Listening on http://127.0.0.1:{}", port);
 
