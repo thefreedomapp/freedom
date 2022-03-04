@@ -1,13 +1,14 @@
-use once_cell::sync::Lazy;
-use warp::{filters::BoxedFilter, Filter};
+use poem_openapi::{param::Query, payload::PlainText, OpenApi};
 
-pub mod quote;
+pub struct Api;
 
-pub fn filter() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-  warp::path("api")
-    .and(warp::path::peek())
-    .map(|api_path| format!("{:?}", api_path))
+#[OpenApi]
+impl Api {
+  #[oai(path = "/misc", method = "get")]
+  async fn index(&self, name: Query<Option<String>>) -> PlainText<String> {
+    match name.0 {
+      Some(name) => PlainText(format!("hello, {}!", name)),
+      None => PlainText("hello!".to_string()),
+    }
+  }
 }
-
-#[allow(clippy::type_complexity)]
-pub static ROUTES: Lazy<&[fn() -> BoxedFilter<()>]> = Lazy::new(|| &[]);

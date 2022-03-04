@@ -1,12 +1,12 @@
 #![feature(panic_info_message)]
 
 use once_cell::sync::Lazy;
+use poem_openapi::OpenApiService;
 use std::{
   env,
   path::{Path, PathBuf},
   sync::Once,
 };
-use warp::Filter;
 
 pub mod api;
 
@@ -15,7 +15,7 @@ pub const DISCORD: &str = "TheBotlyNoob#1553";
 pub const GITHUB: &str = "https://github.com/freedom-app/freedom";
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), std::io::Error> {
   set_panic_hook_once(DISCORD.into(), GITHUB.into());
 
   let port = env::var("PORT").map_or_else(
@@ -27,11 +27,29 @@ async fn main() {
     |port| port.parse::<u16>().unwrap_or(3000),
   );
 
-  eprintln!("Listening on http://127.0.0.1:{}", port);
+  let api_service = OpenApiService::new(api::Api, "Freedom", env!("CARGO_PKG_VERSION"))
+    .server("http://localhost:3000/api");
 
-  warp::serve(api::filter().or(warp::fs::dir(&*FRONTEND_DIST)))
-    .run(([127, 0, 0, 1], port))
-    .await
+  let api_docs_ui = api_service.swagger_ui();
+
+  freedom_macros::add_api_route!();
+
+  let app = poem::Route::new()
+    .nest(
+      "/",
+      poem::endpoint::StaticFilesEndpoint::new(&*FRONTEND_DIST).index_file("index.html"),
+    )
+    .nest("/api", api_service)
+    .nest("/api/docs", api_docs_ui);
+
+  println!("Listening on http://127.0.0.1:{}", port);
+
+  poem::Server::new(poem::listener::TcpListener::bind(format!(
+    "0.0.0.0:{}",
+    port
+  )))
+  .run(app)
+  .await
 }
 
 fn set_panic_hook_once(discord: String, github: String) {
