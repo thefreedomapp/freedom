@@ -1,7 +1,7 @@
 #![feature(panic_info_message)]
 
 use once_cell::sync::Lazy;
-use poem_openapi::OpenApiService;
+use rweb::*;
 use std::{
   env,
   path::{Path, PathBuf},
@@ -42,12 +42,7 @@ async fn main() -> Result<(), std::io::Error> {
 
   println!("Listening on http://127.0.0.1:{}", port);
 
-  poem::Server::new(poem::listener::TcpListener::bind(format!(
-    "0.0.0.0:{}",
-    port
-  )))
-  .run(app)
-  .await
+  serve().await
 }
 
 fn set_panic_hook_once(discord: String, github: String) {
