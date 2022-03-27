@@ -8,14 +8,14 @@ use std::{
   sync::Once,
 };
 
-pub mod api;
+// pub mod api;
 
 pub static FRONTEND_DIST: Lazy<PathBuf> = Lazy::new(|| Path::new(env!("FRONTEND_DIST")).to_owned());
 pub const DISCORD: &str = "TheBotlyNoob#1553";
 pub const GITHUB: &str = "https://github.com/freedom-app/freedom";
 
 #[tokio::main]
-async fn main() -> Result<(), std::io::Error> {
+async fn main() {
   set_panic_hook_once(DISCORD.into(), GITHUB.into());
 
   let port = env::var("PORT").map_or_else(
@@ -27,22 +27,11 @@ async fn main() -> Result<(), std::io::Error> {
     |port| port.parse::<u16>().unwrap_or(3000),
   );
 
-  let api_service = OpenApiService::new(api::Api, "Freedom", env!("CARGO_PKG_VERSION"))
-    .server("http://localhost:3000/api");
-
-  let api_docs_ui = api_service.swagger_ui();
-
-  let app = poem::Route::new()
-    .nest(
-      "/",
-      poem::endpoint::StaticFilesEndpoint::new(&*FRONTEND_DIST).index_file("index.html"),
-    )
-    .nest("/api", api_service)
-    .nest("/docs/api", api_docs_ui);
-
   println!("Listening on http://127.0.0.1:{}", port);
 
-  serve().await
+  serve(filters::fs::dir(&*FRONTEND_DIST))
+    .run(([127, 0, 0, 1], port))
+    .await;
 }
 
 fn set_panic_hook_once(discord: String, github: String) {
