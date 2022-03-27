@@ -23,5 +23,8 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15"
   }
 }
