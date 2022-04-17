@@ -8,7 +8,7 @@ export default {
     sitemap: true // Generate sitemap (set to "false" to disable)
   },
   devOptions: {
-    tailwindConfig: './tailwind.config.js',
+    tailwindConfig: "./tailwind.config.js"
   },
   renderers: ["@astrojs/renderer-preact", "@astrojs/renderer-vue"]
 };

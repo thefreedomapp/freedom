@@ -1,6 +1,6 @@
 # Freedom.
 
-![Palestine Watermelon Symbol](/watermelon.png)
+![Freedom Logo](/freedom-logo.png)
 
 A Social Media Platform, Where People Can Discuss About Issues And Conflicts.
 
