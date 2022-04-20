@@ -8,8 +8,8 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "npm install --prefix frontend",
-    "start": "cargo run --manifest-path=backend/Cargo.toml",
+    "postinstall": "cargo build",
+    "start": "cargo run",
     "fmt": "prettier --write ."
   },
   "engines": {
@@ -23,8 +23,5 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "^2.5.1"
-  },
-  "dependencies": {
-    "nodemon": "^2.0.15"
   }
 }
