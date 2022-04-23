@@ -4,10 +4,6 @@ pub static QUOTES: &[Quote] = &[
     author: "Adlai E. Stevenson Jr."
   },
   Quote {
-    quote: "Freedom is just Chaos, with better lighting.",
-    author: "Alan Dean Foster"
-  },
-  Quote {
     quote:
       "Everything that is really great and inspiring is created by the individual who can labor in freedom.",
     author: "Albert Einstein"
@@ -38,15 +34,10 @@ pub static QUOTES: &[Quote] = &[
       "We hold in our hands, the most precious gift of all: Freedom. The freedom to express our art. Our love. The freedom to be who we want to be. We are not going to give that freedom away and no one shall take it from us!",
     author: "Epictetus"
   },
-  Quote { quote: "Only the educated are free.", author: "Franklin D. Roosevelt" },
   Quote {
     quote:
       "In the truest sense, freedom cannot be bestowed; it must be achieved.",
     author: "George Bernard Shaw"
-  },
-  Quote {
-    quote: "Liberty means responsibility. That is why most men dread it.",
-    author: "Justice Anthony Kennedy"
   },
   Quote {
     quote:

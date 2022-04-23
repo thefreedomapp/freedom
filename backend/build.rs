@@ -38,7 +38,7 @@ fn main() {
     .join("frontend");
 
   println!(
-    "cargo:rustc-env=FRONTEND_DIST={}",
+    "cargo:rustc-env=FRONTEND_DIR={}",
     frontend_dir.join("dist").display()
   );
 

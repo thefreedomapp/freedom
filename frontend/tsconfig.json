@@ -3,6 +3,8 @@
     "moduleResolution": "node",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }
