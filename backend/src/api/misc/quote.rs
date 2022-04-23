@@ -1,4 +1,6 @@
-pub static QUOTES: &[Quote] = &[
+use std::fmt::{Display, Formatter, Result};
+
+pub static QUOTES: [Quote; 25] = [
   Quote {
     quote: "My definition of a free society is a society where it is safe to be unpopular.",
     author: "Adlai E. Stevenson Jr."
@@ -120,7 +122,29 @@ pub static QUOTES: &[Quote] = &[
   }
 ];
 
+#[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Quote {
-  pub author: &'static str,
-  pub quote: &'static str,
+    pub author: &'static str,
+    pub quote: &'static str,
+}
+
+impl Display for Quote {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "{} - {}", self.quote, self.author)
+    }
+}
+
+use actix_web::{get, http::header::ContentType, web, HttpResponse};
+
+#[get("/quote")]
+async fn quote() -> HttpResponse {
+    use rand::seq::SliceRandom;
+
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .body(QUOTES.choose(&mut rand::thread_rng()).unwrap().to_string())
+}
+
+pub fn configure(cfg: &mut web::ServiceConfig) {
+    cfg.service(quote);
 }

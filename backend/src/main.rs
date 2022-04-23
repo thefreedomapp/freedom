@@ -24,10 +24,14 @@ async fn main() -> IoResult<()> {
 
     println!("Listening on http://127.0.0.1:{}", port);
 
-    HttpServer::new(|| App::new().route("/{file:.*}", web::get().to(frontend::serve)))
-        .bind(("127.0.0.1", port))?
-        .run()
-        .await
+    HttpServer::new(|| {
+        App::new()
+            .service(web::scope("/api").configure(api::configure))
+            .route("/{file:.*}", web::get().to(frontend::serve))
+    })
+    .bind(("127.0.0.1", port))?
+    .run()
+    .await
 }
 
 fn set_panic_hook_once() {
