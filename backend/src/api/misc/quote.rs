@@ -134,9 +134,8 @@ impl Display for Quote {
     }
 }
 
-use actix_web::{get, http::header::ContentType, web, HttpResponse};
+use actix_web::{http::header::ContentType, web, HttpResponse};
 
-#[get("/quote")]
 async fn quote() -> HttpResponse {
     use rand::seq::SliceRandom;
 
@@ -146,5 +145,5 @@ async fn quote() -> HttpResponse {
 }
 
 pub fn configure(cfg: &mut web::ServiceConfig) {
-    cfg.service(quote);
+    cfg.route("/quote", web::get().to(quote));
 }
