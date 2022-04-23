@@ -1,7 +1,6 @@
 use actix_web::{http::header::ContentType, web::Path, HttpResponse};
 use rust_embed::RustEmbed;
-use std::path::Path as StdPath;
-use tokio::fs;
+use std::borrow::Cow;
 
 #[derive(RustEmbed)]
 #[folder = "$FRONTEND_DIR"]
@@ -10,17 +9,36 @@ pub struct FrontendAssets;
 pub async fn serve(path: Path<String>) -> HttpResponse {
     let raw_path = path.into_inner();
 
-    let path = StdPath::new(&raw_path);
-
-    if raw_path.contains("..") {
-        HttpResponse::Forbidden().body("file paths containing `..` are forbidden")
-    } else if path.is_absolute() {
-        HttpResponse::Forbidden()
-            .reason("absolute path")
-            .body("absolute paths are forbidden.")
+    let file = if raw_path.is_empty() {
+        (
+            ContentType::html(),
+            FrontendAssets::get("index.html").unwrap(),
+        )
     } else {
-        HttpResponse::Ok()
-            .content_type(ContentType::html())
-            .body("body")
+        match FrontendAssets::get(&raw_path) {
+            Some(file) => (
+                mime_guess::from_path(&raw_path)
+                    .first()
+                    .map(ContentType)
+                    .unwrap_or_else(ContentType::plaintext),
+                file,
+            ),
+            None => (
+                ContentType::html(),
+                FrontendAssets::get(&format!("{raw_path}.html"))
+                    .or_else(|| FrontendAssets::get(&format!("{raw_path}/index.html")))
+                    .or_else(|| FrontendAssets::get("404.html"))
+                    .unwrap(),
+            ),
+        }
+    };
+
+    let mut res = HttpResponse::Ok();
+
+    res.content_type(file.0);
+
+    match file.1.data {
+        Cow::Borrowed(data) => res.body(data),
+        Cow::Owned(data) => res.body(data),
     }
 }

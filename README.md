@@ -16,5 +16,5 @@ Our Goal Is To Create A Platform For Activists That Is Very Pro-Palestinian, It 
 
 The Dependencies For `Freedom` Are:
 
-- Rustlang
-- Node.js 16+
+-   Rustlang
+-   Node.js 16+

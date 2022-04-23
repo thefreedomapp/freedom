@@ -1,27 +1,28 @@
 {
-  "name": "@freedom-app/app",
-  "version": "0.0.0",
-  "description": "a social media platform, where people can discuss about issues and conflicts.",
-  "main": "backend/index.js",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "postinstall": "cargo build",
-    "start": "cargo run",
-    "fmt": "prettier --write ."
-  },
-  "engines": {
-    "node": ">= 16"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/freedom-app/freedom.git"
-  },
-  "author": "Freedom Team",
-  "license": "MIT",
-  "devDependencies": {
-    "prettier": "^2.5.1"
-  }
+    "name": "@freedom-app/app",
+    "version": "0.0.0",
+    "description": "a social media platform, where people can discuss about issues and conflicts.",
+    "main": "backend/index.js",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "postinstall": "cargo build",
+        "start": "cargo run",
+        "fmt": "prettier --write ."
+    },
+    "engines": {
+        "node": ">= 16"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/freedom-app/freedom.git"
+    },
+    "author": "Freedom Team",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^2.5.1",
+        "astro": "^1.0.0-beta.17"
+    }
 }

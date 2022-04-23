@@ -1,4 +1,5 @@
 #![feature(panic_info_message)]
+#![feature(type_alias_impl_trait)]
 
 use actix_web::{web, App, HttpServer};
 use once_cell::sync::Lazy;
@@ -24,7 +25,7 @@ async fn main() -> IoResult<()> {
     println!("Listening on http://127.0.0.1:{}", port);
 
     HttpServer::new(|| App::new().route("/{file:.*}", web::get().to(frontend::serve)))
-        .bind(("127.0.0.1", 8080))?
+        .bind(("127.0.0.1", port))?
         .run()
         .await
 }
