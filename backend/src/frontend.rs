@@ -3,7 +3,7 @@ use rust_embed::RustEmbed;
 use std::borrow::Cow;
 
 #[derive(RustEmbed)]
-#[folder = "$FRONTEND_DIR"]
+#[folder = "$FRONTEND_DIST"]
 pub struct FrontendAssets;
 
 pub async fn serve(path: Path<String>) -> HttpResponse {
@@ -12,7 +12,9 @@ pub async fn serve(path: Path<String>) -> HttpResponse {
     let file = if raw_path.is_empty() {
         (
             ContentType::html(),
-            FrontendAssets::get("index.html").unwrap(),
+            FrontendAssets::get("index.html")
+                .map(|file| file.data)
+                .unwrap_or(Cow::Borrowed(b"<h1>Index file not found.</h1>")),
         )
     } else {
         match FrontendAssets::get(&raw_path) {
@@ -21,14 +23,15 @@ pub async fn serve(path: Path<String>) -> HttpResponse {
                     .first()
                     .map(ContentType)
                     .unwrap_or_else(ContentType::plaintext),
-                file,
+                file.data,
             ),
             None => (
                 ContentType::html(),
                 FrontendAssets::get(&format!("{raw_path}.html"))
                     .or_else(|| FrontendAssets::get(&format!("{raw_path}/index.html")))
                     .or_else(|| FrontendAssets::get("404.html"))
-                    .unwrap(),
+                    .map(|file| file.data)
+                    .unwrap_or(Cow::Borrowed(b"<h1>404</h1>")),
             ),
         }
     };
@@ -37,7 +40,7 @@ pub async fn serve(path: Path<String>) -> HttpResponse {
 
     res.content_type(file.0);
 
-    match file.1.data {
+    match file.1 {
         Cow::Borrowed(data) => res.body(data),
         Cow::Owned(data) => res.body(data),
     }

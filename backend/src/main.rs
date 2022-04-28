@@ -8,7 +8,7 @@ use std::{env, io::Result as IoResult, path::PathBuf, sync::Once};
 pub mod api;
 pub mod frontend;
 
-pub static FRONTEND_DIR: Lazy<PathBuf> = Lazy::new(|| PathBuf::from(env!("FRONTEND_DIR")));
+pub static FRONTEND_DIR: Lazy<PathBuf> = Lazy::new(|| PathBuf::from(env!("FRONTEND_DIST")));
 pub const DISCORD: &str = "TheBotlyNoob#9594";
 pub const GITHUB: &str = "https://github.com/freedom-app/freedom";
 

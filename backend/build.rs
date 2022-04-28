@@ -1,46 +1,45 @@
 use std::{path::Path, process::Command};
 
-fn build_frontend(frontend_dir: &Path) -> Result<(), std::io::Error> {
-  println!("cargo:rerun-if-changed={}", frontend_dir.display());
-  println!("cargo:rerun-if-changed=build.rs");
+fn build_frontend(project_root: &Path) -> Result<(), std::io::Error> {
+    println!("cargo:rerun-if-changed={}", project_root.display());
+    println!("cargo:rerun-if-changed=build.rs");
 
-  let npm = &*which::which("npm").unwrap();
+    let npm = &*which::which("npm").unwrap();
 
-  if !frontend_dir.join("node_modules").exists()
-    && !Command::new(npm)
-      .arg("install")
-      .current_dir(frontend_dir)
-      .spawn()?
-      .wait()?
-      .success()
-  {
-    panic!("non successful exit code, see above for details");
-  }
+    if !project_root.join("node_modules").exists()
+        && !Command::new(npm)
+            .arg("install")
+            .arg("--no-scripts")
+            .current_dir(project_root)
+            .spawn()?
+            .wait()?
+            .success()
+    {
+        panic!("non successful exit code, see above for details");
+    }
 
-  if !Command::new(npm)
-    .arg("run")
-    .arg("build")
-    .current_dir(frontend_dir)
-    .spawn()?
-    .wait()?
-    .success()
-  {
-    panic!("non successful exit code, see above for details");
-  };
+    if !Command::new(npm)
+        .arg("run")
+        .arg("build")
+        .current_dir(project_root)
+        .spawn()?
+        .wait()?
+        .success()
+    {
+        panic!("non successful exit code, see above for details");
+    };
 
-  Ok(())
+    Ok(())
 }
 
 fn main() {
-  let frontend_dir = Path::new(env!("CARGO_MANIFEST_DIR"))
-    .parent()
-    .unwrap()
-    .join("frontend");
+    let manifest_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
+    let project_root = manifest_dir.parent().unwrap();
 
-  println!(
-    "cargo:rustc-env=FRONTEND_DIR={}",
-    frontend_dir.join("dist").display()
-  );
+    println!(
+        "cargo:rustc-env=FRONTEND_DIST={}",
+        project_root.join("dist").display()
+    );
 
-  build_frontend(&frontend_dir).unwrap();
+    build_frontend(project_root).unwrap();
 }
