@@ -9,5 +9,10 @@ export default defineConfig({
     root: FRONTEND_DIR,
     srcDir: `${FRONTEND_DIR}/src`,
     publicDir: `${FRONTEND_DIR}/public`,
-    integrations: [react(), tailwind({ config: { applyBaseStyles: true } })]
+    integrations: [react()],
+    vite: {
+        ssr: {
+            external: ["svgo"],
+        },
+    },
 });

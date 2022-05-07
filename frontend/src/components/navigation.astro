@@ -1,0 +1,24 @@
+---
+import bird from "../../../logos/bird.svg";
+---
+
+<nav id="nav">
+    <style>
+        #nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 60px;
+            background-color: #fff;
+            z-index: 1;
+            border-bottom: 0.5px solid black;
+        }
+
+        #logo > img {
+            width: 55px;
+        }
+    </style>
+
+    <section id="logo"><img src={bird} alt="bird" /></section>
+</nav>

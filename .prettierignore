@@ -1,24 +1,3 @@
-# Config files
-config.json
-
-# Build folders/files
-.next/
-__pycache__
-dist/
-*.o
-*.exe
-*.so
-*.obj
-*.out
-*.dll
-*.node
-*.min*
-build/
-
-# Package folders
+target/
 node_modules/
-
-# Lock files
-yarn.lock
-package-lock.json
-poetry.lock
+dist/
