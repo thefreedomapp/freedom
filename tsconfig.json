@@ -1,8 +1,27 @@
 {
     "compilerOptions": {
-        "moduleResolution": "node",
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+        "esModuleInterop": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "strict": true,
+        "noEmit": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["./*"],
+            "@/*": ["./*"]
+        },
         "forceConsistentCasingInFileNames": true,
-        "strict": true
+        "types": [
+            "@nuxt/types",
+            "@nuxtjs/axios",
+            "@nuxt/content",
+            "@types/node"
+        ]
     },
-    "include": ["frontend/**/*"]
+    "exclude": ["node_modules", ".nuxt", "dist"]
 }
