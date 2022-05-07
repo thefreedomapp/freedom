@@ -89,5 +89,5 @@ sw.*
 # Vim swap files
 *.swp
 
-# Cargo cache
-target/
+# Cargo compilation directories
+target
