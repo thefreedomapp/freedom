@@ -27,5 +27,14 @@ pub fn main() {
     yew::start_app_in_element::<App>(gloo::utils::document().get_element_by_id("app").unwrap());
 }
 
+#[allow(dead_code)]
+fn console_log(msg: &str) {
+    #[cfg(debug_assertions)]
+    #[allow(unused_unsafe)]
+    unsafe {
+        gloo::console::log!(msg)
+    };
+}
+
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;

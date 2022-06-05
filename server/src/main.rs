@@ -4,6 +4,8 @@ use axum::{
     Router,
 };
 
+mod ws;
+
 #[derive(rust_embed::RustEmbed)]
 #[folder = "$OUT_DIR"]
 struct Frontend;
@@ -18,6 +20,7 @@ async fn main() {
     axum::Server::bind(&addr)
         .serve(
             Router::new()
+                .route("/ws/chat", get(ws::chat))
                 .route(
                     "/assets/client.wasm",
                     get(|| async {
