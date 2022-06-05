@@ -8,9 +8,12 @@ use yew::prelude::*;
 
 #[function_component(Index)]
 pub fn index() -> Html {
+    let location = utils::window().location();
+    let host = location.host().unwrap();
+    let is_https = location.protocol().unwrap() == "https:";
     let ws = WebSocket::open(&format!(
-        "ws://{}/ws/chat",
-        utils::window().location().host().unwrap()
+        "ws{}://{host}/ws/chat",
+        if is_https { "s" } else { "" }
     ))
     .unwrap();
 

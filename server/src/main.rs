@@ -6,16 +6,20 @@ use axum::{
 
 mod ws;
 
-#[derive(rust_embed::RustEmbed)]
-#[folder = "$OUT_DIR"]
-struct Frontend;
+static CLIENT_WASM: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/client_bg.wasm"));
+static CLIENT_JS: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/client.js"));
 
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt().without_time().init();
 
-    let addr = std::net::SocketAddr::from(([0, 0, 0, 0], 3000));
-    tracing::info!("listening on http://localhost:3000");
+    let port = std::env::var("PORT")
+        .ok()
+        .and_then(|p| p.parse().ok())
+        .unwrap_or(3000);
+
+    let addr = std::net::SocketAddr::from(([0, 0, 0, 0], port));
+    tracing::info!("listening on http://127.0.0.1:{port}");
 
     axum::Server::bind(&addr)
         .serve(
@@ -23,21 +27,11 @@ async fn main() {
                 .route("/ws/chat", get(ws::chat))
                 .route(
                     "/assets/client.wasm",
-                    get(|| async {
-                        (
-                            [(header::CONTENT_TYPE, "application/wasm")],
-                            Frontend::get("client_bg.wasm").unwrap().data,
-                        )
-                    }),
+                    get(|| async { ([(header::CONTENT_TYPE, "application/wasm")], CLIENT_WASM) }),
                 )
                 .route(
                     "/assets/client.js",
-                    get(|| async {
-                        (
-                            [(header::CONTENT_TYPE, "text/javascript")],
-                            Frontend::get("client.js").unwrap().data,
-                        )
-                    }),
+                    get(|| async { ([(header::CONTENT_TYPE, "text/javascript")], CLIENT_JS) }),
                 )
                 // FIXME: add a logo
                 .route("/favicon.ico", get(|| async { StatusCode::NOT_FOUND }))

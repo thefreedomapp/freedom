@@ -27,7 +27,7 @@ pub fn main() {
     yew::start_app_in_element::<App>(gloo::utils::document().get_element_by_id("app").unwrap());
 }
 
-#[allow(dead_code)]
+#[allow(dead_code, unused_variables)]
 fn console_log(msg: &str) {
     #[cfg(debug_assertions)]
     #[allow(unused_unsafe)]
