@@ -1,0 +1,35 @@
+cargo-features = ["per-package-target"]
+
+[package]
+name = "client"
+version = "0.1.0"
+authors = ["Jay Jackson <jj@jj.is-a.dev>"]
+edition = "2021"
+forced-target = "wasm32-unknown-unknown"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2", features = ["nightly"] }
+wasm-bindgen-futures = "0.4"
+
+# The `console_error_panic_hook` crate provides better debugging of panics by
+# logging them with `console.error`. This is great for development, but requires
+# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
+# code size when deploying.
+console_error_panic_hook = "0.1"
+
+# `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
+# compared to the default allocator's ~10K. It is slower than the default
+# allocator, however.
+wee_alloc = "0.4"
+
+gloo = "0.7"
+
+web-sys = { version = "0.3", features = ["FileReaderSync", "HtmlAudioElement"] }
+
+yew = "0.19"
+yew-router = "0.16"
+
+yew-style-in-rs = "0.3"

@@ -1,0 +1,12 @@
+[workspace]
+members = ["client", "server"]
+
+[profile.release]
+lto = true
+strip = true
+
+[profile.release.package.server]
+opt-level = 3
+
+[profile.release.package.client]
+opt-level = "s"
