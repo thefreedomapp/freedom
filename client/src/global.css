@@ -1,6 +1,7 @@
 #app {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body,

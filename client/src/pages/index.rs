@@ -1,8 +1,11 @@
+use std::{cell::RefCell, rc::Rc};
+
 use futures::{SinkExt, StreamExt};
 use gloo::{
     net::websocket::{futures::WebSocket, Message},
     utils,
 };
+use wasm_bindgen::{prelude::Closure, JsCast};
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
 
@@ -17,18 +20,38 @@ pub fn index() -> Html {
     ))
     .unwrap();
 
-    let (mut write, mut read) = ws.split();
+    let (write, mut read) = ws.split();
+    let write = Box::leak(Box::new(Rc::new(RefCell::new(write))));
 
-    spawn_local(async move {
-        write
-            .send(Message::Text(String::from("test")))
-            .await
+    use_effect(|| {
+        utils::document()
+            .get_element_by_id("input")
+            .unwrap()
+            .add_event_listener_with_callback(
+                "keydown",
+                Closure::<dyn FnMut(KeyboardEvent)>::new(|event: KeyboardEvent| {
+                    if event.key() == "Enter" {
+                        let input = utils::document().get_element_by_id("input").unwrap();
+                        let input = input.dyn_ref::<web_sys::HtmlInputElement>().unwrap();
+                        let msg = input.value();
+                        input.set_value("");
+
+                        let write = write.clone();
+                        spawn_local(async move {
+                            write.borrow_mut().send(Message::Text(msg)).await.unwrap();
+                        });
+                    }
+                })
+                .into_js_value()
+                .unchecked_ref(),
+            )
             .unwrap();
+        || {}
     });
 
     spawn_local(async move {
         while let Some(msg) = read.next().await {
-            crate::console_log(&format!("1. {:?}", msg));
+            crate::console_log(&format!("WebSocket Response: {:?}", msg));
         }
         crate::console_log("WebSocket Closed");
     });
@@ -36,6 +59,8 @@ pub fn index() -> Html {
     html! {
         <>
             <h1>{ "Welcome to Freedom." }</h1>
+            <br />
+            <input type="text" id="input" />
         </>
     }
 }
