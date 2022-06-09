@@ -14,6 +14,7 @@ pub fn index() -> Html {
     let location = utils::window().location();
     let host = location.host().unwrap();
     let is_https = location.protocol().unwrap().contains("https");
+
     let ws = WebSocket::open(&format!(
         "ws{}://{host}/ws/chat",
         if is_https { "s" } else { "" }

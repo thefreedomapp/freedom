@@ -4,9 +4,11 @@ members = ["client", "server"]
 [profile.release]
 lto = true
 strip = true
+panic = "abort"
 
 [profile.release.package.server]
 opt-level = 3
 
 [profile.release.package.client]
 opt-level = "s"
+codegen-units = 1

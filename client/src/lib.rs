@@ -22,6 +22,7 @@ fn app() -> Html {
 
 #[wasm_bindgen(start)]
 pub fn main() {
+    #[cfg(debug_assertions)]
     console_error_panic_hook::set_once();
 
     yew::start_app_in_element::<App>(gloo::utils::document().get_element_by_id("app").unwrap());
