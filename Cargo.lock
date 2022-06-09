@@ -2476,6 +2476,8 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "axum-macros",
+ "futures-util",
+ "once_cell",
  "rust-embed",
  "tokio 1.19.2",
  "tracing",

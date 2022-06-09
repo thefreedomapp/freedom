@@ -13,7 +13,7 @@ use yew::prelude::*;
 pub fn index() -> Html {
     let location = utils::window().location();
     let host = location.host().unwrap();
-    let is_https = location.protocol().unwrap() == "https:";
+    let is_https = location.protocol().unwrap().contains("https");
     let ws = WebSocket::open(&format!(
         "ws{}://{host}/ws/chat",
         if is_https { "s" } else { "" }
@@ -33,7 +33,12 @@ pub fn index() -> Html {
                     if event.key() == "Enter" {
                         let input = utils::document().get_element_by_id("input").unwrap();
                         let input = input.dyn_ref::<web_sys::HtmlInputElement>().unwrap();
-                        let msg = input.value();
+
+                        let msg = String::from(input.value().trim());
+                        if msg.is_empty() {
+                            return;
+                        }
+
                         input.set_value("");
 
                         let write = write.clone();
@@ -49,11 +54,15 @@ pub fn index() -> Html {
         || {}
     });
 
-    spawn_local(async move {
-        while let Some(msg) = read.next().await {
-            crate::console_log(&format!("WebSocket Response: {:?}", msg));
-        }
-        crate::console_log("WebSocket Closed");
+    use_effect(|| {
+        spawn_local(async move {
+            while let Some(Ok(Message::Text(msg))) = read.next().await {
+                let messages = utils::document().get_element_by_id("messages").unwrap();
+                messages.set_inner_html(&format!("{}<br />{msg}", messages.inner_html()));
+            }
+            crate::console_log("WebSocket Closed");
+        });
+        || {}
     });
 
     html! {
@@ -61,6 +70,9 @@ pub fn index() -> Html {
             <h1>{ "Welcome to Freedom." }</h1>
             <br />
             <input type="text" id="input" />
+            <br />
+            <br />
+            <div id="messages"></div>
         </>
     }
 }

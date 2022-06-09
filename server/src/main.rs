@@ -1,8 +1,11 @@
 use axum::{
+    extract::ws::WebSocket,
     http::{header, StatusCode},
     routing::get,
-    Router,
+    Extension, Router,
 };
+use std::sync::Arc;
+use tokio::sync::Mutex;
 
 mod ws;
 
@@ -24,7 +27,13 @@ async fn main() {
     axum::Server::bind(&addr)
         .serve(
             Router::new()
-                .route("/ws/chat", get(ws::chat))
+                .route(
+                    "/ws/chat",
+                    get(ws::chat)
+                        .route_layer(Extension(Arc::new(Mutex::new(
+                            Vec::<Arc<Mutex<WebSocket>>>::new(),
+                        )))),
+                )
                 .route(
                     "/assets/client.wasm",
                     get(|| async { ([(header::CONTENT_TYPE, "application/wasm")], CLIENT_WASM) }),
