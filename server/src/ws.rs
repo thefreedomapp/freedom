@@ -1,18 +1,15 @@
+use crate::State;
 use axum::{
-    extract::ws::{Message, WebSocket, WebSocketUpgrade},
+    extract::ws::{Message, WebSocketUpgrade},
     response::Response,
     Extension,
 };
-use futures_util::{
-    stream::{SplitSink, StreamExt},
-    SinkExt,
-};
-use std::sync::Arc;
-use tokio::sync::Mutex;
+use futures_util::{stream::StreamExt, SinkExt};
 
-pub type Clients = Arc<Mutex<Vec<SplitSink<WebSocket, Message>>>>;
-
-pub async fn chat(ws: WebSocketUpgrade, Extension(clients): Extension<Clients>) -> Response {
+pub async fn chat(
+    ws: WebSocketUpgrade,
+    Extension(State { clients, .. }): Extension<State>,
+) -> Response {
     ws.on_upgrade(|socket| async move {
         let (sender, mut receiver) = socket.split();
 

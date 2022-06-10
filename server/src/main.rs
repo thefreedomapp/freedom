@@ -15,6 +15,12 @@ mod ws;
 static CLIENT_WASM: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/client_bg.wasm"));
 static CLIENT_JS: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/client.js"));
 
+#[derive(Debug, Clone)]
+pub struct State {
+    pub clients: Arc<Mutex<Vec<SplitSink<WebSocket, Message>>>>,
+    pub db_client: Client,
+}
+
 #[tokio::main]
 async fn main() {
     let _ = dotenv::dotenv();
@@ -35,11 +41,10 @@ async fn main() {
     let mongo_client =
         Client::with_options(mongo_client_opts).expect("Failed to connect to MongoDB");
 
-    let db = mongo_client.database(if cfg!(debug_assertions) {
-        "test"
-    } else {
-        "production"
-    });
+    let state = State {
+        clients: Arc::new(Mutex::new(Vec::<SplitSink<WebSocket, Message>>::new())),
+        db_client: mongo_client,
+    };
 
     let addr = std::net::SocketAddr::from(([0, 0, 0, 0], port));
     tracing::info!("listening on http://127.0.0.1:{port}");
@@ -48,10 +53,7 @@ async fn main() {
         .serve(
             Router::new()
                 .route("/ws/chat", get(ws::chat))
-                .layer(Extension(Arc::new(Mutex::new(Vec::<
-                    SplitSink<WebSocket, Message>,
-                >::new()))))
-                .layer(Extension(Arc::new(Mutex::new(db))))
+                .layer(Extension(state))
                 // static assets
                 .route(
                     "/assets/client.wasm",

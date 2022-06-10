@@ -30,7 +30,7 @@ pub fn index() -> Html {
             .unwrap()
             .add_event_listener_with_callback(
                 "keydown",
-                Closure::<dyn FnMut(KeyboardEvent)>::new(|event: KeyboardEvent| {
+                Closure::wrap(Box::new(|event: KeyboardEvent| {
                     if event.key() == "Enter" {
                         let input = utils::document().get_element_by_id("input").unwrap();
                         let input = input.dyn_ref::<web_sys::HtmlInputElement>().unwrap();
@@ -47,7 +47,7 @@ pub fn index() -> Html {
                             write.borrow_mut().send(Message::Text(msg)).await.unwrap();
                         });
                     }
-                })
+                }) as Box<dyn FnMut(KeyboardEvent)>)
                 .into_js_value()
                 .unchecked_ref(),
             )
