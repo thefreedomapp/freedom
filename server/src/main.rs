@@ -1,9 +1,11 @@
 use axum::{
-    extract::ws::WebSocket,
+    extract::ws::{Message, WebSocket},
     http::{header, StatusCode},
+    response::Html,
     routing::get,
     Extension, Router,
 };
+use futures_util::stream::SplitSink;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
@@ -27,13 +29,10 @@ async fn main() {
     axum::Server::bind(&addr)
         .serve(
             Router::new()
-                .route(
-                    "/ws/chat",
-                    get(ws::chat)
-                        .route_layer(Extension(Arc::new(Mutex::new(
-                            Vec::<Arc<Mutex<WebSocket>>>::new(),
-                        )))),
-                )
+                .route("/ws/chat", get(ws::chat))
+                .layer(Extension(Arc::new(Mutex::new(Vec::<
+                    SplitSink<WebSocket, Message>,
+                >::new()))))
                 .route(
                     "/assets/client.wasm",
                     get(|| async { ([(header::CONTENT_TYPE, "application/wasm")], CLIENT_WASM) }),
@@ -45,10 +44,7 @@ async fn main() {
                 // FIXME: add a logo
                 .route("/favicon.ico", get(|| async { StatusCode::NOT_FOUND }))
                 .fallback(get(|| async {
-                    (
-                        [(header::CONTENT_TYPE, "text/html")],
-                        include_str!("../../client/src/index.html"),
-                    )
+                    Html(include_str!("../../client/src/index.html"))
                 }))
                 .into_make_service(),
         )
