@@ -3,3 +3,4 @@ pkg/
 wasm-pack.log
 target/
 web-target/
+/.env

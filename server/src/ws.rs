@@ -1,5 +1,3 @@
-use std::sync::Arc;
-
 use axum::{
     extract::ws::{Message, WebSocket, WebSocketUpgrade},
     response::Response,
@@ -9,6 +7,7 @@ use futures_util::{
     stream::{SplitSink, StreamExt},
     SinkExt,
 };
+use std::sync::Arc;
 use tokio::sync::Mutex;
 
 pub type Clients = Arc<Mutex<Vec<SplitSink<WebSocket, Message>>>>;
