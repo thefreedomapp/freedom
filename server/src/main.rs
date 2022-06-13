@@ -33,10 +33,10 @@ async fn main() {
         .unwrap_or(3000);
 
     let mongo_client_opts = ClientOptions::parse(
-        &std::env::var("MONGODB_URL").expect("Expected a MONGODB_URL environment variable"),
+        &std::env::var("MONGO_URL").expect("Expected a MONGO_URL environment variable"),
     )
     .await
-    .expect("Failed to parse MONGODB_URL");
+    .expect("Failed to parse MONGO_URL");
 
     let mongo_client =
         Client::with_options(mongo_client_opts).expect("Failed to connect to MongoDB");
