@@ -6,13 +6,55 @@
         <script type="module">
             import init from "/assets/client.js";
 
-            document.addEventListener("DOMContentLoaded", () =>
-                init("/assets/client.wasm")
-            );
+            document.addEventListener("DOMContentLoaded", () => {
+                init("/assets/client.wasm");
+            });
         </script>
-        <title>Freedom - Loading...</title>
+        <title>Loading... - Freedom</title>
     </head>
     <body>
-        <main id="app"></main>
+        <main id="app">
+            <!-- This will get removed after the website loads -->
+            <div id="loading">
+                <style>
+                    #app {
+                        display: grid;
+                        place-items: center;
+                    }
+                    #app,
+                    body,
+                    html {
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    #loading {
+                        display: inline-block;
+                        width: 80px;
+                        height: 80px;
+                    }
+                    #loading:after {
+                        content: " ";
+                        display: block;
+                        width: 64px;
+                        height: 64px;
+                        margin: 8px;
+                        border-radius: 50%;
+                        border: 6px solid black;
+                        border-color: transparent black;
+                        animation: dual-ring 1.2s linear infinite;
+                    }
+                    @keyframes dual-ring {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+                </style>
+            </div>
+        </main>
     </body>
 </html>

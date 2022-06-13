@@ -11,6 +11,8 @@ use yew::prelude::*;
 
 #[function_component(Index)]
 pub fn index() -> Html {
+    crate::set_title("Chat");
+
     let location = utils::window().location();
     let host = location.host().unwrap();
     let is_https = location.protocol().unwrap().contains("https");

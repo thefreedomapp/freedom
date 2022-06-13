@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -33,6 +35,10 @@ fn console_log(msg: &str) {
     unsafe {
         gloo::console::log!(msg)
     };
+}
+
+fn set_title(title: impl Display) {
+    gloo::utils::document().set_title(&format!("{title} - Freedom"));
 }
 
 #[global_allocator]
