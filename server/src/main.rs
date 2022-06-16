@@ -1,14 +1,12 @@
 use axum::{
-    extract::ws::{Message, WebSocket},
+    extract::ws::Message,
     http::{header, StatusCode},
     response::Html,
     routing::get,
     Extension, Router,
 };
-use futures_util::stream::SplitSink;
 use mongodb::{options::ClientOptions, Client};
-use std::sync::Arc;
-use tokio::sync::Mutex;
+use tokio::sync::broadcast;
 
 mod ws;
 
@@ -17,7 +15,7 @@ static CLIENT_JS: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/client.js"))
 
 #[derive(Debug, Clone)]
 pub struct State {
-    pub clients: Arc<Mutex<Vec<SplitSink<WebSocket, Message>>>>,
+    pub chat_tx: broadcast::Sender<Message>,
     pub db_client: Client,
 }
 
@@ -41,8 +39,10 @@ async fn main() {
     let mongo_client =
         Client::with_options(mongo_client_opts).expect("Failed to connect to MongoDB");
 
+    let (tx, _) = broadcast::channel(u16::MAX as usize);
+
     let state = State {
-        clients: Arc::new(Mutex::new(Vec::<SplitSink<WebSocket, Message>>::new())),
+        chat_tx: tx,
         db_client: mongo_client,
     };
 
