@@ -1,0 +1,18 @@
+{
+    "name": "freedom",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "devDependencies": {
+        "@types/react": "18.0.14",
+        "@types/react-dom": "18.0.5",
+        "eslint": "8.18.0",
+        "eslint-config-next": "12.1.6",
+        "typescript": "4.7.4"
+    }
+}
