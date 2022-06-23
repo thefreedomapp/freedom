@@ -1,7 +1,8 @@
 import express from "express";
-import { createServer } from "node:http";
-import { Server as SocketServer } from "socket.io";
+import { createServer, IncomingMessage } from "node:http";
 import next from "next";
+import { WebSocketServer } from "ws";
+import { Duplex } from "node:stream";
 
 const dev =
     process.env.NODE_ENV !== "production" ||
@@ -13,7 +14,7 @@ const app = express();
 
 const server = createServer(app);
 
-const io = new SocketServer(server);
+const wsChatServer = new WebSocketServer({ server, path: "/ws/chat" });
 
 // FIXME(@TheBotlyNoob) - remove this once we upgrade to next.js v12.1.7
 process.env.__NEXT_REACT_ROOT = "true";
@@ -28,8 +29,14 @@ nextApp.prepare().then(() => {
     });
 });
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello World!" });
+wsChatServer.on("connection", (ws) => {
+    ws.on("message", (message) => {
+        wsChatServer.clients.forEach((client) => {
+            if (client !== ws) {
+                client.send(message);
+            }
+        });
+    });
 });
 
 server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
