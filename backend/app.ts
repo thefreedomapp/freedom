@@ -28,4 +28,8 @@ nextApp.prepare().then(() => {
     });
 });
 
+app.get("/api", (req, res) => {
+    res.json({ message: "Hello World!" });
+});
+
 server.listen(port, () => console.log(`Listening on http://localhost:${port}`));
