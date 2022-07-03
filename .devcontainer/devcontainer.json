@@ -1,0 +1,5 @@
+{
+    "name": "freedom",
+    "extensions": ["denoland.vscode-deno"],
+    "build": { "dockerfile": "Dockerfile" }
+}
