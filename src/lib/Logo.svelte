@@ -5,10 +5,9 @@
 	export let height: number;
 </script>
 
-<object
-	type="image/svg+xml"
-	data="logos/bird-on-{location}-{textColor}-text.svg"
-	title="logo on {location} with {textColor} text"
+<img
+	src="logos/bird-on-{location}-{textColor}-text.svg"
+	alt="logo on {location} with {textColor} text"
 	{width}
 	{height}
 />

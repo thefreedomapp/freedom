@@ -5,8 +5,8 @@
 <Logo width={428} height={428} />
 
 <div class="buttons">
-	<button class="headerBtn">Sign Up</button>
-	<button class="headerBtn">Login</button>
+	<a class="btn" href="/signup">Sign Up</a>
+	<a class="btn" href="/login">Login</a>
 </div>
 
 <style lang="scss">
@@ -15,7 +15,7 @@
 		flex-direction: row;
 		gap: 20px;
 
-		.headerBtn {
+		.btn {
 			width: 150px;
 			font-size: 24px;
 			background: #4169e1;
@@ -23,6 +23,9 @@
 			border-radius: 10px;
 			border: none;
 			color: white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 </style>
