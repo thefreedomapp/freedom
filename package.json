@@ -7,7 +7,6 @@
 		"build": "vite build",
 		"package": "vite package",
 		"preview": "vite preview",
-		"prepare": "vite sync",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -16,6 +15,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.23.1",
+		"@sveltejs/adapter-node": "^1.0.0-next.78",
 		"@sveltejs/kit": "^1.0.0-next.360",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.30.5",
@@ -35,8 +35,5 @@
 		"typescript": "^4.7.4",
 		"vite": "^2.9.13"
 	},
-	"type": "module",
-	"dependencies": {
-		"@sveltejs/adapter-auto": "^1.0.0-next.54"
-	}
+	"type": "module"
 }
