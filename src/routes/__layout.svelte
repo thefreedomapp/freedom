@@ -3,6 +3,8 @@
 </script>
 
 <svelte:head>
+	<link rel="icon" href="/logos/bird-on-top-black-text.svg" />
+
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
