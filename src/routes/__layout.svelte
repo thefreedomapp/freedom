@@ -29,6 +29,10 @@
 </div>
 
 <style>
+	#app {
+		color: white;
+	}
+
 	div#root-container {
 		display: flex;
 		flex-direction: column;
