@@ -2,7 +2,8 @@ import {
 	ApolloServerBase,
 	convertNodeHttpToRequest,
 	runHttpQuery,
-	ApolloServerPluginDrainHttpServer
+	ApolloServerPluginDrainHttpServer,
+	HttpQueryError
 } from "apollo-server-core";
 import schema from "./src/routes/graphql";
 import { URLSearchParams } from "node:url";
@@ -40,6 +41,8 @@ export default async function handleServer(server: Connect.Server, httpServer: S
 
 	await apollo.start();
 	server.use("/graphql", async (req, res, next) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+
 		if (!["POST", "GET"].includes(req.method!)) {
 			return next();
 		}
@@ -95,7 +98,18 @@ export default async function handleServer(server: Connect.Server, httpServer: S
 			res.end(graphqlResponse);
 		} catch (e) {
 			console.error(e);
-			res.end(e.toString());
+
+			if (e instanceof HttpQueryError) {
+				if (e.headers) {
+					for (const [name, value] of Object.entries(e.headers)) {
+						res.setHeader(name, value);
+					}
+				}
+				res.statusCode = e.statusCode;
+				res.end(e.message);
+			} else {
+				res.end(e.toString());
+			}
 		}
 	});
 }

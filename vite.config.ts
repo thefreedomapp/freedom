@@ -1,16 +1,18 @@
-import { sveltekit } from "@sveltejs/kit/vite";
 import handleServer from "./apollo-server";
+import type { UserConfig } from "vite";
 
-/** @type {import("vite").UserConfig} */
-const config = {
+// @ts-ignore
+import { sveltekit } from "@sveltejs/kit/vite";
+
+const config: UserConfig = {
 	plugins: [
 		{
 			name: "GraphQL",
-			configurePreviewServer({ middlewares }) {
-				handleServer(middlewares);
+			configurePreviewServer({ middlewares, httpServer }) {
+				handleServer(middlewares, httpServer);
 			},
-			configureServer({ middlewares }) {
-				handleServer(middlewares);
+			configureServer({ middlewares, httpServer }) {
+				handleServer(middlewares, httpServer!);
 			}
 		},
 
