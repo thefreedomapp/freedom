@@ -5,7 +5,7 @@
 <nav class="nav">
 	<!--Logo-->
 	<div class="logo-container">
-		<a href="/"><Logo width={119} height={170} /></a>
+		<a href="/"><Logo location="side" textColor="white" width={270} height={400} /></a>
 	</div>
 
 	<!--Links-->
