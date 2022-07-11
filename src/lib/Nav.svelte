@@ -2,25 +2,27 @@
 	import Logo from "$lib/Logo.svelte";
 </script>
 
-<nav id="nav">
+<nav class="nav">
 	<!--Logo-->
 	<div class="logo-container">
 		<a href="/"><Logo width={119} height={170} /></a>
 	</div>
 
 	<!--Links-->
-	<div id="navlinks">
+	<div class="navlinks">
 		<button class="navlink">Direct</button>
 		<button class="navlink">Causes</button>
 		<button class="navlink">Petitions</button>
 		<button class="navlink">Settings</button>
+		<!-- Mobile Nav Button -->
+		
 	</div>
 </nav>
 
 <style lang="scss">
 	@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap");
 
-	nav#nav {
+	.nav {
 		background: #434343;
 		display: flex;
 		align-items: center;
@@ -35,7 +37,7 @@
 			margin-left: 40px;
 		}
 
-		div#navlinks {
+		.navlinks {
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
@@ -58,5 +60,9 @@
 				}
 			}
 		}
+	}
+
+	@media (max-width: 800px) {
+
 	}
 </style>

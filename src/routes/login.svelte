@@ -1,8 +1,49 @@
-<form
-	id="login"
-	on:submit={(e) => {
-		e.preventDefault();
-	}}
->
-	<input type="text" placeholder="Username" required />
-</form>
+<div class="form-container">
+	<h1>Log In</h1>
+	<form>
+		<input required type="email" name="Email" placeholder="Email" id="email">
+		<br>
+		<input required type="password" placeholder="Password" name="Password" id="password">
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+<style lang="scss">
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	h1 {
+		margin-top: 50px;
+		font-size: 64px;
+	}
+
+	form {
+		margin-top: 50px;
+	}
+
+	input {
+		margin-top: 15px;
+		padding: 15px;
+		width: 450px;
+		height: 50px;
+		font-size: 24px;
+		border: none;
+		border-radius: 15px;
+	}
+
+	input[type=submit]{
+		width: 150px;
+			font-size: 24px;
+			background: #4169e1;
+			height: 75px;
+			border-radius: 10px;
+			border: none;
+			color: white;
+			text-decoration: none;
+	}
+</style>
