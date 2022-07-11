@@ -30,10 +30,6 @@
 </div>
 
 <style>
-	#app {
-		color: white;
-	}
-
 	div#root-container {
 		display: flex;
 		flex-direction: column;
@@ -49,5 +45,6 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		color: white;
 	}
 </style>

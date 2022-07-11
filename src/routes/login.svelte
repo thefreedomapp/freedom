@@ -1,11 +1,11 @@
 <div class="form-container">
 	<h1>Log In</h1>
 	<form>
-		<input required type="email" name="Email" placeholder="Email" id="email">
-		<br>
-		<input required type="password" placeholder="Password" name="Password" id="password">
-		<br>
-		<input type="submit" value="Submit">
+		<input required type="email" name="Email" placeholder="Email" id="email" />
+		<br />
+		<input required type="password" placeholder="Password" name="Password" id="password" />
+		<br />
+		<input type="submit" value="Submit" />
 	</form>
 </div>
 
@@ -36,14 +36,14 @@
 		border-radius: 15px;
 	}
 
-	input[type=submit]{
+	input[type="submit"] {
 		width: 150px;
-			font-size: 24px;
-			background: #4169e1;
-			height: 75px;
-			border-radius: 10px;
-			border: none;
-			color: white;
-			text-decoration: none;
+		font-size: 24px;
+		background: #4169e1;
+		height: 75px;
+		border-radius: 10px;
+		border: none;
+		color: white;
+		text-decoration: none;
 	}
 </style>

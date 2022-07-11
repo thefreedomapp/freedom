@@ -1,12 +1,12 @@
 <script>
 	import Logo from "$lib/Logo.svelte";
-    import Settings from "carbon-icons-svelte/lib/Settings.svelte";
+	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 </script>
 
 <nav class="nav">
 	<!-- Logo -->
 	<div class="logo-container">
-		<a href="/"><Logo location="side" textColor="white" width={270} height={400} /></a>
+		<a href="/"><Logo birdLocation="side" textColor="white" width={270} height={400} /></a>
 	</div>
 
 	<!-- Links -->
@@ -15,10 +15,9 @@
 		<button class="navlink">Causes</button>
 		<button class="navlink">Petitions</button>
 		<button class="settings">
-			<Settings size={32}/>
+			<Settings size={32} />
 		</button>
 		<!-- Mobile Nav Button -->
-		
 	</div>
 </nav>
 
@@ -86,6 +85,5 @@
 	}
 
 	@media (max-width: 950px) {
-
 	}
 </style>
