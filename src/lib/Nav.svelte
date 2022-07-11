@@ -1,5 +1,6 @@
 <script>
 	import Logo from "$lib/Logo.svelte";
+    import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 </script>
 
 <nav class="nav">
@@ -13,8 +14,11 @@
 		<button class="navlink">Direct</button>
 		<button class="navlink">Causes</button>
 		<button class="navlink">Petitions</button>
-		<button class="navlink">Settings</button>
+		<button class="settings">
+			<Settings size={32}/>
+		</button>
 		<!-- Mobile Nav Button -->
+		
 	</div>
 </nav>
 
@@ -58,9 +62,30 @@
 					background: #3a3a3a;
 				}
 			}
+
+			.settings {
+				cursor: pointer;
+				background: #434343;
+				border: none;
+				border-radius: 30px;
+				color: white;
+				font-size: 30px;
+				transition: 600ms ease-in-out;
+				width: 50px;
+				height: 50px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				&:hover {
+					background: #3a3a3a;
+					transform: rotateZ(15deg);
+				}
+			}
 		}
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 950px) {
+
 	}
 </style>
