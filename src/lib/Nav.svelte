@@ -56,7 +56,7 @@
 				color: white;
 				font-size: 30px;
 				border-radius: 30px;
-				transition: 600ms ease-in-out;
+				transition: 400ms ease-in-out;
 
 				&:hover {
 					background: #3a3a3a;
@@ -70,7 +70,7 @@
 				border-radius: 30px;
 				color: white;
 				font-size: 30px;
-				transition: 600ms ease-in-out;
+				transition: 400ms ease-in-out;
 				width: 50px;
 				height: 50px;
 				display: flex;
