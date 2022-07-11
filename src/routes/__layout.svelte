@@ -23,6 +23,7 @@
 
 <div id="root-container">
 	<Nav />
+
 	<main id="app">
 		<slot />
 	</main>

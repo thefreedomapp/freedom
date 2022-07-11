@@ -3,19 +3,18 @@
 </script>
 
 <nav class="nav">
-	<!--Logo-->
+	<!-- Logo -->
 	<div class="logo-container">
 		<a href="/"><Logo width={119} height={170} /></a>
 	</div>
 
-	<!--Links-->
+	<!-- Links -->
 	<div class="navlinks">
 		<button class="navlink">Direct</button>
 		<button class="navlink">Causes</button>
 		<button class="navlink">Petitions</button>
 		<button class="navlink">Settings</button>
 		<!-- Mobile Nav Button -->
-		
 	</div>
 </nav>
 
@@ -63,6 +62,5 @@
 	}
 
 	@media (max-width: 800px) {
-
 	}
 </style>
