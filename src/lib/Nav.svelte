@@ -1,6 +1,24 @@
-<script>
+<script lang="ts">
 	import Logo from "$lib/Logo.svelte";
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
+
+	function goToPage(page: String) {
+		if(page === "direct") {
+			window.location.href = '/direct'
+		}
+
+		if(page === "causes") {
+			window.location.href = '/causes'
+		}
+
+		if(page === "donate") {
+			window.location.href = '/donations'
+		}
+
+		if(page === "settings") {
+			window.location.href = '/settings'
+		}
+	}
 </script>
 
 <nav class="nav">
@@ -11,10 +29,10 @@
 
 	<!-- Links -->
 	<div class="navlinks">
-		<button class="navlink">Direct</button>
-		<button class="navlink">Causes</button>
-		<button class="navlink">Petitions</button>
-		<button class="settings">
+		<button on:click={()=> goToPage('direct')} class="navlink">Direct</button>
+		<button on:click={()=> goToPage('causes')} class="navlink">Causes</button>
+		<button on:click={()=> goToPage('donate')} class="navlink">Donate</button>
+		<button on:click={()=> goToPage('settings')} class="settings">
 			<Settings size={32} />
 		</button>
 		<!-- Mobile Nav Button -->
