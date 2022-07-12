@@ -1,11 +1,13 @@
 <div class="form-container">
-	<h1>Log In</h1>
+	<h1>Sign Up</h1>
 	<form>
+        <input required type="text" name="Username" placeholder="Username" id="Username" />
+		<br />
 		<input required type="email" name="Email" placeholder="Email" id="email" />
 		<br />
 		<input required type="password" placeholder="Password" name="Password" id="password" />
 		<br />
-		<input type="submit" value="Log In" />
+		<input type="submit" value="Sign Up" />
 	</form>
 </div>
 
