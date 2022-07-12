@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Logo from "$lib/Logo.svelte";
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
+	import Menu from "carbon-icons-svelte/lib/Menu.svelte";
+	let showMobileNav: Boolean;
 
 	function goToPage(page: String) {
 		if(page === "direct") {
@@ -36,6 +38,9 @@
 			<Settings size={32} />
 		</button>
 		<!-- Mobile Nav Button -->
+		<button on:click={()=> showMobileNav = true} class="mobileNav">
+			<Menu size={32} />
+		</button>
 	</div>
 </nav>
 
@@ -80,6 +85,11 @@
 				}
 			}
 
+			.mobileNav {
+		display: none;
+	}
+
+
 			.settings {
 				cursor: pointer;
 				background: #434343;
@@ -99,9 +109,31 @@
 					transform: rotateZ(15deg);
 				}
 			}
+
+			@media (max-width: 950px) {
+		.mobileNav {
+			cursor: pointer;
+				background: #434343;
+				border: none;
+				border-radius: 30px;
+				color: white;
+				font-size: 30px;
+				transition: 400ms ease-in-out;
+				width: 50px;
+				height: 50px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+		}
+		
+		.navlink {
+			display: none;
+		}
+
+		.settings {
+			display: none;
 		}
 	}
-
-	@media (max-width: 950px) {
+		}
 	}
 </style>
