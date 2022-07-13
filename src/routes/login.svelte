@@ -1,9 +1,9 @@
 <div class="form-container">
 	<h1>Log In</h1>
-	<form>
-		<input required type="email" name="Email" placeholder="Email" id="email" />
+	<form action="/api/login" method="POST">
+		<input required type="email" name="email" placeholder="Email" id="email" />
 		<br />
-		<input required type="password" placeholder="Password" name="Password" id="password" />
+		<input required type="password" placeholder="Password" name="password" id="password" />
 		<br />
 		<input type="submit" value="Log In" />
 	</form>

@@ -2,25 +2,7 @@
 	import Logo from "$lib/Logo.svelte";
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 	import Menu from "carbon-icons-svelte/lib/Menu.svelte";
-	let showMobileNav: Boolean;
-
-	function goToPage(page: String) {
-		if(page === "direct") {
-			window.location.href = '/direct'
-		}
-
-		if(page === "causes") {
-			window.location.href = '/causes'
-		}
-
-		if(page === "donate") {
-			window.location.href = '/donations'
-		}
-
-		if(page === "settings") {
-			window.location.href = '/settings'
-		}
-	}
+	let showMobileNav: boolean;
 </script>
 
 <nav class="nav">
@@ -31,14 +13,14 @@
 
 	<!-- Links -->
 	<div class="navlinks">
-		<button on:click={()=> goToPage('direct')} class="navlink">Direct</button>
-		<button on:click={()=> goToPage('causes')} class="navlink">Causes</button>
-		<button on:click={()=> goToPage('donate')} class="navlink">Donate</button>
-		<button on:click={()=> goToPage('settings')} class="settings">
+		<a href="/direct" class="navlink">Direct</a>
+		<a href="/causes" class="navlink">Causes</a>
+		<a href="/donations" class="navlink">Donate</a>
+		<a href="/settings" class="settings">
 			<Settings size={32} />
-		</button>
+		</a>
 		<!-- Mobile Nav Button -->
-		<button on:click={()=> showMobileNav = true} class="mobileNav">
+		<button on:click={() => (showMobileNav = true)} class="mobileNav">
 			<Menu size={32} />
 		</button>
 	</div>
@@ -47,7 +29,7 @@
 <style lang="scss">
 	@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap");
 
-	.nav {
+	nav.nav {
 		background: #434343;
 		display: flex;
 		align-items: center;
@@ -69,7 +51,7 @@
 			margin-right: 40px;
 			gap: 20px;
 
-			button.navlink {
+			a.navlink {
 				cursor: pointer;
 				background: #434343;
 				border: none;
@@ -79,6 +61,10 @@
 				font-size: 30px;
 				border-radius: 30px;
 				transition: 400ms ease-in-out;
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				&:hover {
 					background: #3a3a3a;
@@ -86,9 +72,8 @@
 			}
 
 			.mobileNav {
-		display: none;
-	}
-
+				display: none;
+			}
 
 			.settings {
 				cursor: pointer;
@@ -111,29 +96,29 @@
 			}
 
 			@media (max-width: 950px) {
-		.mobileNav {
-			cursor: pointer;
-				background: #434343;
-				border: none;
-				border-radius: 30px;
-				color: white;
-				font-size: 30px;
-				transition: 400ms ease-in-out;
-				width: 50px;
-				height: 50px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-		}
-		
-		.navlink {
-			display: none;
-		}
+				.mobileNav {
+					cursor: pointer;
+					background: #434343;
+					border: none;
+					border-radius: 30px;
+					color: white;
+					font-size: 30px;
+					transition: 400ms ease-in-out;
+					width: 50px;
+					height: 50px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
 
-		.settings {
-			display: none;
-		}
-	}
+				.navlink {
+					display: none;
+				}
+
+				.settings {
+					display: none;
+				}
+			}
 		}
 	}
 </style>

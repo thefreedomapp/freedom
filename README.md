@@ -1,3 +1,6 @@
-# create-svelte
+# Freedom
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> Freedom _IS NOT PRODUCTION READY_. It is still in early development and has many security holes and bugs.
+> When using the beta, _DO NOT_ use actual passwords.
+
+![logo](/static/logos/bird-on-side-white-text.svg)

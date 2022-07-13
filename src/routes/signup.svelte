@@ -1,11 +1,12 @@
 <div class="form-container">
 	<h1>Sign Up</h1>
-	<form>
-        <input required type="text" name="Username" placeholder="Username" id="Username" />
+	<form action="/api/signup" method="POST">
+		<input required type="text" name="username" placeholder="Username" id="Username" />
+		<input required type="text" name="name" placeholder="Name" id="Name" />
 		<br />
-		<input required type="email" name="Email" placeholder="Email" id="email" />
+		<input required type="email" name="email" placeholder="Email" id="email" />
 		<br />
-		<input required type="password" placeholder="Password" name="Password" id="password" />
+		<input required type="password" name="password" placeholder="password" id="password" />
 		<br />
 		<input type="submit" value="Sign Up" />
 	</form>

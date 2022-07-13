@@ -10,12 +10,12 @@
 </div>
 
 <style lang="scss">
-	.buttons {
+	div.buttons {
 		display: flex;
 		flex-direction: row;
 		gap: 20px;
 
-		.btn {
+		a.btn {
 			width: 150px;
 			font-size: 24px;
 			background: #4169e1;
