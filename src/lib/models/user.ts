@@ -1,8 +1,8 @@
 import { model, Document, Schema, models, Model } from "mongoose";
-import { connect } from "$lib/models";
-import { compareSync, hash, hashSync } from "$lib/bcrypt";
+import { connectDB } from "$lib/util";
+import { compareSync, hashSync } from "$lib/bcrypt";
 
-await connect();
+await connectDB();
 
 export interface IUser extends Document {
 	name: string;
@@ -31,7 +31,7 @@ export interface IUser extends Document {
 export const userSchema = new Schema({
 	name: { type: String, required: true },
 	username: { type: String, required: true },
-	email: { type: String, required: true },
+	email: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
 	createdAt: {
 		type: Date,
@@ -52,3 +52,4 @@ userSchema.methods.comparePassword = function (this: IUser, password: string) {
 };
 
 export const User = (models.User as Model<IUser> | undefined) ?? model<IUser>("User", userSchema);
+export default User;

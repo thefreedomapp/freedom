@@ -1,12 +1,18 @@
+<script lang="ts">
+	import Error from "$lib/Error.svelte";
+</script>
+
 <div class="form-container">
 	<h1>Log In</h1>
-	<form action="/api/login" method="POST">
+	<form action="/api/user/login" method="POST">
 		<input required type="email" name="email" placeholder="Email" id="email" />
 		<br />
 		<input required type="password" placeholder="Password" name="password" id="password" />
 		<br />
 		<input type="submit" value="Log In" />
 	</form>
+
+	<Error />
 </div>
 
 <style lang="scss">
