@@ -5,8 +5,6 @@ node_modules
 /package
 .env*
 !.env.example
-/yarn.lock
-/package-lock.json
 /test-results/
 /playwright-report/
 /playwright/.cache/

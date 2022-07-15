@@ -1,10 +1,7 @@
 <script lang="ts">
-	export let textColor: "white" | "black" = "white";
 	export let birdLocation: "top" | "side" = "top";
+	export const svgSize =
+		birdLocation === "top" ? { width: 195, height: 80 } : { width: 260, height: 50 };
 </script>
 
-<img
-	src="logos/bird-on-{birdLocation}-{textColor}-text.svg"
-	alt="logo on {birdLocation} with {textColor} text"
-	{...$$props}
-/>
+<object data="logos/bird-on-{birdLocation}.svg" title="logo on the {birdLocation}" {...$$props} />

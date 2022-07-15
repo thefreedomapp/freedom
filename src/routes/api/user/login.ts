@@ -11,7 +11,7 @@ export const post: RequestHandler = async (req) => {
 	const password = formData.get("password") as string;
 
 	if (!email || !password) {
-		return errorResponse("/signup", "Missing required fields");
+		return errorResponse(req, "Missing required fields");
 	}
 
 	const user = await User.findOne({ email });
@@ -20,7 +20,7 @@ export const post: RequestHandler = async (req) => {
 	const isValid = user?.comparePassword(password);
 
 	if (!isValid) {
-		return errorResponse("/signup", "Invalid email or password");
+		return errorResponse(req, "Invalid email or password");
 	}
 
 	return {

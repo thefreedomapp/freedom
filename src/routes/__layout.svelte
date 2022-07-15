@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
+	import Error from "$lib/Error.svelte";
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/logos/bird-on-top-black-text.svg" />
+	<link rel="icon" href="/logos/bird-on-top.svg" />
 	<title>Freedom v2</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -21,16 +22,18 @@
 	</style>
 </svelte:head>
 
-<div id="root-container">
+<div class="root-container">
 	<Nav />
 
-	<main id="app">
+	<main class="app">
+		<Error />
+
 		<slot />
 	</main>
 </div>
 
 <style>
-	div#root-container {
+	div.root-container {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -39,13 +42,12 @@
 		height: 100vh;
 		background: #292929;
 	}
-	main#app {
+	main.app {
 		width: 100vw;
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		color: white;
 	}
 </style>

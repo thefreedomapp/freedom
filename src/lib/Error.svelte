@@ -10,7 +10,7 @@
 				.map((item) => {
 					const [key, value] = item.split("=");
 					if (key === "error") {
-						error = decodeURI(value).replace(/^["'](.+(?=["']$))["']$/, "$1");
+						error = decodeURIComponent(value.replace(/\+/g, " "));
 					}
 				});
 		});

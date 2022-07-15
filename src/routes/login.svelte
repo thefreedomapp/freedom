@@ -1,7 +1,3 @@
-<script lang="ts">
-	import Error from "$lib/Error.svelte";
-</script>
-
 <div class="form-container">
 	<h1>Log In</h1>
 	<form action="/api/user/login" method="POST">
@@ -11,8 +7,6 @@
 		<br />
 		<input type="submit" value="Log In" />
 	</form>
-
-	<Error />
 </div>
 
 <style lang="scss">

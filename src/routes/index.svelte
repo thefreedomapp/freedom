@@ -1,15 +1,32 @@
-<script>
+<script lang="ts">
 	import Logo from "$lib/Logo.svelte";
+	import { onMount } from "svelte";
+
+	let logged_in: boolean;
+	onMount(() => {
+		logged_in = document.cookie.includes("user=");
+	});
 </script>
 
-<Logo width={428} height={428} />
+<Logo birdLocation="side" width={600} />
+<p class="motto">- Giving voice to the shunned.</p>
 
-<div class="buttons">
-	<a class="btn" href="/signup">Sign Up</a>
-	<a class="btn" href="/login">Login</a>
-</div>
+{#if logged_in}
+	<div class="buttons">
+		<a class="btn" href="/signup">Sign Up</a>
+		<a class="btn" href="/login">Login</a>
+	</div>
+{:else}
+	<h2>TODO: Logged in page.</h2>
+{/if}
 
 <style lang="scss">
+	p.motto {
+		font-size: 32px;
+		margin-bottom: 60px;
+		margin-left: 400px;
+	}
+
 	div.buttons {
 		display: flex;
 		flex-direction: row;

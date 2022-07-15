@@ -14,11 +14,11 @@ export const post: RequestHandler = async (req) => {
 	const raw_password = formData.get("password") as string;
 
 	if (!name || !username || !email || !raw_password) {
-		return errorResponse("/signup", "Missing required fields");
+		return errorResponse(req, "Missing required fields");
 	}
 
 	if (await User.findOne({ email })) {
-		return errorResponse("/signup", "Email already in use");
+		return errorResponse(req, "Email already in use");
 	}
 
 	const password = await hash(raw_password);
