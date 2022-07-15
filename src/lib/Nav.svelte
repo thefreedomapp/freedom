@@ -5,10 +5,10 @@
 	let showMobileNav: boolean;
 </script>
 
-<nav class="nav">
+<div class="nav">
 	<!-- Logo -->
 	<div class="logo-container">
-		<a href="/"><Logo birdLocation="side" width={400} /></a>
+		<a href="/"><Logo birdLocation="side" width={350} /></a>
 	</div>
 
 	<!-- Links -->
@@ -24,12 +24,12 @@
 			<Menu size={32} />
 		</button>
 	</div>
-</nav>
+</div>
 
 <style lang="scss">
 	@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap");
 
-	nav.nav {
+	.nav {
 		background: #434343;
 		display: flex;
 		align-items: center;
@@ -51,7 +51,7 @@
 			margin-right: 40px;
 			gap: 20px;
 
-			a.navlink {
+			.navlink {
 				cursor: pointer;
 				background: #434343;
 				border: none;

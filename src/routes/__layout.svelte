@@ -22,7 +22,7 @@
 	</style>
 </svelte:head>
 
-<div class="root-container">
+<div class="root">
 	<Nav />
 
 	<main class="app">
@@ -33,7 +33,7 @@
 </div>
 
 <style>
-	div.root-container {
+	div.root {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -44,7 +44,7 @@
 	}
 	main.app {
 		width: 100vw;
-		height: 100vh;
+		height: calc(100vh - 110px);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
