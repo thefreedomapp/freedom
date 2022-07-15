@@ -9,7 +9,7 @@
 			<span class="username">william.is-a.dev</span>
 		</button>
 	</div>
-	<div id="hidden" class={current === "william" ? "showChat" : ""}>
+	<div class="hidden" class={current === "william" ? "showChat" : ""}>
 		<span>test</span>
 	</div>
 </main>
@@ -61,7 +61,7 @@
 				}
 			}
 
-			#hidden {
+			.hidden {
 				display: none;
 			}
 

@@ -12,7 +12,7 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"fmt": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
 		"@node-rs/bcrypt": "^1.6.1",

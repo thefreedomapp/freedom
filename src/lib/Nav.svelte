@@ -5,10 +5,10 @@
 	let showMobileNav: boolean;
 </script>
 
-<div class="nav">
+<nav class="nav">
 	<!-- Logo -->
 	<div class="logo-container">
-		<a href="/"><Logo birdLocation="side" width={350} /></a>
+		<a href="/"><Logo birdLocation="side" width={300} text={false} /></a>
 	</div>
 
 	<!-- Links -->
@@ -24,7 +24,7 @@
 			<Menu size={32} />
 		</button>
 	</div>
-</div>
+</nav>
 
 <style lang="scss">
 	@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap");
