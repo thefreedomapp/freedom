@@ -2,9 +2,9 @@
 	export let birdLocation: "top" | "side" = "top";
 	export let text: boolean = true;
 	export const svgSize =
-		birdLocation === "top" ? { width: 195, height: 80 } : { width: 173, height: 33 };
+		birdLocation === "top" ? { width: 195, height: 80 } : { width: 250, height: 45 };
 
-	// just to get better syntax highlighting
+	// just to get better syntax highlighting and types
 	const matrix = (...args: [number, number, number, number, number, number]) => {
 		return `matrix(${args.join(",")})`;
 	};
