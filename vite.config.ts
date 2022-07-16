@@ -1,9 +1,11 @@
 import type { UserConfig } from "vite";
-
-// @ts-ignore
 import { sveltekit } from "@sveltejs/kit/vite";
 
 const config: UserConfig = {
+	server: {
+		port: 3000,
+		strictPort: true
+	},
 	plugins: [sveltekit()]
 };
 

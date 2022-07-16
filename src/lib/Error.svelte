@@ -17,11 +17,11 @@
 	}
 </script>
 
-<p class="error">{error ?? ""}</p>
+<span id="error">{error ?? ""}</span>
 
 <!-- TODO(@mtgsquad): Create styles -->
 <style lang="scss">
-	.error {
+	#error {
 		color: red;
 		font-size: 32px;
 		margin-top: 50px;

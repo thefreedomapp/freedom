@@ -1,5 +1,5 @@
 <script lang="ts">
-	let current: String;
+	let current: string;
 </script>
 
 <main class="dms">

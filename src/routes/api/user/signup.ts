@@ -1,11 +1,11 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { hash } from "$lib/bcrypt";
 import User from "$lib/models/user";
-import { serialize } from "cookie";
+import cookie from "cookie";
 import { dev } from "$app/env";
-import { errorResponse } from "$lib/util";
+import { cookies, errorResponse } from "$lib/util";
 
-export const post: RequestHandler = async (req) => {
+export const POST: RequestHandler = async (req) => {
 	const formData = await req.request.formData();
 
 	const name = formData.get("name") as string;
@@ -35,16 +35,19 @@ export const post: RequestHandler = async (req) => {
 	return {
 		status: 303,
 		headers: {
-			"Set-Cookie":
-				serialize("token", user.generateToken(), {
+			Location: "/",
+			...cookies(
+				cookie.serialize("token", user.generateToken(), {
 					httpOnly: true,
 					secure: !dev,
 					sameSite: "strict",
-					maxAge: 1000 * 60 * 60 * 24 * 7
-				}) +
-				";" +
-				serialize("user", user!._id),
-			Location: "/"
+					maxAge: 1000 * 60 * 60 * 24 * 7,
+					path: "/api"
+				}),
+				cookie.serialize("user", user._id.toString(), {
+					path: "/"
+				})
+			)
 		}
 	};
 };

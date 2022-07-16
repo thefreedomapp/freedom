@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let birdLocation: "top" | "side" = "top";
-	export let text: boolean = true;
+	export let text = true;
 	export const svgSize =
 		birdLocation === "top" ? { width: 195, height: 80 } : { width: 250, height: 45 };
 
