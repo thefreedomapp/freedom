@@ -1,4 +1,4 @@
-import User from "$lib/models/user";
+import { User } from "$lib/models";
 import { authenticate, errorResponse } from "$lib/util";
 import type { RequestHandler } from "@sveltejs/kit";
 

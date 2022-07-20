@@ -1,4 +1,4 @@
-import { model, Document, Schema, models, Model, Types } from "mongoose";
+import { type Document, createSchema, getModel, ObjectId } from "$lib/models";
 import { compareSync, hashSync } from "$lib/bcrypt";
 
 export interface IUser extends Document {
@@ -7,15 +7,6 @@ export interface IUser extends Document {
 	email: string;
 	password: string;
 	friends: IUser[];
-
-	_id: Types.ObjectId;
-
-	/**
-	 * @description Gets the `createdAt` timestamp
-	 *
-	 * @returns {Date}
-	 */
-	createdAt(): Date;
 
 	/**
 	 * @description Generates a token for the user.
@@ -42,24 +33,19 @@ export interface IUser extends Document {
 	comparePassword(password: string): boolean;
 }
 
-export const userSchema = new Schema({
-	name: { type: String, required: true },
-	username: { type: String, required: true },
-	email: { type: String, required: true, unique: true },
-	password: { type: String, required: true },
+export const userSchema = createSchema({
+	name: { type: String },
+	username: { type: String },
+	email: { type: String, unique: true },
+	password: { type: String },
 	friends: [
 		{
-			type: Schema.Types.ObjectId,
+			type: ObjectId,
 			ref: "User",
-			required: true,
 			default: []
 		}
 	]
 });
-
-userSchema.methods.createdAt = function (this: IUser) {
-	return this._id.getTimestamp();
-};
 
 // TODO: use something like OAuth2 to generate a token
 userSchema.methods.generateToken = function (this: IUser) {
@@ -73,5 +59,4 @@ userSchema.methods.comparePassword = function (this: IUser, password: string) {
 	return compareSync(password, this.password);
 };
 
-export const User = (models.User as Model<IUser> | undefined) ?? model<IUser>("User", userSchema);
-export default User;
+export const User = getModel<IUser>("User", userSchema);

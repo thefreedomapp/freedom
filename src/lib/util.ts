@@ -1,7 +1,7 @@
 import type { RequestEvent } from "@sveltejs/kit";
 import { connect } from "mongoose";
 import cookie from "cookie";
-import User from "$lib/models/user";
+import { User } from "$lib/models";
 
 if (!import.meta.env.VITE_MONGODB_URI) {
 	throw new Error("VITE_MONGODB_URI is not defined");
