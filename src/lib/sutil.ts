@@ -1,7 +1,10 @@
+// utilities for the server
+
 import type { RequestEvent } from "@sveltejs/kit";
 import { connect } from "mongoose";
 import cookie from "cookie";
-import { User } from "$lib/models";
+import { User, type IUser } from "$lib/models";
+import type { SerializedUser } from "$lib/common";
 
 if (!import.meta.env.VITE_MONGODB_URI) {
 	throw new Error("VITE_MONGODB_URI is not defined");
@@ -69,5 +72,14 @@ export const authenticate = async (req: RequestEvent) => {
 export const cookies = (...cookies: string[]) => {
 	return {
 		"Set-Cookie": cookies.join(",")
+	};
+};
+
+export const serializeUser = (user: IUser): SerializedUser => {
+	return {
+		id: user._id.toString(),
+		username: user.username,
+		email: user.email,
+		friends: user.friends.map(serializeUser)
 	};
 };

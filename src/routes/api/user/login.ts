@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { User } from "$lib/models";
-import { cookies, errorResponse } from "$lib/util";
+import { cookies, errorResponse } from "$lib/sutil";
 import cookie from "cookie";
 import { dev } from "$app/env";
 

@@ -1,18 +1,30 @@
 <script lang="ts">
+	import type { SerializedUser } from "$lib/common";
+	import { onMount } from "svelte";
+
+	let friends: SerializedUser[] = [];
+
+	onMount(async () => {
+		const response = await fetch("/api/user/friends");
+		const data = await response.json();
+		friends = data;
+		console.log(friends);
+	});
+
 	let current: string;
 </script>
 
-<main class="dms">
+<div class="dms">
 	<div class="sidebar">
 		<button on:click={() => (current = "william")} class="chat-user">
 			<img src="./av/william.gif" alt="william" />
 			<span class="username">william.is-a.dev</span>
 		</button>
 	</div>
-	<div class={current === "william" ? "showChat" : "hidden"}>
+	<div>
 		<span>test</span>
 	</div>
-</main>
+</div>
 
 <style lang="scss">
 	.dms {
@@ -61,13 +73,9 @@
 				}
 			}
 
-			.hidden {
-				display: none;
-			}
-
-			.showChat {
-				display: block;
-			}
+			// .hidden {
+			// 	display: none;
+			// }
 		}
 	}
 </style>

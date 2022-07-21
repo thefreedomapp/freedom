@@ -1,4 +1,4 @@
-import { type Document, createSchema, getModel, ObjectId } from "$lib/models";
+import { type Document, createSchema, getModel, ObjectId, type IServer, Server } from "$lib/models";
 import { compareSync, hashSync } from "$lib/bcrypt";
 
 export interface IUser extends Document {
@@ -7,6 +7,14 @@ export interface IUser extends Document {
 	email: string;
 	password: string;
 	friends: IUser[];
+
+	/**
+	 * @description Gets a direct message server for the user and another user.
+	 * @description If the server doesn't exist, it will be created.
+	 *
+	 * @param {IUser} friend The user to get a direct message server for.
+	 */
+	getDirectServer(friend: IUser): Promise<IServer>;
 
 	/**
 	 * @description Generates a token for the user.
@@ -46,6 +54,19 @@ export const userSchema = createSchema({
 		}
 	]
 });
+
+userSchema.methods.getDirectServer = async function (this: IUser, friend: IUser) {
+	let server = await Server.findOne({ users: { $all: [this._id, friend._id] }, isDirect: true });
+	if (!server) {
+		server = new Server({
+			name: `${this.name}'s direct messages with ${friend.name}`,
+			isDirect: true,
+			users: [this._id, friend._id]
+		});
+		await server.save();
+	}
+	return server;
+};
 
 // TODO: use something like OAuth2 to generate a token
 userSchema.methods.generateToken = function (this: IUser) {

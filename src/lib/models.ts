@@ -35,7 +35,8 @@ export const createSchema = <T = any>(schema: T) => {
 export const getModel = <T extends Document>(name: string, schema: Schema) =>
 	(models[name] as Model<T> | undefined) ?? model<T>(name, schema);
 
-export const ObjectId = Types.ObjectId;
+export class ObjectId extends Types.ObjectId {}
 
 // re-export models.
 export { User, type IUser } from "$lib/models/user";
+export { Server, type IServer } from "$lib/models/server";

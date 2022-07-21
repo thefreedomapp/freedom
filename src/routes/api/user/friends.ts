@@ -1,5 +1,5 @@
-import { User } from "$lib/models";
-import { authenticate, errorResponse } from "$lib/util";
+import { User, type IUser } from "$lib/models";
+import { authenticate, errorResponse, serializeUser } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async (req) => {
@@ -10,7 +10,7 @@ export const GET: RequestHandler = async (req) => {
 
 	return {
 		body: {
-			friends: user.friends.map((friend) => friend._id.toString())
+			friends: await getFriends(user)
 		}
 	};
 };
@@ -38,7 +38,15 @@ export const POST: RequestHandler = async (req) => {
 
 	return {
 		body: {
-			friends: user.friends.map((friend) => friend._id.toString())
+			friends: await getFriends(user)
 		}
 	};
 };
+
+const getFriends = (user: IUser) =>
+	Promise.all(
+		user.friends.map(async (friend) => ({
+			friend: serializeUser(friend),
+			direct: (await user.getDirectServer(friend))._id
+		}))
+	);

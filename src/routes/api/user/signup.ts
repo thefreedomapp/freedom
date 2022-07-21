@@ -3,7 +3,7 @@ import { hash } from "$lib/bcrypt";
 import { User } from "$lib/models";
 import cookie from "cookie";
 import { dev } from "$app/env";
-import { cookies, errorResponse } from "$lib/util";
+import { cookies, errorResponse } from "$lib/sutil";
 
 export const POST: RequestHandler = async (req) => {
 	const formData = await req.request.formData();
