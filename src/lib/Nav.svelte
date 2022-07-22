@@ -8,7 +8,7 @@
 <nav class="nav">
 	<!-- Logo -->
 	<div class="logo-container">
-		<a href="/"><Logo birdLocation="side" width={300} text={false} /></a>
+		<a href="/"><Logo birdLocation="side" width={100} text={false} /></a>
 	</div>
 
 	<!-- Links -->
