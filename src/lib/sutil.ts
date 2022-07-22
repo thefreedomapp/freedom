@@ -76,6 +76,7 @@ export const cookies = (...cookies: string[]) => {
 };
 
 export const serializeUser = (user: IUser): SerializedUser => {
+	console.log(user.friends);
 	return {
 		id: user._id.toString(),
 		username: user.username,

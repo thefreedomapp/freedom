@@ -1,8 +1,10 @@
 import { User, type IUser } from "$lib/models";
-import { authenticate, errorResponse, serializeUser } from "$lib/sutil";
+import { authenticate, connectDB, errorResponse, serializeUser } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async (req) => {
+	await connectDB();
+
 	const user = await authenticate(req);
 	if (!user) {
 		return errorResponse(req, "Not authenticated");
@@ -16,22 +18,26 @@ export const GET: RequestHandler = async (req) => {
 };
 
 export const POST: RequestHandler = async (req) => {
+	await connectDB();
+
 	const user = await authenticate(req);
 	if (!user) {
 		return errorResponse(req, "Not authenticated");
 	}
 
 	const formData = await req.request.formData();
-	const friendId = formData.get("friend") as string;
+	const friendUsername = formData.get("username") as string;
 
-	if (!friendId) {
+	if (!friendUsername) {
 		return errorResponse(req, "Missing required fields");
 	}
 
-	const friend = await User.findById(friendId);
+	const friend = await User.findOne({ username: friendUsername });
 	if (!friend) {
 		return errorResponse(req, "Friend not found");
 	}
+
+	console.log(friend);
 
 	user.friends.push(friend);
 	await user.save();

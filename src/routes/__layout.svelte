@@ -1,17 +1,14 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
 	import Error from "$lib/Error.svelte";
+
+	import "$lib/fonts.css";
 </script>
 
 <svelte:head>
-	<link rel="icon" href="/logos/bird-on-top.svg" />
 	<title>Freedom v2</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap"
-		rel="stylesheet"
-	/>
 
 	<style>
 		* {

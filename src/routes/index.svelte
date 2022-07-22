@@ -3,10 +3,7 @@
 	import { onMount } from "svelte";
 
 	let logged_in: boolean;
-	onMount(() => {
-		logged_in = document.cookie.includes("user=");
-		console.log(logged_in);
-	});
+	onMount(() => (logged_in = document.cookie.includes("user=")));
 </script>
 
 <div class="container">

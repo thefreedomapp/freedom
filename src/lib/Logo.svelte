@@ -12,15 +12,9 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svgSize.width} {svgSize.height}" {...$$props}>
 	<style>
-		@import url("https://fonts.googleapis.com/css2?family=Merienda+One");
 		text {
-			fill: black;
-			font-family: "Merienda One", cursive;
-		}
-		@media (prefers-color-scheme: dark) {
-			text {
-				fill: white;
-			}
+			fill: white;
+			font-family: Fonarto, sans-serif;
 		}
 		#bird {
 			fill: url(#bird-gradient);

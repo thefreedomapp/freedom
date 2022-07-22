@@ -7,7 +7,7 @@
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
-		friends = data;
+		friends = data.friends;
 		console.log(friends);
 	});
 
@@ -16,10 +16,15 @@
 
 <div class="dms">
 	<div class="sidebar">
-		<button on:click={() => (current = "william")} class="chat-user">
-			<img src="./av/william.gif" alt="william" />
-			<span class="username">william.is-a.dev</span>
-		</button>
+		{#each friends as friend}
+			<div class="chat-user">
+				<!-- TODO(@TheBotlyNoob): add avatars -->
+				<img src="x" alt="avatar" />
+				<div class="username">
+					{friend.username}
+				</div>
+			</div>
+		{/each}
 	</div>
 	<div>
 		<span>test</span>
