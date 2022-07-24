@@ -1,17 +1,14 @@
 <script lang="ts">
-	import type { SerializedUser } from "$lib/common";
+	import type { FriendsResponse } from "$lib/common";
 	import { onMount } from "svelte";
 
-	let friends: SerializedUser[] = [];
+	let friends: FriendsResponse["friends"] = [];
 
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
 		friends = data.friends;
-		console.log(friends);
 	});
-
-	let current: string;
 </script>
 
 <div class="dms">
@@ -21,7 +18,7 @@
 				<!-- TODO(@TheBotlyNoob): add avatars -->
 				<img src="x" alt="avatar" />
 				<div class="username">
-					{friend.username}
+					{friend.friend.username}
 				</div>
 			</div>
 		{/each}

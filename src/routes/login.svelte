@@ -1,18 +1,7 @@
-<script>
-	import { emailRegex } from "$lib/common";
-</script>
-
 <div class="form-container">
 	<h1>Log In</h1>
 	<form action="/api/user/login" method="POST">
-		<input
-			required
-			type="email"
-			pattern={emailRegex.toString()}
-			name="email"
-			placeholder="Email"
-			id="email"
-		/>
+		<input required type="email" name="email" placeholder="Email" id="email" />
 		<br />
 		<input required type="password" placeholder="Password" name="password" id="password" />
 		<br />

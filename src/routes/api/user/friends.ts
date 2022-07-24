@@ -5,7 +5,7 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async (req) => {
 	await connectDB();
 
-	const user = await authenticate(req);
+	const user = await authenticate(req).then((u) => u?.populate("friends"));
 	if (!user) {
 		return errorResponse(req, "Not authenticated");
 	}
@@ -37,7 +37,8 @@ export const POST: RequestHandler = async (req) => {
 		return errorResponse(req, "Friend not found");
 	}
 
-	console.log(friend);
+	friend.friends.push(user);
+	await friend.save();
 
 	user.friends.push(friend);
 	await user.save();

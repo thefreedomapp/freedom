@@ -1,6 +1,5 @@
 import { type Document, createSchema, getModel, ObjectId, type IServer, Server } from "$lib/models";
 import { compareSync, hashSync } from "$lib/bcrypt";
-import { emailRegex } from "$lib/common";
 
 export interface IUser extends Document {
 	/**
@@ -24,11 +23,11 @@ export interface IUser extends Document {
 	/**
 	 * @description An array of user IDs that this user is friends with.
 	 */
-	friends: ObjectId[];
+	friends: IUser[];
 	/**
 	 * @description An array of servers that this user is a member of.
 	 */
-	servers: ObjectId[];
+	servers: IServer[];
 	/**
 	 * @description The ID of the `GridFSBucket` that stores the user's profile picture.
 	 */
@@ -72,8 +71,7 @@ export const userSchema = createSchema({
 	username: { type: String, unique: true },
 	email: {
 		type: String,
-		unique: true,
-		match: emailRegex
+		unique: true
 	},
 	password: { type: String },
 	friends: [
