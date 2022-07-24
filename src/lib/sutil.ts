@@ -69,12 +69,6 @@ export const authenticate = async (req: RequestEvent) => {
 	return user;
 };
 
-export const cookies = (...cookies: string[]) => {
-	return {
-		"Set-Cookie": cookies.join(",")
-	};
-};
-
 export const serializeUser = (user: IUser): SerializedUser => {
 	return {
 		id: user._id.toString(),

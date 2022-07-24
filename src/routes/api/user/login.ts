@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { User } from "$lib/models";
-import { connectDB, cookies, errorResponse } from "$lib/sutil";
+import { connectDB, errorResponse } from "$lib/sutil";
 import cookie from "cookie";
 import { dev } from "$app/env";
 
@@ -32,7 +32,7 @@ export const POST: RequestHandler = async (req) => {
 		status: 303,
 		headers: {
 			Location: "/",
-			...cookies(
+			"Set-Cookie": [
 				cookie.serialize("token", user.generateToken(), {
 					httpOnly: true,
 					secure: !dev,
@@ -43,7 +43,7 @@ export const POST: RequestHandler = async (req) => {
 				cookie.serialize("user", user._id.toString(), {
 					path: "/"
 				})
-			)
+			]
 		}
 	};
 };

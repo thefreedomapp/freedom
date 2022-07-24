@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
-	import Error from "$lib/Error.svelte";
 
 	import "$lib/fonts.css";
 </script>
@@ -23,8 +22,6 @@
 	<Nav />
 
 	<main class="app">
-		<Error />
-
 		<slot />
 	</main>
 </div>
