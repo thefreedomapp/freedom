@@ -6,7 +6,6 @@ import {
 	models,
 	model
 } from "mongoose";
-import autopopulate from "mongoose-autopopulate";
 
 export interface Document extends MongooseDocument {
 	/**
@@ -48,7 +47,6 @@ export const createSchema = <T = any>(schema: T) => {
 	s.methods.createdAt = function (this: Document) {
 		return this._id.getTimestamp();
 	};
-	s.plugin(autopopulate);
 
 	return s;
 };
