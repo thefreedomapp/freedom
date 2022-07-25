@@ -8,6 +8,7 @@
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
 		friends = data.friends;
+		console.log(friends);
 	});
 </script>
 
@@ -26,11 +27,16 @@
 	{#each friends as friend}
 		<div class="chat-window {friend.friend.username}">
 			{#each friend.direct.messages as message}
-				<span class="message">
+				{console.log(message)}
+				<!-- <span class="message">
 					{message.message}
-				</span>
+				</span> -->
 			{/each}
 		</div>
+		<form action="/api/server/{friend.direct._id}/messages" method="POST">
+			<input type="text" name="message" />
+			<input type="submit" value="Send" />
+		</form>
 	{/each}
 </div>
 

@@ -32,7 +32,7 @@ export const POST: RequestHandler = async (req) => {
 		return errorResponse(req, "Missing required fields");
 	}
 
-	const friend = await User.findOne({ username: friendUsername });
+	const friend = await User.findOne({ username: friendUsername }).populate("friends");
 	if (!friend) {
 		return errorResponse(req, "Friend not found");
 	}

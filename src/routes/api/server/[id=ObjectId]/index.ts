@@ -8,7 +8,7 @@ export const GET: RequestHandler = async (req) => {
 		return errorResponse(req, "Not authenticated.");
 	}
 
-	const server = await Server.findById(req.params.id);
+	const server = await Server.findById(req.params.id).populate("messages");
 	if (!server) {
 		return errorResponse(req, "Server not found");
 	}

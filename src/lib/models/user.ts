@@ -80,6 +80,13 @@ export const userSchema = createSchema({
 			ref: "User",
 			default: []
 		}
+	],
+	servers: [
+		{
+			type: ObjectId,
+			ref: "Server",
+			default: []
+		}
 	]
 });
 
@@ -89,10 +96,17 @@ userSchema.methods.getDirectServer = async function (this: IUser, friend: IUser)
 		server = new Server({
 			name: `${this.name}'s direct messages with ${friend.name}`,
 			isDirect: true,
-			users: [this, friend]
+			messages: []
 		});
 		await server.save();
+
+		this.servers.push(server);
+		await this.save();
+		friend.servers.push(server);
+		await friend.save();
 	}
+	server = await server.populate("messages");
+	console.log(server);
 	return server;
 };
 

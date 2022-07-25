@@ -5,7 +5,7 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async (req) => {
 	await connectDB();
 
-	const user = await User.findById(req.params.id);
+	const user = await User.findById(req.params.id).populate("friends");
 	return user
 		? {
 				body: {

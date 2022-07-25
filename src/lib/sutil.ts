@@ -57,7 +57,7 @@ export const authenticate = async (req: RequestEvent) => {
 	const token = cookies.token;
 	const userId = cookies.user;
 
-	const user = await User.findById(userId);
+	const user = await User.findById(userId).populate("friends").populate("servers");
 
 	// this makes sure that the user:
 	// 1. exists
@@ -74,6 +74,6 @@ export const serializeUser = (user: IUser): SerializedUser => {
 		id: user.id,
 		username: user.username,
 		email: user.email,
-		friends: user.friends.map(serializeUser)
+		friends: (user.friends ?? []).map(serializeUser)
 	};
 };

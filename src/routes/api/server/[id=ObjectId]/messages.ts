@@ -1,9 +1,11 @@
 import { Message, Server } from "$lib/models";
-import { authenticate, errorResponse } from "$lib/sutil";
+import { authenticate, errorResponse, connectDB } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
 // this is used so that you don't have to fetch the entire server object
 export const GET: RequestHandler = async (req) => {
+	await connectDB();
+
 	const user = await authenticate(req);
 	if (!user) {
 		return errorResponse(req, "Not authenticated");
@@ -40,7 +42,12 @@ export const POST: RequestHandler = async (req) => {
 	}
 
 	const server = await Server.findById(id).populate("messages");
-	if (!server || !user.servers.includes(server)) {
+
+	console.log(user.servers[0], server);
+
+	if (
+		!server /* TODO(@TheBotlyNoob): figure out why `|| !user.servers.includes(server)` doesn't work */
+	) {
 		return errorResponse(req, "Server not found");
 	}
 
