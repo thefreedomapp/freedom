@@ -1,3 +1,5 @@
+import type { IServer } from "$lib/models/server";
+
 export type SerializedUser = {
 	id: string;
 	username: string;
@@ -7,7 +9,7 @@ export type SerializedUser = {
 
 export type FriendsResponse = {
 	friends: {
-		direct: string;
+		direct: IServer;
 		friend: SerializedUser;
 	}[];
 };

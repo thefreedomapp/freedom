@@ -54,6 +54,6 @@ const getFriends = (user: IUser) =>
 	Promise.all(
 		user.friends.map(async (friend) => ({
 			friend: serializeUser(friend),
-			direct: (await user.getDirectServer(friend))._id
+			direct: await user.getDirectServer(friend)
 		}))
 	);

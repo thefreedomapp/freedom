@@ -71,7 +71,7 @@ export const authenticate = async (req: RequestEvent) => {
 
 export const serializeUser = (user: IUser): SerializedUser => {
 	return {
-		id: user._id.toString(),
+		id: user.id,
 		username: user.username,
 		email: user.email,
 		friends: user.friends.map(serializeUser)

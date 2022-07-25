@@ -47,7 +47,7 @@ export const POST: RequestHandler = async (req) => {
 					maxAge: 1000 * 60 * 60 * 24 * 7,
 					path: "/api"
 				}),
-				cookie.serialize("user", user._id.toString(), {
+				cookie.serialize("user", user.id, {
 					path: "/"
 				})
 			]

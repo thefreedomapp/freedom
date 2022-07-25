@@ -14,7 +14,7 @@
 <div class="dms">
 	<div class="sidebar">
 		{#each friends as friend}
-			<div class="chat-user">
+			<div class="chat-user {friend.friend.username}">
 				<!-- TODO(@TheBotlyNoob): add avatars -->
 				<img src="x" alt="avatar" />
 				<div class="username">
@@ -23,9 +23,15 @@
 			</div>
 		{/each}
 	</div>
-	<div>
-		<span>test</span>
-	</div>
+	{#each friends as friend}
+		<div class="chat-window {friend.friend.username}">
+			{#each friend.direct.messages as message}
+				<span class="message">
+					{message.message}
+				</span>
+			{/each}
+		</div>
+	{/each}
 </div>
 
 <style lang="scss">

@@ -17,6 +17,13 @@ export interface Document extends MongooseDocument {
 	_id: Types.ObjectId;
 
 	/**
+	 * @description The string version of `_id`.
+	 *
+	 * @remarks See `_id` for more information.
+	 */
+	id: string;
+
+	/**
 	 * @description Gets the `createdAt` timestamp
 	 *
 	 * @returns The date the document was created.
