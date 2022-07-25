@@ -6,8 +6,13 @@
 
 <svelte:head>
 	<title>Freedom v2</title>
+
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+
+	<!-- this looks very ugly with dark reader. -->
+	<!-- and we're already in dark mode. -->
+	<meta name="darkreader" />
 
 	<style>
 		* {
