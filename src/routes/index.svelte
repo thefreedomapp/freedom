@@ -7,7 +7,8 @@
 </script>
 
 <div class="container">
-	<Logo birdLocation="top" width={350} />
+	<div class="spacingForLogo"></div>
+	<Logo birdLocation="side" width={500} />
 	<br />
 
 	{#if logged_in === false}
@@ -24,8 +25,9 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		gap: 10px;
+		justify-content: center;
 
 		.buttons {
 			display: flex;
@@ -46,5 +48,9 @@
 				text-decoration: none;
 			}
 		}
+	}
+
+	.spacingForLogo {
+		margin-bottom: 50px;
 	}
 </style>
