@@ -7,14 +7,13 @@ import { User, type IUser } from "$lib/models";
 import type { SerializedUser } from "$lib/common";
 import { env } from "$env/dynamic/private";
 
-if (!env.MONGODB_URI) {
-	throw new Error("MONGODB_URI is not defined");
-}
-
 let __connected = false;
 export const connectDB = async () => {
 	if (!__connected) {
-		await mongoose.connect(import.meta.env.VITE_MONGODB_URI);
+		if (!env.MONGODB_URI) {
+			throw new Error("MONGODB_URI is not defined");
+		}
+		await mongoose.connect(env.MONGODB_URI);
 		__connected = true;
 	}
 };
