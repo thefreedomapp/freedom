@@ -1,20 +1,13 @@
-import {
-	type Model,
-	type Document as MongooseDocument,
-	Types,
-	Schema,
-	models,
-	model
-} from "mongoose";
+import mongoose from "mongoose";
 
-export interface Document extends MongooseDocument {
+export interface Document extends mongoose.Document {
 	/**
 	 * @description The internal ID of the `Document`.
 	 *
 	 * @remarks This is used to get the `createdAt` timestamp of the `Document`.
 	 * @remarks If you do not desire to expose the date of creation, do not give out this property.
 	 */
-	_id: Types.ObjectId;
+	_id: mongoose.Types.ObjectId;
 
 	/**
 	 * @description The string version of `_id`.
@@ -50,7 +43,7 @@ export const createSchema = <T = any>(schema: T) => {
 	}
 	/* eslint-enable @typescript-eslint/no-explicit-any */
 
-	const s = new Schema(schema);
+	const s = new mongoose.Schema(schema);
 	s.methods.createdAt = function (this: Document) {
 		return this._id.getTimestamp();
 	};
@@ -58,10 +51,10 @@ export const createSchema = <T = any>(schema: T) => {
 	return s;
 };
 
-export const getModel = <T extends Document>(name: string, schema: Schema) =>
-	(models[name] as Model<T> | undefined) ?? model<T>(name, schema);
+export const getModel = <T extends Document>(name: string, schema: mongoose.Schema) =>
+	(mongoose.models[name] as mongoose.Model<T> | undefined) ?? mongoose.model<T>(name, schema);
 
-export class ObjectId extends Types.ObjectId {}
+export class ObjectId extends mongoose.Types.ObjectId {}
 
 // re-export models.
 export { User, type IUser } from "$lib/models/user";

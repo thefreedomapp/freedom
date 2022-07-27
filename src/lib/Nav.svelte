@@ -14,9 +14,9 @@
 	<!-- Links -->
 	<div class="navlinks">
 		<a href="/direct" class="navlink">Direct</a>
-		<a href="/causes" class="navlink">Causes</a>
-		<a href="/donations" class="navlink">Donate</a>
-		<a href="/settings" class="settings">
+		<a href="#404" class="navlink">Causes</a>
+		<a href="#404" class="navlink">Donate</a>
+		<a href="#404" class="settings">
 			<Settings size={32} />
 		</a>
 		<!-- Mobile Nav Button -->

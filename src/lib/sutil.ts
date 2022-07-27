@@ -1,19 +1,20 @@
 // utilities for the server
 
 import type { RequestEvent } from "@sveltejs/kit";
-import { connect } from "mongoose";
+import mongoose from "mongoose";
 import cookie from "cookie";
 import { User, type IUser } from "$lib/models";
 import type { SerializedUser } from "$lib/common";
+import { env } from "$env/dynamic/private";
 
-if (!import.meta.env.VITE_MONGODB_URI) {
-	throw new Error("VITE_MONGODB_URI is not defined");
+if (!env.MONGODB_URI) {
+	throw new Error("MONGODB_URI is not defined");
 }
 
 let __connected = false;
 export const connectDB = async () => {
 	if (!__connected) {
-		await connect(import.meta.env.VITE_MONGODB_URI);
+		await mongoose.connect(import.meta.env.VITE_MONGODB_URI);
 		__connected = true;
 	}
 };
