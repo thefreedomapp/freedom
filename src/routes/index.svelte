@@ -7,7 +7,6 @@
 </script>
 
 <div class="container">
-	<div class="spacingForLogo"></div>
 	<Logo birdLocation="side" width={500} />
 	<br />
 
@@ -48,9 +47,5 @@
 				text-decoration: none;
 			}
 		}
-	}
-
-	.spacingForLogo {
-		margin-bottom: 50px;
 	}
 </style>
