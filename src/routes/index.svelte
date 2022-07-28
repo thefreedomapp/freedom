@@ -7,6 +7,7 @@
 </script>
 
 <div class="container">
+	<br>
 	<Logo birdLocation="side" width={500} />
 	<br />
 

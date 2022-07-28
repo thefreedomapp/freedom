@@ -41,9 +41,9 @@
 		width: 100vw;
 		height: 100vh;
 		background: #292929;
+		overflow-x: hidden;
 	}
 	main.app {
-		margin-top: 70px;
 		width: 100vw;
 		height: calc(100vh - 110px);
 		display: flex;

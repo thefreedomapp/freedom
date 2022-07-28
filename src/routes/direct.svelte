@@ -17,79 +17,79 @@
 		{#each friends as friend}
 			<div class="chat-user {friend.friend.username}">
 				<!-- TODO(@TheBotlyNoob): add avatars -->
-				<img src="x" alt="avatar" />
-				<div class="username">
+				<img src="temp/av.png" alt="avatar" />
+				<span class="username">
 					{friend.friend.username}
-				</div>
+				</span>
 			</div>
 		{/each}
 	</div>
 	{#each friends as friend}
-		<div class="chat-window {friend.friend.username}">
-			{#each friend.direct.messages as message}
-				{console.log(message)}
-				<!-- <span class="message">
-					{message.message}
-				</span> -->
-			{/each}
+		<div class="chat">
+			<div class="messages {friend.friend.username}">
+				{#each friend.direct.messages as message}
+					{console.log(message)}
+					<!-- <span class="message">
+						{message.message}
+					</span> -->
+				{/each}
+			</div>
+			<form action="/api/server/{friend.direct._id}/messages" method="POST">
+				<input type="text" name="message" />
+				<input type="submit" value="Send" />
+			</form>
 		</div>
-		<form action="/api/server/{friend.direct._id}/messages" method="POST">
-			<input type="text" name="message" />
-			<input type="submit" value="Send" />
-		</form>
 	{/each}
 </div>
 
 <style lang="scss">
 	.dms {
+		width: 100vw;
+		height: calc(100vh - 110px);
 		display: flex;
-		flex-direction: row;
 		align-items: flex-start;
 		justify-content: flex-start;
-		width: 100vw;
+		flex-direction: row;
 
 		.sidebar {
-			margin: 20px;
-			height: 75vh;
-			width: 300px;
-			border: none;
-			border-right: 2px solid gray;
-			border-radius: 0px;
-			padding: 10px;
+			border-right: 2px solid grey;
+			width: 370px;
+			height: calc(100vh - 135px);
+			align-self: center;
+			padding-left: 20px;
+			padding-right: 20px;
 
 			.chat-user {
-				align-items: center;
-				padding: 5px;
 				width: 300px;
-				height: 90px;
+				border-radius: 15px;
+				height: 80px;
+				transition: 300ms ease-in-out;
+				padding: 10px;
 				display: flex;
+				align-items: center;
 				flex-direction: row;
-				background: #292929;
-				border: none;
-				cursor: pointer;
-				border-radius: 25px;
 				gap: 15px;
-				transition: 400ms ease-in-out;
 
 				img {
-					border-radius: 50px;
 					height: 70px;
 					width: 70px;
 				}
 
 				.username {
-					color: white;
 					font-size: 24px;
 				}
 
 				&:hover {
-					background: #242424;
+					background: rgb(37, 37, 37);
 				}
 			}
+		}
 
-			// .hidden {
-			// 	display: none;
-			// }
+		.chat {
+			display: flex;
+			width: calc(100vw - 350px);
+			flex-direction: row;
+			gap: 25px;
 		}
 	}
 </style>
