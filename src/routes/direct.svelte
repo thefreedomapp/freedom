@@ -36,7 +36,7 @@
 		{/each}
 	</div>
 	{#each friends as friend}
-		<div class="chat">
+		<div class="chat {current === friend.friend.username ? 'visibleChat' : 'hidden'}">
 			<div class="messages {current === friend.friend.username ? 'selected' : 'hidden'}">
 				{#each friend.direct.messages as message}
 					{console.log(message)}
@@ -46,8 +46,8 @@
 				{/each}
 			</div>
 
-			<form class={current === friend.friend.username ? 'selected' : 'hidden'} action="/api/chat/{friend.direct._id}/messages" method="POST">
-				<input type="text" name="message" />
+			<form class={current === friend.friend.username ? 'showForm' : 'hidden'} action="/api/chat/{friend.direct._id}/messages" method="POST">
+				<input placeholder="Message..." type="text" name="message" />
 				<input type="submit" value="Send" />
 			</form>
 		</div>
@@ -98,14 +98,52 @@
 			}
 		}
 
-		.chat {
+		.hidden {
+			width: 0px;
+			height: 0px;
+			display: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.visibleChat {
 			display: flex;
 			width: calc(100vw - 350px);
-			flex-direction: row;
+			height: calc(100vh - 110px);
+			flex-direction: column;
 			gap: 25px;
+			align-items: flex-start;
+			justify-content: flex-end;
+
+			.showForm {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				margin: 25px;
+
+				input[type=text] {
+					width: calc(100vw - 350px - 200px);
+					height: 50px;
+					border-radius: 100px;
+					font-size: 20px;
+					padding-left: 15px;
+					margin-right: 25px;
+					border: none;
+    				outline: none;
+				}
+
+				input[type=submit] {
+					width: 50px;
+					height: 50px;
+					background: blue;
+					border: none;
+					color: white;
+					border-radius: 100px;
+				}
+			}
 		}
 	}
-	.hidden {
-		display: none;
+	.selected {
+		display: block;
 	}
 </style>

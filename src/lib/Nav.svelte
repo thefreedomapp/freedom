@@ -14,8 +14,8 @@
 	<!-- Links -->
 	<div class="navlinks">
 		<a href="/direct" class="navlink">Direct</a>
+		<a href="/friends" class="navlink">Friends</a>
 		<a href="#404" class="navlink">Causes</a>
-		<a href="#404" class="navlink">Donate</a>
 		<a href="#404" class="settings">
 			<Settings size={32} />
 		</a>
