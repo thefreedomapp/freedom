@@ -4,18 +4,27 @@
 
 	let friends: FriendsResponse["friends"] = [];
 
+	let current: string;
+
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
 		friends = data.friends;
 		console.log(friends);
 	});
+
+	for (const friend of Array.from(document.getElementsByClassName("chat-user"))) {
+		const username = friend.getAttribute("data-username")!;
+		friend.addEventListener("click", () => {
+			current = username;
+		});
+	}
 </script>
 
 <div class="dms">
 	<div class="sidebar">
 		{#each friends as friend}
-			<div class="chat-user {friend.friend.username}">
+			<div class="chat-user" data-username={friend.friend.username}>
 				<!-- TODO(@TheBotlyNoob): add avatars -->
 				<img src="" alt="avatar" />
 				<div class="username">
@@ -25,18 +34,19 @@
 		{/each}
 	</div>
 	{#each friends as friend}
-		<div class="chat-window {friend.friend.username}">
+		<div class="chat-window {current !== friend.friend.username ? 'hidden' : ''}">
 			{#each friend.direct.messages as message}
 				{console.log(message)}
-				<!-- <span class="message">
+				<span class="message">
 					{message.message}
-				</span> -->
+				</span>
 			{/each}
+
+			<form action="/api/chat/{friend.direct._id}/messages" method="POST">
+				<input type="text" name="message" />
+				<input type="submit" value="Send" />
+			</form>
 		</div>
-		<form action="/api/chat/{friend.direct._id}/messages" method="POST">
-			<input type="text" name="message" />
-			<input type="submit" value="Send" />
-		</form>
 	{/each}
 </div>
 
@@ -87,9 +97,9 @@
 				}
 			}
 
-			// .hidden {
-			// 	display: none;
-			// }
+			.hidden {
+				display: none;
+			}
 		}
 	}
 </style>
