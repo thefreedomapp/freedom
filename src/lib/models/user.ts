@@ -1,4 +1,4 @@
-import { type Document, createSchema, getModel, ObjectId, type IServer, Server } from "$lib/models";
+import { type Document, createSchema, getModel, ObjectId, type IChat, Chat } from "$lib/models";
 import { compareSync, hashSync } from "$lib/bcrypt";
 
 export interface IUser extends Document {
@@ -25,22 +25,22 @@ export interface IUser extends Document {
 	 */
 	friends: IUser[];
 	/**
-	 * @description An array of servers that this user is a member of.
+	 * @description An array of chats that this user is a member of.
 	 */
-	servers: IServer[];
+	chats: IChat[];
 	/**
 	 * @description The ID of the `GridFSBucket` that stores the user's profile picture.
 	 */
 	profilePicture: ObjectId;
 
 	/**
-	 * @description Gets a direct message server for the user and another user.
-	 * @description If the server doesn't exist, it will be created.
+	 * @description Gets a direct message chat for the user and another user.
+	 * @description If the chat doesn't exist, it will be created.
 	 *
-	 * @param friend The user to get a direct message server for.
-	 * @returns The direct message server.
+	 * @param friend The user to get a direct message chat for.
+	 * @returns The direct message chat.
 	 */
-	getDirectServer(friend: IUser): Promise<IServer>;
+	getDirectChat(friend: IUser): Promise<IChat>;
 
 	/**
 	 * @description Generates a token for the user.
@@ -81,33 +81,33 @@ export const userSchema = createSchema({
 			default: []
 		}
 	],
-	servers: [
+	chats: [
 		{
 			type: ObjectId,
-			ref: "Server",
+			ref: "Chat",
 			default: []
 		}
 	]
 });
 
-userSchema.methods.getDirectServer = async function (this: IUser, friend: IUser) {
-	let server = await Server.findOne({ users: { $all: [this, friend] }, isDirect: true });
-	if (!server) {
-		server = new Server({
+userSchema.methods.getDirectChat = async function (this: IUser, friend: IUser) {
+	let chat = await Chat.findOne({ users: { $all: [this, friend] }, isDirect: true });
+	if (!chat) {
+		chat = new Chat({
 			name: `${this.name}'s direct messages with ${friend.name}`,
 			isDirect: true,
 			messages: []
 		});
-		await server.save();
+		await chat.save();
 
-		this.servers.push(server);
+		this.chats.push(chat);
 		await this.save();
-		friend.servers.push(server);
+		friend.chats.push(chat);
 		await friend.save();
 	}
-	server = await server.populate("messages");
-	console.log(server);
-	return server;
+	chat = await chat.populate("messages");
+	console.log(chat);
+	return chat;
 };
 
 // TODO: use something like OAuth2 to generate a token

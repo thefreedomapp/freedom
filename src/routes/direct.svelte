@@ -33,7 +33,7 @@
 				</span> -->
 			{/each}
 		</div>
-		<form action="/api/server/{friend.direct._id}/messages" method="POST">
+		<form action="/api/chat/{friend.direct._id}/messages" method="POST">
 			<input type="text" name="message" />
 			<input type="submit" value="Send" />
 		</form>
