@@ -1,18 +1,18 @@
 import { type Document, createSchema, getModel, ObjectId, type IUser } from "$lib/models";
 
-export interface IServer extends Document {
+export interface IChat extends Document {
 	name: string;
 	isDirect: boolean;
 	messages: IMessage[];
 }
 
-export const serverSchema = createSchema({
+export const chatSchema = createSchema({
 	name: { type: String },
 	isDirect: { type: Boolean },
 	messages: [{ type: ObjectId, ref: "Message" }]
 });
 
-export const Server = getModel<IServer>("Server", serverSchema);
+export const Chat = getModel<IChat>("Chat", chatSchema);
 
 export interface IMessage extends Document {
 	user: IUser;

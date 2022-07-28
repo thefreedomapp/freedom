@@ -57,7 +57,7 @@ export const authenticate = async (req: RequestEvent) => {
 	const token = cookies.token;
 	const userId = cookies.user;
 
-	const user = await User.findById(userId).populate("friends").populate("servers");
+	const user = await User.findById(userId).populate("friends").populate("chats");
 
 	// this makes sure that the user:
 	// 1. exists

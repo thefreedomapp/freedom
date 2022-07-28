@@ -58,4 +58,4 @@ export class ObjectId extends mongoose.Types.ObjectId {}
 
 // re-export models.
 export { User, type IUser } from "$lib/models/user";
-export { Server, type IServer, Message, type IMessage } from "$lib/models/server";
+export { Chat, type IChat, Message, type IMessage } from "$lib/models/chat";
