@@ -8,7 +8,6 @@
 
 <div class="container">
 	<Logo birdLocation="side" width={500} />
-	<br />
 
 	{#if logged_in === false}
 		<div class="buttons">
