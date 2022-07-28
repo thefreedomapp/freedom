@@ -4,13 +4,22 @@
 
 	let friends: FriendsResponse["friends"] = [];
 
-	let current: string;
+	let current: string = "not a valid username lmao xD this is a random string";
 
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
 		friends = data.friends;
 		console.log(friends);
+
+		/**
+		 * for (const friend of Array.from(document.getElementsByClassName("chat-user"))) {
+		const username = friend.getAttribute("data-username")!;
+		friend.addEventListener("click", () => {
+			current = username;
+		});
+		}
+		*/
 	});
 </script>
 
@@ -27,8 +36,8 @@
 		{/each}
 	</div>
 	{#each friends as friend}
-		<div class="chat {current !== friend.friend.username ? 'hidden' : ''}">
-			<div class="messages">
+		<div class="chat">
+			<div class="messages {current === friend.friend.username ? 'selected' : 'hidden'}">
 				{#each friend.direct.messages as message}
 					{console.log(message)}
 					<!-- <span class="message">
@@ -37,7 +46,7 @@
 				{/each}
 			</div>
 
-			<form action="/api/chat/{friend.direct._id}/messages" method="POST">
+			<form class={current === friend.friend.username ? 'selected' : 'hidden'} action="/api/chat/{friend.direct._id}/messages" method="POST">
 				<input type="text" name="message" />
 				<input type="submit" value="Send" />
 			</form>
@@ -72,6 +81,7 @@
 				align-items: center;
 				flex-direction: row;
 				gap: 15px;
+				cursor: pointer;
 
 				img {
 					height: 70px;
