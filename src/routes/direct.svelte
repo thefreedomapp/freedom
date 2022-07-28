@@ -12,19 +12,12 @@
 		friends = data.friends;
 		console.log(friends);
 	});
-
-	for (const friend of Array.from(document.getElementsByClassName("chat-user"))) {
-		const username = friend.getAttribute("data-username")!;
-		friend.addEventListener("click", () => {
-			current = username;
-		});
-	}
 </script>
 
 <div class="dms">
 	<div class="sidebar">
 		{#each friends as friend}
-			<div class="chat-user" data-username={friend.friend.username}>
+			<div class="chat-user" on:click={() => current = friend.friend.username} data-username={friend.friend.username}>
 				<!-- TODO(@TheBotlyNoob): add avatars -->
 				<img src="temp/av.png" alt="avatar" />
 				<span class="username">
