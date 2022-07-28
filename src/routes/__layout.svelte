@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
+	import { dev } from "$app/env";
 
 	import "$lib/fonts.css";
 </script>
@@ -9,7 +10,7 @@
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<script async src="https://arc.io/widget.min.js#iYGzLN9i"></script>
+	<script async src={dev ? "" : "https://arc.io/widget.min.js#iYGzLN9i"}></script>
 
 	<!-- this looks very ugly with dark reader. -->
 	<!-- and we're already in dark mode. -->

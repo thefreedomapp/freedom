@@ -17,7 +17,7 @@
 		{#each friends as friend}
 			<div class="chat-user {friend.friend.username}">
 				<!-- TODO(@TheBotlyNoob): add avatars -->
-				<img src="x" alt="avatar" />
+				<img src="" alt="avatar" />
 				<div class="username">
 					{friend.friend.username}
 				</div>
