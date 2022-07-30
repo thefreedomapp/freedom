@@ -1,4 +1,5 @@
-import { type Document, createSchema, getModel, ObjectId, type IUser } from "$lib/models";
+import { type Document, createSchema, getModel, ObjectId } from "$lib/models";
+import type { IUser } from "$lib/models/user";
 
 export interface IChat extends Document {
 	name: string;

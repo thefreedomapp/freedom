@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { hash } from "$lib/bcrypt";
-import { User } from "$lib/models";
+import { User } from "$lib/models/user";
 import cookie from "cookie";
 import { dev } from "$app/env";
 import { connectDB, errorResponse } from "$lib/sutil";

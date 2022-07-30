@@ -1,4 +1,4 @@
-import { User } from "$lib/models";
+import { User } from "$lib/models/user";
 import { connectDB, errorResponse, serializeUser } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 

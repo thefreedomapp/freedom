@@ -1,4 +1,5 @@
-import { type Document, createSchema, getModel, ObjectId, type IChat, Chat } from "$lib/models";
+import { type Document, createSchema, getModel, ObjectId } from "$lib/models";
+import { Chat, type IChat } from "$lib/models/chat";
 import { compareSync, hashSync } from "$lib/bcrypt";
 
 export interface IUser extends Document {

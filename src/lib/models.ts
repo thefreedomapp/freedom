@@ -55,7 +55,3 @@ export const getModel = <T extends Document>(name: string, schema: mongoose.Sche
 	(mongoose.models[name] as mongoose.Model<T> | undefined) ?? mongoose.model<T>(name, schema);
 
 export class ObjectId extends mongoose.Types.ObjectId {}
-
-// re-export models.
-export { User, type IUser } from "$lib/models/user";
-export { Chat, type IChat, Message, type IMessage } from "$lib/models/chat";

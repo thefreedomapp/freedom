@@ -3,7 +3,7 @@
 import type { RequestEvent } from "@sveltejs/kit";
 import mongoose from "mongoose";
 import cookie from "cookie";
-import { User, type IUser } from "$lib/models";
+import { User, type IUser } from "$lib/models/user";
 import type { SerializedUser } from "$lib/common";
 import { env } from "$env/dynamic/private";
 

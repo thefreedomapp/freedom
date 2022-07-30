@@ -1,4 +1,4 @@
-import { Message, Chat } from "$lib/models";
+import { Message, Chat } from "$lib/models/chat";
 import { authenticate, errorResponse, connectDB } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
