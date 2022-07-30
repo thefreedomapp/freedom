@@ -47,7 +47,7 @@
 			</div>
 
 			<form class={current === friend.friend.username ? 'showForm' : 'hidden'} action="/api/chat/{friend.direct._id}/messages" method="POST">
-				<input placeholder="Message..." type="text" name="message" />
+				<input placeholder="Message to @{friend.friend.username}" type="text" name="message" />
 				<input type="submit" value="Send" />
 			</form>
 		</div>
