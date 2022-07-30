@@ -6,11 +6,15 @@
 
 	let current: string = "not a valid username lmao xD this is a random string";
 
+	let logged_in: boolean;
+
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = await response.json();
 		friends = data.friends;
 		console.log(friends);
+
+		logged_in = document.cookie.includes("user=");
 
 		/**
 		 * for (const friend of Array.from(document.getElementsByClassName("chat-user"))) {
@@ -23,6 +27,9 @@
 	});
 </script>
 
+{#if logged_in === false}
+<h2 class="notloggedin">You are not logged in!</h2>
+{:else if logged_in === true}
 <div class="dms">
 	<div class="sidebar">
 		{#each friends as friend}
@@ -53,8 +60,14 @@
 		</div>
 	{/each}
 </div>
+{/if}
 
 <style lang="scss">
+	.notloggedin {
+		font-size: 56px;
+		margin-top: 50px;
+	}
+
 	.dms {
 		width: 100vw;
 		height: calc(100vh - 110px);

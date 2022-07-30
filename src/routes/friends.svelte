@@ -4,13 +4,20 @@
 
 	let friends: FriendsResponse["friends"] = [];
 
+	let logged_in: boolean;
+
 	onMount(async () => {
 		const response = await fetch("/api/user/friends");
 		const data = (await response.json()) as FriendsResponse;
 		friends = data.friends;
+
+		logged_in = document.cookie.includes("user=");
 	});
 </script>
 
+{#if logged_in === false}
+<h2 class="notloggedin">You are not logged in!</h2>
+{:else if logged_in === true}
 <div class="container">
 	<form action="/api/user/friends" method="POST">
 		<input type="text" name="username" placeholder="username" />
@@ -27,8 +34,14 @@
 		</div>
 	{/each}
 </div>
+{/if}
 
 <style lang="scss">
+	.notloggedin {
+		font-size: 56px;
+		margin-top: 50px;
+	}
+
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -45,7 +58,10 @@
 			min-width: 450px;
 			height: 75px;
 			border-radius: 25px;
-			background-color: white;
+			background-color: #434343;
+			box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+			-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+			-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 			padding: 15px;
 			display: flex;
 			flex-direction: row;
@@ -58,8 +74,8 @@
 			}
 
 			.username {
-				color: black;
-				font-size: 24px;
+				color: rgb(255, 255, 255);
+				font-size: 28px;
 				margin-right: 25px;
 			}
 		}

@@ -7,7 +7,7 @@
 </script>
 
 <div class="container">
-	<Logo birdLocation="side" width={500} />
+	<Logo birdLocation="side" width={500} margin={50}/>
 
 	{#if logged_in === false}
 		<div class="buttons">

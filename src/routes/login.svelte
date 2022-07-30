@@ -24,11 +24,14 @@
 
 	form {
 		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	input {
 		margin-top: 15px;
-		padding: 15px;
+		padding-left: 15px;
 		width: 450px;
 		height: 50px;
 		font-size: 24px;
@@ -36,8 +39,9 @@
 		border-radius: 15px;
 	}
 
-	input[type="submit"] {
+	input[type=submit] {
 		width: 150px;
+		padding: 0;
 		font-size: 24px;
 		background: #4169e1;
 		height: 75px;
