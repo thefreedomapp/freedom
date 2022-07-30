@@ -1,4 +1,4 @@
-import { Message, Server } from "$lib/models";
+import { Message, Chat } from "$lib/models";
 import { authenticate, errorResponse, connectDB } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
@@ -16,15 +16,15 @@ export const GET: RequestHandler = async (req) => {
 		return errorResponse(req, "Missing required fields");
 	}
 
-	const server = await Server.findById(id, "messages").populate("messages");
-	if (!server || !user.servers.includes(server)) {
-		return errorResponse(req, "Server not found");
+	const chat = await Chat.findById(id, "messages").populate("messages");
+	if (!chat || !user.chats.includes(chat)) {
+		return errorResponse(req, "Chat not found");
 	}
 
 	return {
 		status: 200,
 		body: {
-			messages: server.messages
+			messages: chat.messages
 		}
 	};
 };
@@ -41,23 +41,23 @@ export const POST: RequestHandler = async (req) => {
 		return errorResponse(req, "Missing required fields");
 	}
 
-	const server = await Server.findById(id).populate("messages");
+	const chat = await Chat.findById(id).populate("messages");
 
-	console.log(user.servers[0], server);
+	console.log(user.chats[0], chat);
 
 	if (
-		!server /* TODO(@TheBotlyNoob): figure out why `|| !user.servers.includes(server)` doesn't work */
+		!chat /* TODO(@TheBotlyNoob): figure out why `|| !user.servers.includes(server)` doesn't work */
 	) {
-		return errorResponse(req, "Server not found");
+		return errorResponse(req, "Chat not found");
 	}
 
-	server.messages.push(new Message({ user, message }));
-	await server.save();
+	chat.messages.push(new Message({ user, message }));
+	await chat.save();
 
 	return {
 		status: 200,
 		body: {
-			messages: server.messages
+			messages: chat.messages
 		}
 	};
 };

@@ -1,4 +1,4 @@
-import { Server } from "$lib/models";
+import { Chat } from "$lib/models";
 import { authenticate, errorResponse } from "$lib/sutil";
 import type { RequestHandler } from "@sveltejs/kit";
 
@@ -8,14 +8,14 @@ export const GET: RequestHandler = async (req) => {
 		return errorResponse(req, "Not authenticated.");
 	}
 
-	const server = await Server.findById(req.params.id).populate("messages");
-	if (!server) {
-		return errorResponse(req, "Server not found");
+	const chat = await Chat.findById(req.params.id).populate("messages");
+	if (!chat) {
+		return errorResponse(req, "Chat not found");
 	}
 
 	return {
 		body: {
-			server
+			chat
 		}
 	};
 };
