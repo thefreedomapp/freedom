@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FriendsResponse } from "$lib/common";
+	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
 
 	let friends: FriendsResponse["friends"] = [];
@@ -28,7 +29,7 @@
 </script>
 
 {#if logged_in === false}
-<h2 class="notloggedin">You are not logged in!</h2>
+<NotLoggedIn />
 {:else if logged_in === true}
 <div class="dms">
 	<div class="sidebar">
@@ -63,11 +64,6 @@
 {/if}
 
 <style lang="scss">
-	.notloggedin {
-		font-size: 56px;
-		margin-top: 50px;
-	}
-
 	.dms {
 		width: 100vw;
 		height: calc(100vh - 110px);
@@ -129,10 +125,11 @@
 			justify-content: flex-end;
 
 			.showForm {
-				display: flex;
+				display: inline-flex;
 				flex-direction: row;
 				align-items: center;
 				margin: 25px;
+				gap: 10px;
 
 				input[type=text] {
 					width: calc(100vw - 350px - 200px);
@@ -140,9 +137,11 @@
 					border-radius: 100px;
 					font-size: 20px;
 					padding-left: 15px;
-					margin-right: 25px;
 					border: none;
     				outline: none;
+					box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				}
 
 				input[type=submit] {
@@ -152,6 +151,10 @@
 					border: none;
 					color: white;
 					border-radius: 100px;
+					cursor: pointer;
+					box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				}
 			}
 		}

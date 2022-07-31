@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FriendsResponse } from "$lib/common";
+import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
 
 	let friends: FriendsResponse["friends"] = [];
@@ -16,11 +17,11 @@
 </script>
 
 {#if logged_in === false}
-<h2 class="notloggedin">You are not logged in!</h2>
+<NotLoggedIn />
 {:else if logged_in === true}
 <div class="container">
 	<form action="/api/user/friends" method="POST">
-		<input type="text" name="username" placeholder="username" />
+		<input type="text" name="username" placeholder="Username" />
 		<input type="submit" value="Add" />
 	</form>
 	
@@ -37,11 +38,6 @@
 {/if}
 
 <style lang="scss">
-	.notloggedin {
-		font-size: 56px;
-		margin-top: 50px;
-	}
-
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -51,7 +47,37 @@
 		gap: 25px;
 
 		form {
-			margin: 30px;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+
+			input[type=text] {
+				width: 390px;
+				height: 50px;
+				border-radius: 100px;
+				font-size: 20px;
+				padding-left: 15px;
+				border: none;
+    			outline: none;
+				box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+				-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+				-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+			}
+
+			input[type=submit] {
+					width: 50px;
+					height: 50px;
+					background: blue;
+					border: none;
+					color: white;
+					border-radius: 100px;
+					cursor: pointer;
+					box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+					-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+				}
 		}
 
 		.friend {

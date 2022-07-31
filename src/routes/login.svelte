@@ -49,5 +49,6 @@
 		border: none;
 		color: white;
 		text-decoration: none;
+		cursor: pointer;
 	}
 </style>

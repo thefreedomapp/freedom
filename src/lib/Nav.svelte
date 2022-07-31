@@ -16,7 +16,7 @@
 		<a href="/direct" class="navlink">Direct</a>
 		<a href="/friends" class="navlink">Friends</a>
 		<a href="#404" class="navlink">Causes</a>
-		<a href="#404" class="settings">
+		<a href="/settings" class="settings">
 			<Settings size={32} />
 		</a>
 		<!-- Mobile Nav Button -->
