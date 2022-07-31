@@ -21,7 +21,7 @@
             <!-- svelte-ignore a11y-img-redundant-alt -->
 			<img class="av" src="./temp/av.png" alt="friend's image">
             <!-- TODO(@TheBotlyNoob): dynamic username -->
-			<span class="username">temp username</span>
+			<span class="username">molaix</span>
         </div>
         <div class="security">
             <div class="label">
