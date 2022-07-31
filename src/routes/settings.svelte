@@ -3,8 +3,10 @@
     import { onMount } from 'svelte';
     import Locked from "carbon-icons-svelte/lib/Locked.svelte";
     import ChevronRight from "carbon-icons-svelte/lib/ChevronRight.svelte";
+    import Err from "$lib/Err.svelte"
 
     let logged_in: boolean;
+    let tab: string;
 
     onMount(async()=>{
         logged_in = document.cookie.includes("user=");
@@ -23,7 +25,7 @@
             <!-- TODO(@TheBotlyNoob): dynamic username -->
 			<span class="username">molaix</span>
         </div>
-        <div class="security">
+        <div on:click={() => tab = "security"} class="security">
             <div class="label">
                 <Locked size={32} />
                 <span>Account Security</span>
@@ -33,10 +35,37 @@
             </div>
         </div>
     </div>
+    <div class="openTab">
+        {#if tab === "security"}
+            <div class="securityTab">
+                <h1 class="title">Account Security</h1>
+               
+                <Err>Page Not Complete</Err>
+
+            </div>
+        {:else}
+        <div class="nothing">
+            <span>Please select from the sidebar on the left.</span>
+        </div>
+        {/if}
+    </div>
 </div>
 {/if}
 
 <style lang="scss">
+    .nothing {
+        width: calc(100vw - 500px);
+        height: calc(100vh - 110px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            font-size: 44px;
+            font-weight: 700;
+        }
+    }
+
     .settings {
         display: flex;
         flex-direction: row;
@@ -133,6 +162,19 @@
                     }
                 }
             }
+        }
+    }
+
+    .securityTab {
+        width: calc(100vw - 500px);
+        height: calc(100vh - 160px);
+        flex-direction: column;
+        display: flex;
+        gap: 25px;
+        padding: 25px;
+
+        h1 {
+            font-size: 52px;
         }
     }
 </style>
