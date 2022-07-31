@@ -23,7 +23,7 @@
             <!-- svelte-ignore a11y-img-redundant-alt -->
 			<img class="av" src="./temp/av.png" alt="friend's image">
             <!-- TODO(@TheBotlyNoob): dynamic username -->
-			<span class="username">molaix</span>
+			<span class="username">molai.dev</span>
         </div>
         <div on:click={() => tab = "security"} class="security">
             <div class="label">
@@ -39,7 +39,7 @@
         {#if tab === "security"}
             <div class="securityTab">
                 <h1 class="title">Account Security</h1>
-               
+               <!-- TODO(@mtgsquad): Settings Page -->
                 <Err>Page Not Complete</Err>
 
             </div>
