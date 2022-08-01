@@ -62,9 +62,15 @@ import { Logout } from 'carbon-icons-svelte';
         {#if tab === "security"}
             <div class="securityTab">
                 <h1 class="title">Account Security</h1>
-               <!-- TODO(@mtgsquad): Settings Page -->
-                <Err>Page Not Complete</Err>
-
+               <!-- TODO(@mtgsquad): Settings Page Security Tab -->
+               <div class="twofa">
+                <input type="checkbox" id="switch" class="checkbox" />
+                <label for="switch" class="toggle">
+                </label>
+                <span class="togglelabel">
+                    Enable 2FA
+                </span>
+               </div>
             </div>
         {:else}
         <div class="nothing">
@@ -246,6 +252,57 @@ import { Logout } from 'carbon-icons-svelte';
 
         h1 {
             font-size: 52px;
+        }
+
+        .twofa {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 250px;
+
+            .togglelabel {
+                font-size: 24px;
+            }
+
+            .toggle {
+                position : relative ;
+                display : inline-block;
+                width : 80px;
+                height : 40px;
+                background-color: #292929;
+                border-radius: 30px;
+                border: 2px solid gray;
+                transition: 600ms ease-in-out;
+            }
+
+            /* After slide changes */
+            .toggle:after {
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                top: 0px;
+                left: -1px;
+                transition:  all 0.5s;
+            }
+
+            /* Checkbox checked effect */
+            .checkbox:checked + .toggle::after {
+                left : 40px;
+            }
+
+            /* Checkbox checked toggle label bg color */
+            .checkbox:checked + .toggle {
+                background-color: #525252;
+            }
+
+            /* Checkbox vanished */
+            .checkbox {
+                display : none;
+            }
         }
     }
 </style>
