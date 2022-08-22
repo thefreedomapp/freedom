@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Logo from "$lib/Logo.svelte";
+	import tRPC from "$lib/tRPC/client";
 	import { onMount } from "svelte";
 
 	let logged_in: boolean;
-	onMount(() => (logged_in = document.cookie.includes("user=")));
+	tRPC.query("users:loggedIn").then((res) => (logged_in = res));
 </script>
 
 <div class="container">
-	<Logo birdLocation="side" width={500} margin={50}/>
+	<Logo birdLocation="side" width={500} margin={50} />
 
 	{#if logged_in === false}
 		<div class="buttons">
