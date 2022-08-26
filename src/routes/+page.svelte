@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { browser } from "$app/env";
 	import Logo from "$lib/Logo.svelte";
 	import tRPC from "$lib/tRPC/client";
-	import { onMount } from "svelte";
 
 	let logged_in: boolean;
-	tRPC.query("users:loggedIn").then((res) => (logged_in = res));
+	if (browser) tRPC!.query("users:loggedIn").then((res) => (logged_in = res));
 </script>
 
 <div class="container">

@@ -1,8 +1,11 @@
-import { browser } from "$app/env";
 import type { Router } from "./server";
 import * as trpc from "@trpc/client";
+import { browser } from "$app/env";
 
-const url = browser ? "/trpc" : "http://localhost:3000/trpc";
-export default trpc.createTRPCClient<Router>({
-	url
-});
+const client = browser
+	? trpc.createTRPCClient<Router>({
+			url: "/trpc"
+	  })
+	: null;
+
+export default client;
