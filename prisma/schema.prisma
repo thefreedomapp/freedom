@@ -14,4 +14,6 @@ model User {
   id    Int     @id @map("_id")
   email String  @unique
   username  String
+  password String
+  token String
 }

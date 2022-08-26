@@ -1,6 +1,29 @@
 import * as trpc from "@trpc/server";
+import type { RequestEvent } from "@sveltejs/kit";
 import { router as userRouter } from "./users";
+import { dev } from "$app/env";
+import type { inferAsyncReturnType } from "@trpc/server";
+import prisma from "$lib/prisma";
+import cookie from "cookie";
 
-export const router = trpc.router().merge("users:", userRouter);
+export const createContext = async (event: RequestEvent) => {
+	return {
+		user: prisma.user.findFirst({
+			where: { token: cookie.parse(event.request.headers.get("cookie") || "").token }
+		})
+	};
+};
+
+export type CreateContextFn = inferAsyncReturnType<typeof createContext>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const router = trpc
+	.router<CreateContextFn>()
+	.formatError(({ error, shape }) => {
+		if (error.code === "INTERNAL_SERVER_ERROR" && !dev)
+			return { ...shape, message: "INTERNAL SERVER ERROR" };
+		else return shape;
+	})
+	.merge("users:", userRouter);
 
 export type Router = typeof router;
