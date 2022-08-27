@@ -1,25 +1,12 @@
 <script lang="ts">
-	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
 	import Locked from "carbon-icons-svelte/lib/Locked.svelte";
 	import ChevronRight from "carbon-icons-svelte/lib/ChevronRight.svelte";
-	import Err from "$lib/Err.svelte";
+	// import Err from "$lib/Err.svelte";
 	import { Logout } from "carbon-icons-svelte";
 
 	let logged_in: boolean;
 	let tab: string;
-
-	function logOut(rootCookie: string, apiCookie: string) {
-		// @ts-ignore
-		document.cookie(first, null, { path: "/" });
-		// @ts-ignore
-		document.cookie(apiCookie, null, { path: "/api" });
-		window.location.reload();
-	}
-
-	function redirect(path: string) {
-		window.location.href = path;
-	}
 
 	onMount(async () => {
 		logged_in = document.cookie.includes("user=");
@@ -27,7 +14,7 @@
 </script>
 
 {#if logged_in === false}
-	<NotLoggedIn />
+	<p>Not logged in.</p>
 {:else if logged_in === true}
 	<div class="settings">
 		<!-- TODO(@TheBotlyNoob): add avatars -->
@@ -49,7 +36,7 @@
 			</div>
 			<div
 				on:click={() => {
-					logOut("user", "token");
+					throw new Error("Not implemented");
 				}}
 				class="logout"
 			>

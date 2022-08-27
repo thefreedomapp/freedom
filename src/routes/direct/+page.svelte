@@ -1,8 +1,7 @@
-<script lang="ts">
-	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
+<!-- <script lang="ts">
 	import { onMount } from "svelte";
 
-	let logged_in: boolean;
+	// let logged_in: boolean;
 
 	onMount(async () => {
 		/**
@@ -14,7 +13,7 @@
 		}
 		*/
 	});
-</script>
+</script> -->
 
 <!-- {#if logged_in === false}
 	<NotLoggedIn />
@@ -60,7 +59,7 @@
 <!-- </div> -->
 <!-- {/if} --> -->
 
-<style lang="scss">
+<!-- <style lang="scss">
 	.dms {
 		width: 100vw;
 		height: calc(100vh - 110px);
@@ -159,4 +158,4 @@
 	.selected {
 		display: block;
 	}
-</style>
+</style> -->

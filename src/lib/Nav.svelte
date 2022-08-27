@@ -2,7 +2,7 @@
 	import Logo from "$lib/Logo.svelte";
 	import Settings from "carbon-icons-svelte/lib/Settings.svelte";
 	import Menu from "carbon-icons-svelte/lib/Menu.svelte";
-	let showMobileNav: boolean;
+	// let showMobileNav: boolean;
 </script>
 
 <nav class="nav">
@@ -20,7 +20,7 @@
 			<Settings size={32} />
 		</a>
 		<!-- Mobile Nav Button -->
-		<button on:click={() => (showMobileNav = true)} class="mobileNav">
+		<button class="mobileNav">
 			<Menu size={32} />
 		</button>
 	</div>

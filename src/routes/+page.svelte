@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from "$app/env";
+	import { browser } from "$app/environment";
 	import Logo from "$lib/Logo.svelte";
 	import tRPC from "$lib/tRPC/client";
 

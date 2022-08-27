@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import type { FriendsResponse } from "$lib/common";
 	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
@@ -27,10 +27,10 @@
 
 		{#each friends as friend}
 			<!-- TODO(@TheBotlyNoob): add avatars -->
-			<!-- <img src="x" alt="avatar" /> -->
-			<div class="friend">
+<!-- <img src="x" alt="avatar" /> -->
+<!-- <div class="friend">
 				<!-- svelte-ignore a11y-img-redundant-alt -->
-				<img class="av" src="./temp/av.png" alt="friend's image" />
+<!-- <img class="av" src="./temp/av.png" alt="friend's image" />
 				<span class="username">{friend.friend.username}</span>
 			</div>
 		{/each}
@@ -106,4 +106,4 @@
 			}
 		}
 	}
-</style>
+</style> -->

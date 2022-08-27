@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dev } from "$app/env";
+	import { dev } from "$app/environment";
 	import trpc from "$lib/tRPC/client";
 	import cookie from "cookie";
 
@@ -14,19 +14,17 @@
 	<div bind:this={error} />
 	<form
 		on:submit|preventDefault={async () => {
+			console.log(email_username, password);
 			let token = await trpc?.query("users:logIn", { email_username, password });
 
-			if (!token) {
-				error.innerHTML = "Invalid Username or Email or Password";
-				return;
-			}
+			if (!token) return (error.innerHTML = "Invalid Username or Email or Password");
 
 			cookie.serialize("token", token, { httpOnly: true, secure: !dev, path: "/trpc" });
 		}}
 	>
-		<input required type="text" placeholder="Email or Username" />
+		<input required type="text" placeholder="Email or Username" bind:value={email_username} />
 		<br />
-		<input required type="password" placeholder="Password" />
+		<input required type="password" placeholder="Password" bind:value={password} />
 		<br />
 		<input type="submit" value="Log In" />
 	</form>

@@ -1,5 +1,5 @@
 <script type="ts">
-	import { dev } from "$app/env";
+	import { dev } from "$app/environment";
 	import trcp from "$lib/tRPC/client";
 	import cookie from "cookie";
 

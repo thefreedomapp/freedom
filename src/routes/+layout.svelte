@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
-	import { dev } from "$app/env";
+	import { dev } from "$app/environment";
 
 	import "$lib/fonts.css";
 </script>
