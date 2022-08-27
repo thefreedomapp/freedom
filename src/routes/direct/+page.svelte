@@ -1,22 +1,10 @@
 <script lang="ts">
-	import type { FriendsResponse } from "$lib/common";
 	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
-
-	let friends: FriendsResponse["friends"] = [];
-
-	let current: string = "not a valid username lmao xD this is a random string";
 
 	let logged_in: boolean;
 
 	onMount(async () => {
-		const response = await fetch("/api/user/friends");
-		const data = await response.json();
-		friends = data.friends;
-		console.log(friends);
-
-		logged_in = document.cookie.includes("user=");
-
 		/**
 		 * for (const friend of Array.from(document.getElementsByClassName("chat-user"))) {
 		const username = friend.getAttribute("data-username")!;
@@ -28,40 +16,49 @@
 	});
 </script>
 
-{#if logged_in === false}
-<NotLoggedIn />
+<!-- {#if logged_in === false}
+	<NotLoggedIn />
 {:else if logged_in === true}
-<div class="dms">
-	<div class="sidebar">
-		{#each friends as friend}
-			<div class="chat-user" on:click={() => current = friend.friend.username} data-username={friend.friend.username}>
-				<!-- TODO(@TheBotlyNoob): add avatars -->
-				<img src="temp/av.png" alt="avatar" />
-				<span class="username">
-					{friend.friend.username}
-				</span>
-			</div>
-		{/each}
-	</div>
-	{#each friends as friend}
-		<div class="chat {current === friend.friend.username ? 'visibleChat' : 'hidden'}">
-			<div class="messages {current === friend.friend.username ? 'selected' : 'hidden'}">
-				{#each friend.direct.messages as message}
-					{console.log(message)}
-					<!-- <span class="message">
+	<div class="dms">
+		<div class="sidebar">
+			{#each friends as friend}
+				<div
+					class="chat-user"
+					on:click={() => (current = friend.friend.username)}
+					data-username={friend.friend.username}
+				>
+					<!-- TODO(@TheBotlyNoob): add avatars -->
+<!-- <img src="temp/av.png" alt="avatar" />
+					<span class="username">
+						{friend.friend.username}
+					</span>
+				</div>
+			{/each} -->
+<!-- </div> -->
+<!-- {#each friends as friend}
+	<div class="chat {current === friend.friend.username ? 'visibleChat' : 'hidden'}">
+		<div class="messages {current === friend.friend.username ? 'selected' : 'hidden'}">
+			{#each friend.direct.messages as message}
+				{console.log(message)}
+				<!-- <span class="message">
 						{message.message}
 					</span> -->
-				{/each}
-			</div>
-
-			<form class={current === friend.friend.username ? 'showForm' : 'hidden'} action="/api/chat/{friend.direct._id}/messages" method="POST">
-				<input placeholder="Message to @{friend.friend.username}" type="text" name="message" />
-				<input type="submit" value="Send" />
-			</form>
+<!-- {/each}
 		</div>
-	{/each}
-</div>
-{/if}
+
+		<form
+			class={current === friend.friend.username ? "showForm" : "hidden"}
+			action="/api/chat/{friend.direct._id}/messages"
+			method="POST"
+		>
+			<input placeholder="Message to @{friend.friend.username}" type="text" name="message" />
+			<input type="submit" value="Send" />
+		</form>
+	</div>
+{/each} -->
+-->
+<!-- </div> -->
+<!-- {/if} --> -->
 
 <style lang="scss">
 	.dms {
@@ -131,20 +128,20 @@
 				margin: 25px;
 				gap: 10px;
 
-				input[type=text] {
+				input[type="text"] {
 					width: calc(100vw - 350px - 200px);
 					height: 50px;
 					border-radius: 100px;
 					font-size: 20px;
 					padding-left: 15px;
 					border: none;
-    				outline: none;
+					outline: none;
 					box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 					-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 					-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				}
 
-				input[type=submit] {
+				input[type="submit"] {
 					width: 50px;
 					height: 50px;
 					background: blue;

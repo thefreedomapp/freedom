@@ -1,9 +1,32 @@
+<script lang="ts">
+	import { dev } from "$app/env";
+	import trpc from "$lib/tRPC/client";
+	import cookie from "cookie";
+
+	let email_username: string;
+	let password: string;
+
+	let error: HTMLDivElement;
+</script>
+
 <div class="form-container">
 	<h1>Log In</h1>
-	<form action="/api/user/login" method="POST">
-		<input required type="email" name="email" placeholder="Email" id="email" />
+	<div bind:this={error} />
+	<form
+		on:submit|preventDefault={async () => {
+			let token = await trpc?.query("users:logIn", { email_username, password });
+
+			if (!token) {
+				error.innerHTML = "Invalid Username or Email or Password";
+				return;
+			}
+
+			cookie.serialize("token", token, { httpOnly: true, secure: !dev, path: "/trpc" });
+		}}
+	>
+		<input required type="text" placeholder="Email or Username" />
 		<br />
-		<input required type="password" placeholder="Password" name="password" id="password" />
+		<input required type="password" placeholder="Password" />
 		<br />
 		<input type="submit" value="Log In" />
 	</form>
@@ -39,7 +62,7 @@
 		border-radius: 15px;
 	}
 
-	input[type=submit] {
+	input[type="submit"] {
 		width: 150px;
 		padding: 0;
 		font-size: 24px;

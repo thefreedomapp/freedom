@@ -2,18 +2,18 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+    provider = "mongodb"
+    url      = env("MONGODB_URI")
 }
 
 model User {
-  id    Int     @id @map("_id")
-  email String  @unique
-  username  String
-  password String
-  token String
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    email    String @unique
+    username String
+    password String
+    token    String
 }

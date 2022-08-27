@@ -1,12 +1,32 @@
+<script type="ts">
+	import { dev } from "$app/env";
+	import trcp from "$lib/tRPC/client";
+	import cookie from "cookie";
+
+	let username: string;
+	let email: string;
+	let password: string;
+</script>
+
 <div class="form-container">
 	<h1>Sign Up</h1>
-	<form action="/api/user/signup" method="POST">
-		<input required type="text" name="username" placeholder="Username" id="Username" />
-		<input required type="text" name="name" placeholder="Name" id="Name" />
+	<form
+		on:submit|preventDefault={async () => {
+			let token = await trcp?.query("users:signUp", { username, email, password });
+
+			document.cookie = cookie.serialize("token", token || "", {
+				httpOnly: true,
+				secure: !dev,
+				path: "/trpc"
+			});
+		}}
+	>
+		<input required type="text" placeholder="Username" bind:value={username} />
+		<input required type="text" placeholder="Name" />
 		<br />
-		<input required type="email" name="email" placeholder="Email" id="email" />
+		<input required type="email" placeholder="Email" bind:value={email} />
 		<br />
-		<input required type="password" name="password" placeholder="password" id="password" />
+		<input required type="password" placeholder="password" bind:value={password} />
 		<br />
 		<input type="submit" value="Sign Up" />
 	</form>
@@ -42,7 +62,7 @@
 		border-radius: 15px;
 	}
 
-	input[type=submit] {
+	input[type="submit"] {
 		width: 150px;
 		font-size: 24px;
 		background: #4169e1;

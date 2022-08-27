@@ -7,10 +7,14 @@ import prisma from "$lib/prisma";
 import cookie from "cookie";
 
 export const createContext = async (event: RequestEvent) => {
+	const token = cookie.parse(event.request.headers.get("cookie") || "").token;
+
 	return {
-		user: prisma.user.findFirst({
-			where: { token: cookie.parse(event.request.headers.get("cookie") || "").token }
-		})
+		user: token
+			? await prisma.user.findFirst({
+					where: { token }
+			  })
+			: null
 	};
 };
 

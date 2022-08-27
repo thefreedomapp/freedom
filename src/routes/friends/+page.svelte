@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FriendsResponse } from "$lib/common";
-import NotLoggedIn from "$lib/NotLoggedIn.svelte";
+	import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 	import { onMount } from "svelte";
 
 	let friends: FriendsResponse["friends"] = [];
@@ -17,24 +17,24 @@ import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 </script>
 
 {#if logged_in === false}
-<NotLoggedIn />
+	<NotLoggedIn />
 {:else if logged_in === true}
-<div class="container">
-	<form action="/api/user/friends" method="POST">
-		<input type="text" name="username" placeholder="Username" />
-		<input type="submit" value="Add" />
-	</form>
-	
-	{#each friends as friend}
-		<!-- TODO(@TheBotlyNoob): add avatars -->
-		<!-- <img src="x" alt="avatar" /> -->
-		<div class="friend">
-			<!-- svelte-ignore a11y-img-redundant-alt -->
-			<img class="av" src="./temp/av.png" alt="friend's image">
-			<span class="username">{friend.friend.username}</span>
-		</div>
-	{/each}
-</div>
+	<div class="container">
+		<form action="/api/user/friends" method="POST">
+			<input type="text" placeholder="Username" />
+			<input type="submit" value="Add" />
+		</form>
+
+		{#each friends as friend}
+			<!-- TODO(@TheBotlyNoob): add avatars -->
+			<!-- <img src="x" alt="avatar" /> -->
+			<div class="friend">
+				<!-- svelte-ignore a11y-img-redundant-alt -->
+				<img class="av" src="./temp/av.png" alt="friend's image" />
+				<span class="username">{friend.friend.username}</span>
+			</div>
+		{/each}
+	</div>
 {/if}
 
 <style lang="scss">
@@ -53,31 +53,31 @@ import NotLoggedIn from "$lib/NotLoggedIn.svelte";
 			align-items: center;
 			gap: 10px;
 
-			input[type=text] {
+			input[type="text"] {
 				width: 390px;
 				height: 50px;
 				border-radius: 100px;
 				font-size: 20px;
 				padding-left: 15px;
 				border: none;
-    			outline: none;
+				outline: none;
 				box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 			}
 
-			input[type=submit] {
-					width: 50px;
-					height: 50px;
-					background: blue;
-					border: none;
-					color: white;
-					border-radius: 100px;
-					cursor: pointer;
-					box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-					-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-					-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-				}
+			input[type="submit"] {
+				width: 50px;
+				height: 50px;
+				background: blue;
+				border: none;
+				color: white;
+				border-radius: 100px;
+				cursor: pointer;
+				box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+				-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+				-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
+			}
 		}
 
 		.friend {
