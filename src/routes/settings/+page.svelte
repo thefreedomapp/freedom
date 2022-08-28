@@ -33,7 +33,7 @@
 					</div>
 				</div>
 			</div>
-			<div on:click={() => {throw new Error("Not implemented")}} class="item">
+			<div on:click={() => alert("Not Implemented (logout)")} class="item">
 				<div class="label">
 					<Logout size={24} />
 					<span>Log Out</span>
