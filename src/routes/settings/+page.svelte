@@ -1,18 +1,14 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { LOGGED_IN } from "$lib/consts";
+
 	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte";
 
-	let logged_in: boolean;
-	let tab: string;
-
-	onMount(async () => {
-		logged_in = true;//document.cookie.includes("user=");
-	});
+	let tab: "security";
 </script>
 
-{#if logged_in === false}
+{#if LOGGED_IN === false}
 	<p class="nouser">Not logged in.</p>
-{:else if logged_in === true}
+{:else if LOGGED_IN === true}
 	<div class="settings">
 		<!-- TODO(@TheBotlyNoob): add avatars -->
 		<div class="sidebar">
@@ -23,7 +19,7 @@
 					<!-- TODO(@TheBotlyNoob): dynamic username -->
 					<span class="username">molai.dev</span>
 				</div>
-				<div on:click={() => tab = "security"} class="item">
+				<div on:click={() => (tab = "security")} class="item">
 					<div class="label">
 						<Locked size={32} />
 						<span>Account Security</span>
