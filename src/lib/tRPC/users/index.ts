@@ -3,6 +3,7 @@ import type { CreateContextFn } from "../server";
 import { z } from "zod";
 import { compare, hash } from "@node-rs/bcrypt";
 import prisma from "$lib/prisma";
+import { TRPCError } from "@trpc/server";
 
 export const router = trpc
 	.router<CreateContextFn>()
@@ -36,8 +37,14 @@ export const router = trpc
 				}
 			});
 
-			if (!(await compare(user?.password || "", input.password))) return null;
+			console.log(user);
 
-			return user!.token;
+			if (!user || !(await compare(user.password, input.password)))
+				throw new TRPCError({
+					message: "Invalid email/username or password.",
+					code: "UNAUTHORIZED"
+				});
+
+			return user.token;
 		}
 	});

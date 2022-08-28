@@ -1,26 +1,41 @@
 <script type="ts">
 	import { dev } from "$app/environment";
-	import trcp from "$lib/tRPC/client";
+	import { error } from "$lib/stores";
+	import trpc from "$lib/tRPC/client";
+	import { TRPCClientError } from "@trpc/client";
 	import cookie from "cookie";
 
 	let username: string;
 	let email: string;
 	let password: string;
+
+	const onSubmit = async () => {
+		let token = "";
+		try {
+			token = await trpc?.query("users:signUp", {
+				email,
+				username,
+				password
+			})!;
+		} catch (e) {
+			if (e instanceof TRPCClientError) {
+				return error.set(e.message);
+			} else {
+				throw e;
+			}
+		}
+
+		cookie.serialize("token", token, {
+			httpOnly: true,
+			secure: !dev,
+			path: "/trpc"
+		});
+	};
 </script>
 
 <div class="form-container">
 	<h1>Sign Up</h1>
-	<form
-		on:submit|preventDefault={async () => {
-			let token = await trcp?.query("users:signUp", { username, email, password });
-
-			document.cookie = cookie.serialize("token", token || "", {
-				httpOnly: true,
-				secure: !dev,
-				path: "/trpc"
-			});
-		}}
-	>
+	<form on:submit|preventDefault={onSubmit}>
 		<input required type="text" placeholder="Username" bind:value={username} />
 		<input required type="text" placeholder="Name" />
 		<br />

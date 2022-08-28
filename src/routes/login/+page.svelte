@@ -1,27 +1,39 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
+	import { error } from "$lib/stores";
 	import trpc from "$lib/tRPC/client";
+	import { TRPCClientError } from "@trpc/client";
 	import cookie from "cookie";
 
 	let email_username: string;
 	let password: string;
 
-	let error: HTMLDivElement;
+	const onSubmit = async () => {
+		let token = "";
+		try {
+			token = await trpc?.query("users:logIn", {
+				email_username,
+				password
+			})!;
+		} catch (e) {
+			if (e instanceof TRPCClientError) {
+				return error.set(e.message);
+			} else {
+				throw e;
+			}
+		}
+
+		cookie.serialize("token", token, {
+			httpOnly: true,
+			secure: !dev,
+			path: "/trpc"
+		});
+	};
 </script>
 
 <div class="form-container">
 	<h1>Log In</h1>
-	<div bind:this={error} />
-	<form
-		on:submit|preventDefault={async () => {
-			console.log(email_username, password);
-			let token = await trpc?.query("users:logIn", { email_username, password });
-
-			if (!token) return (error.innerHTML = "Invalid Username or Email or Password");
-
-			cookie.serialize("token", token, { httpOnly: true, secure: !dev, path: "/trpc" });
-		}}
-	>
+	<form on:submit|preventDefault={onSubmit}>
 		<input required type="text" placeholder="Email or Username" bind:value={email_username} />
 		<br />
 		<input required type="password" placeholder="Password" bind:value={password} />

@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import Locked from "carbon-icons-svelte/lib/Locked.svelte";
-	import ChevronRight from "carbon-icons-svelte/lib/ChevronRight.svelte";
-	// import Err from "$lib/Err.svelte";
-	import { Logout } from "carbon-icons-svelte";
+	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte";
 
 	let logged_in: boolean;
 	let tab: string;

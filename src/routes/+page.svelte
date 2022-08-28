@@ -1,21 +1,17 @@
 <script lang="ts">
-	import { browser } from "$app/environment";
+	import { LOGGED_IN } from "$lib/consts";
 	import Logo from "$lib/Logo.svelte";
-	import tRPC from "$lib/tRPC/client";
-
-	let logged_in: boolean;
-	if (browser) tRPC!.query("users:loggedIn").then((res) => (logged_in = res));
 </script>
 
 <div class="container">
 	<Logo birdLocation="side" width={500} margin={50} />
 
-	{#if logged_in === false}
+	{#if LOGGED_IN === false}
 		<div class="buttons">
 			<a class="btn" href="/signup">Sign Up</a>
 			<a class="btn" href="/login">Login</a>
 		</div>
-	{:else if logged_in === true}
+	{:else if LOGGED_IN === true}
 		<p>Logged In</p>
 	{/if}
 </div>

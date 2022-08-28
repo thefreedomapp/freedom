@@ -3,8 +3,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 
 const config: UserConfig = {
 	server: {
-		port: 3000,
-		strictPort: true
+		port: 3000
 	},
 	plugins: [sveltekit()]
 };
