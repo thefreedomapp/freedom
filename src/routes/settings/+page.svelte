@@ -6,42 +6,40 @@
 	let tab: string;
 
 	onMount(async () => {
-		logged_in = document.cookie.includes("user=");
+		logged_in = true;//document.cookie.includes("user=");
 	});
 </script>
 
 {#if logged_in === false}
-	<p>Not logged in.</p>
+	<p class="nouser">Not logged in.</p>
 {:else if logged_in === true}
 	<div class="settings">
 		<!-- TODO(@TheBotlyNoob): add avatars -->
 		<div class="sidebar">
-			<div class="user">
-				<!-- svelte-ignore a11y-img-redundant-alt -->
-				<img class="av" src="./temp/av.png" alt="friend's image" />
-				<!-- TODO(@TheBotlyNoob): dynamic username -->
-				<span class="username">molai.dev</span>
-			</div>
-			<div on:click={() => (tab = "security")} class="security">
-				<div class="label">
-					<Locked size={32} />
-					<span>Account Security</span>
+			<div class="top">
+				<div class="user">
+					<!-- svelte-ignore a11y-img-redundant-alt -->
+					<img class="av" src="./temp/av.png" alt="friend's image" />
+					<!-- TODO(@TheBotlyNoob): dynamic username -->
+					<span class="username">molai.dev</span>
 				</div>
-				<div class="arrow">
-					<ChevronRight size={32} />
+				<div on:click={() => tab = "security"} class="item">
+					<div class="label">
+						<Locked size={32} />
+						<span>Account Security</span>
+					</div>
+					<div class="arrow">
+						<ChevronRight size={32} />
+					</div>
 				</div>
 			</div>
-			<div
-				on:click={() => {
-					throw new Error("Not implemented");
-				}}
-				class="logout"
-			>
+			<div on:click={() => {throw new Error("Not implemented")}} class="item">
 				<div class="label">
+					<Logout size={24} />
 					<span>Log Out</span>
 				</div>
 				<div class="arrow">
-					<Logout size={24} />
+					<ChevronRight size={32} />
 				</div>
 			</div>
 		</div>
@@ -66,6 +64,12 @@
 {/if}
 
 <style lang="scss">
+	.nouser {
+		font-size: 50px;
+		font-weight: 700;
+		margin-top: 75px;
+	}
+
 	.nothing {
 		width: calc(100vw - 500px);
 		height: calc(100vh - 110px);
@@ -95,7 +99,7 @@
 			padding-left: 20px;
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
+			justify-content: space-between;
 
 			.user {
 				cursor: pointer;
@@ -122,75 +126,29 @@
 
 				.username {
 					color: rgb(255, 255, 255);
-					font-size: 28px;
+					font-size: 32px;
 					margin-right: 25px;
 				}
 			}
 
-			.security {
+			.item {
 				cursor: pointer;
 				margin-bottom: 15px;
 				max-width: 350px;
 				width: 350px;
-				height: 45px;
+				height: 40px;
+				vertical-align: center !important;
+				text-align: center;
 				border-radius: 25px;
 				background-color: #434343;
 				box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
 				padding: 15px;
-				display: inline-flex;
+				display: flex;
 				flex-direction: row;
 				align-items: center;
 				justify-content: space-between;
-
-				.label {
-					display: flex;
-					gap: 10px;
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-evenly;
-
-					span {
-						font-size: 24px;
-					}
-				}
-
-				.arrow {
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					min-height: 45px;
-					min-width: 45px;
-					border-radius: 25px;
-					transition: 600ms ease-in-out;
-					justify-content: center;
-				}
-
-				&:hover {
-					.arrow {
-						background: #292929;
-					}
-				}
-			}
-
-			.logout {
-				cursor: pointer;
-				margin-bottom: 15px;
-				max-width: 350px;
-				width: 350px;
-				height: 45px;
-				border-radius: 25px;
-				background-color: #434343;
-				box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-				-webkit-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-				-moz-box-shadow: 1px 2px 5px 0px rgba(22, 22, 22, 0.5);
-				padding: 15px;
-				display: inline-flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: space-between;
-				justify-self: flex-end;
 
 				.label {
 					display: flex;
