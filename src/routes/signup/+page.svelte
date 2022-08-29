@@ -10,20 +10,11 @@
 	let password: string;
 
 	const onSubmit = async () => {
-		let token = "";
-		try {
-			token = await trpc?.query("users:signUp", {
-				email,
-				username,
-				password
-			})!;
-		} catch (e) {
-			if (e instanceof TRPCClientError) {
-				return error.set(e.message);
-			} else {
-				throw e;
-			}
-		}
+		let token = await trpc.query("users:signUp", {
+			email,
+			username,
+			password
+		});
 
 		cookie.serialize("token", token, {
 			httpOnly: true,

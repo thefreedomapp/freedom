@@ -1,11 +1,38 @@
 import type { Router } from "./server";
-import * as trpc from "@trpc/client";
+import { type TRPCClient, createTRPCClient, TRPCClientError } from "@trpc/client";
 import { browser } from "$app/environment";
+import { error } from "$lib/stores";
 
-const client = browser
-	? trpc.createTRPCClient<Router>({
-			url: "/trpc"
-	  })
-	: null;
+export type Client = TRPCClient<Router>;
+
+const client: Client = browser
+	? new Proxy(
+			createTRPCClient<Router>({
+				url: "/trpc"
+			}),
+			{
+				get: (target, name: keyof Client): Client[typeof name] =>
+					name === "query"
+						? (((...args) =>
+								target.query(...args).catch((e) => {
+									if (e instanceof TRPCClientError) {
+										error.set(e.message);
+										return e;
+									} else {
+										// let the error bubble up
+										throw e;
+									}
+								})) as Client["query"])
+						: target[name]
+			}
+	  )
+	: // no-op
+	  (new Proxy(
+			{},
+			{
+				get: () => client,
+				apply: () => client
+			}
+	  ) as Client);
 
 export default client;

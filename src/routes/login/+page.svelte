@@ -1,27 +1,16 @@
 <script lang="ts">
 	import { dev } from "$app/environment";
-	import { error } from "$lib/stores";
 	import trpc from "$lib/tRPC/client";
-	import { TRPCClientError } from "@trpc/client";
 	import cookie from "cookie";
 
 	let email_username: string;
 	let password: string;
 
 	const onSubmit = async () => {
-		let token = "";
-		try {
-			token = await trpc?.query("users:logIn", {
-				email_username,
-				password
-			})!;
-		} catch (e) {
-			if (e instanceof TRPCClientError) {
-				return error.set(e.message);
-			} else {
-				throw e;
-			}
-		}
+		let token = await trpc.query("users:logIn", {
+			email_username,
+			password
+		});
 
 		cookie.serialize("token", token, {
 			httpOnly: true,
