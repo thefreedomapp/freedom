@@ -14,14 +14,13 @@ export const router = trpc
 		input: z.object({ email: z.string(), username: z.string(), password: z.string() }),
 		resolve: async ({ input }) => {
 			const token = await hash(`${input.email}╬${input.password}`);
-			const u = await prisma.user.create({
+			await prisma.user.create({
 				data: {
 					...input,
 					password: await hash(input.password),
 					token
 				}
 			});
-			console.log(u);
 			return token;
 		}
 	})
@@ -36,8 +35,6 @@ export const router = trpc
 					}
 				}
 			});
-
-			console.log(user);
 
 			if (!user || !(await compare(user.password, input.password)))
 				throw new TRPCError({
