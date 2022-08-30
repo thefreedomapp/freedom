@@ -30,8 +30,7 @@ const client: Client = browser
 	  (new Proxy(
 			{},
 			{
-				get: () => client,
-				apply: () => client
+				get: () => () => null
 			}
 	  ) as Client);
 

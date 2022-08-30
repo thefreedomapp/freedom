@@ -1,8 +1,6 @@
 <script type="ts">
 	import { dev } from "$app/environment";
-	import { error } from "$lib/stores";
 	import trpc from "$lib/tRPC/client";
-	import { TRPCClientError } from "@trpc/client";
 	import cookie from "cookie";
 
 	let username: string;
