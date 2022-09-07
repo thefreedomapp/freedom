@@ -1,23 +1,14 @@
 <script lang="ts">
-	import { dev } from "$app/environment";
 	import trpc from "$lib/tRPC/client";
-	import cookie from "cookie";
 
 	let email_username: string;
 	let password: string;
 
-	const onSubmit = async () => {
-		let token = await trpc.query("users:logIn", {
+	const onSubmit = () =>
+		trpc.query("users:logIn", {
 			email_username,
 			password
 		});
-
-		cookie.serialize("token", token, {
-			httpOnly: true,
-			secure: !dev,
-			path: "/trpc"
-		});
-	};
 </script>
 
 <div class="form-container">

@@ -1,24 +1,22 @@
 <script type="ts">
-	import { dev } from "$app/environment";
 	import trpc from "$lib/tRPC/client";
-	import cookie from "cookie";
 
 	let username: string;
 	let email: string;
 	let password: string;
 
+	let tokenInput: HTMLInputElement;
+	let setTokenForm: HTMLFormElement;
+
 	const onSubmit = async () => {
-		let token = await trpc.query("users:signUp", {
+		const token = await trpc.query("users:signUp", {
 			email,
 			username,
 			password
 		});
-
-		cookie.serialize("token", token, {
-			httpOnly: true,
-			secure: !dev,
-			path: "/trpc"
-		});
+		console.log(token);
+		tokenInput.value = token;
+		setTokenForm.submit();
 	};
 </script>
 
@@ -33,6 +31,9 @@
 		<input required type="password" placeholder="password" bind:value={password} />
 		<br />
 		<input type="submit" value="Sign Up" />
+	</form>
+	<form style="display:none;" method="POST" action="/_set-token" bind:this={setTokenForm}>
+		<input type="hidden" name="token" bind:this={tokenInput} />
 	</form>
 </div>
 

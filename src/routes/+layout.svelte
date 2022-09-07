@@ -4,6 +4,8 @@
 	import Error from "$lib/Error.svelte";
 
 	import "$lib/fonts.css";
+
+	export const prerender = true;
 </script>
 
 <svelte:head>

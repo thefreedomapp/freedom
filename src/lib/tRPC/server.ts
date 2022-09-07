@@ -4,10 +4,9 @@ import { router as userRouter } from "./users";
 import { dev } from "$app/environment";
 import type { inferAsyncReturnType } from "@trpc/server";
 import prisma from "$lib/prisma";
-import cookie from "cookie";
 
 export const createContext = async (event: RequestEvent) => {
-	const token = cookie.parse(event.request.headers.get("cookie") || "").token;
+	const token = event.cookies.get("token");
 
 	return {
 		user: token

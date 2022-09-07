@@ -11,10 +11,7 @@ const config = {
 	preprocess: [preprocess(), optimizeImports()],
 
 	kit: {
-		adapter: adapter(),
-		prerender: {
-			default: true
-		}
+		adapter: adapter()
 	}
 };
 
