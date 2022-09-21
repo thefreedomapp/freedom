@@ -1,12 +1,12 @@
 import * as trpc from "@trpc/server";
-import type { RequestEvent } from "@sveltejs/kit";
+import type { Cookies } from "@sveltejs/kit";
 import { router as userRouter } from "./users";
 import { dev } from "$app/environment";
 import type { inferAsyncReturnType } from "@trpc/server";
 import prisma from "$lib/prisma";
 
-export const createContext = async (event: RequestEvent) => {
-	const token = event.cookies.get("token");
+export const createContext = async ({ cookies }: { cookies: Cookies }) => {
+	const token = cookies.get("token");
 
 	return {
 		user: token

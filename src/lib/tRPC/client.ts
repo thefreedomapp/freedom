@@ -1,7 +1,9 @@
 import type { Router } from "./server";
 import { type TRPCClient, createTRPCClient, TRPCClientError } from "@trpc/client";
 import { browser } from "$app/environment";
-import { error } from "$lib/stores";
+import { writable } from "svelte/store";
+
+export const error = writable<string | null>(null);
 
 export type Client = TRPCClient<Router>;
 

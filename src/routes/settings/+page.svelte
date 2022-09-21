@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { LOGGED_IN } from "$lib/consts";
-
+	import type { PageData } from "./$types";
 	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte";
 
 	let tab: "security";
+
+	export let data: PageData;
 </script>
 
-{#if LOGGED_IN === false}
+{#if data.logged_in === false}
 	<p class="nouser">Not logged in.</p>
-{:else if LOGGED_IN === true}
+{:else if data.logged_in === true}
 	<div class="settings">
 		<!-- TODO(@TheBotlyNoob): add avatars -->
 		<div class="sidebar">

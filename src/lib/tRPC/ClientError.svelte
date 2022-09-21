@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { ErrorOutline } from "carbon-icons-svelte";
-	import { error as errorStore } from "$lib/stores";
-	import { beforeNavigate } from "$app/navigation";
+	import { error as errorStore } from "./client";
 
-	let error: string | null;
+	let error: string | null = null;
 
 	errorStore.subscribe((e) => (error = e));
-
-	beforeNavigate(() => errorStore.set(null));
 </script>
 
 {#if error != null}

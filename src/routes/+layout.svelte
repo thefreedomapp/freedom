@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte";
 	import { dev } from "$app/environment";
-	import Error from "$lib/Error.svelte";
+	import Error from "$lib/tRPC/ClientError.svelte";
 
 	import "$lib/fonts.css";
 

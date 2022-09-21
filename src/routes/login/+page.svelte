@@ -1,22 +1,17 @@
 <script lang="ts">
-	import trpc from "$lib/tRPC/client";
-
-	let email_username: string;
-	let password: string;
-
-	const onSubmit = () =>
-		trpc.query("users:logIn", {
-			email_username,
-			password
-		});
+	import type { ActionData } from "./$types";
+	export let form: ActionData | null;
 </script>
 
 <div class="form-container">
 	<h1>Log In</h1>
-	<form on:submit|preventDefault={onSubmit}>
-		<input required type="text" placeholder="Email or Username" bind:value={email_username} />
+	{#if form?.message}
+		<div class="message">{form.message}</div>
+	{/if}
+	<form method="POST" action="?/login">
+		<input required name="email_or_username" type="text" placeholder="Email or Username" />
 		<br />
-		<input required type="password" placeholder="Password" bind:value={password} />
+		<input required name="password" type="password" placeholder="Password" />
 		<br />
 		<input type="submit" value="Log In" />
 	</form>

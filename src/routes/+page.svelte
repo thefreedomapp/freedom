@@ -1,17 +1,21 @@
 <script lang="ts">
-	import { LOGGED_IN } from "$lib/consts";
+	import type { PageData } from "./$types";
 	import Logo from "$lib/Logo.svelte";
+
+	export let data: PageData;
+
+	console.log(data);
 </script>
 
 <div class="container">
 	<Logo birdLocation="side" width={500} margin={50} />
 
-	{#if LOGGED_IN === false}
+	{#if data.logged_in === false}
 		<div class="buttons">
 			<a class="btn" href="/signup">Sign Up</a>
 			<a class="btn" href="/login">Login</a>
 		</div>
-	{:else if LOGGED_IN === true}
+	{:else if data.logged_in === true}
 		<p>Logged In</p>
 	{/if}
 </div>
