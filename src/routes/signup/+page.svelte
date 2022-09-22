@@ -1,14 +1,19 @@
+<script lang="ts">
+	import type { ActionData } from "./$types";
+	export let form: ActionData | null;
+</script>
+
 <div class="form-container">
 	<h1>Sign Up</h1>
-	<form>
-		<input required type="text" placeholder="Username" />
-		<input required type="text" placeholder="Name" />
+	{#if form?.message}
+		<div class="message">{form.message}</div>
+	{/if}
+	<form method="POST" action="?/signup">
+		<input required name="email_or_username" type="text" placeholder="Email or Username" />
 		<br />
-		<input required type="email" placeholder="Email" />
+		<input required name="password" type="password" placeholder="Password" />
 		<br />
-		<input required type="password" placeholder="password" />
-		<br />
-		<input type="submit" value="Sign Up" />
+		<input type="submit" value="Log In" />
 	</form>
 </div>
 
@@ -44,15 +49,14 @@
 
 	input[type="submit"] {
 		width: 150px;
+		padding: 0;
 		font-size: 24px;
 		background: #4169e1;
 		height: 75px;
 		border-radius: 10px;
+		border: none;
 		color: white;
-		display: flex;
-		padding: 0;
-		align-items: center;
-		justify-content: center;
+		text-decoration: none;
 		cursor: pointer;
 	}
 </style>

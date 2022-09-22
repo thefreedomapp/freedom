@@ -29,7 +29,5 @@ export const actions: Actions = {
 			sameSite: "strict",
 			secure: !dev
 		});
-
-		throw "";
 	}
 };
