@@ -7,6 +7,7 @@ import prisma from "$lib/prisma";
 
 export const createContext = async ({ cookies }: { cookies: Cookies }) => {
 	const token = cookies.get("token");
+	console.log(token);
 
 	return {
 		user: token

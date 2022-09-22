@@ -8,11 +8,9 @@
 	{#if form?.message}
 		<div class="message">{form.message}</div>
 	{/if}
-	<form method="POST" action="?/login">
+	<form method="POST">
 		<input required name="email_or_username" type="text" placeholder="Email or Username" />
-		<br />
 		<input required name="password" type="password" placeholder="Password" />
-		<br />
 		<input type="submit" value="Log In" />
 	</form>
 </div>

@@ -1,23 +1,46 @@
 import prisma from "$lib/prisma";
-import { invalid } from "@sveltejs/kit";
-import type { Actions } from "../../../.svelte-kit/types/src/routes/signup/$types";
-import { compare } from "@node-rs/bcrypt";
+import { invalid, redirect } from "@sveltejs/kit";
+import type { Actions } from "./$types";
+import { hash } from "@node-rs/bcrypt";
 import { dev } from "$app/environment";
 
 export const actions: Actions = {
-	async signup({ cookies, request }) {
+	async default({ cookies, request }) {
 		const data = await request.formData();
 		const email = data.get("email") as string;
 		const username = data.get("username") as string;
-		const password = data.get("password") as string;
+		let password = data.get("password") as string;
 
-		cookies.set("token", user.token, {
-			path: "/trpc",
+		if (!email || !username || !password) {
+			return invalid(400, { message: "Invalid credentials" });
+		}
+
+		password = await hash(password);
+
+		const token = await hash(`${email}╬${password}`);
+		await prisma.user.create({
+			data: {
+				email,
+				username,
+				password,
+				token
+			}
+		});
+
+		console.log({
+			email,
+			username,
+			password,
+			token
+		});
+
+		cookies.set("token", token, {
+			path: "/",
 			httpOnly: true,
 			sameSite: "strict",
 			secure: !dev
 		});
 
-		throw "";
+		throw redirect(302, "/");
 	}
 };
