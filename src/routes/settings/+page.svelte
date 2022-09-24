@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
-	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte";
+	import type { PageData } from "./$types"
+	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte"
 
-	let tab: "security";
+	let tab: "security"
 
-	export let data: PageData;
+	export let data: PageData
 </script>
 
 {#if data.logged_in === false}
@@ -15,8 +15,7 @@
 		<div class="sidebar">
 			<div class="top">
 				<div class="user">
-					<!-- svelte-ignore a11y-img-redundant-alt -->
-					<img class="av" src="./temp/av.png" alt="friend's image" />
+					<img class="av" src="./temp/av.png" alt="friend" />
 					<!-- TODO(@TheBotlyNoob): dynamic username -->
 					<span class="username">molai.dev</span>
 				</div>

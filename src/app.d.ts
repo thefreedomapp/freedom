@@ -9,6 +9,6 @@ declare namespace App {
 	// interface Session {}
 	// interface Stuff {}
 	interface PageData {
-		logged_in: boolean;
+		logged_in: boolean
 	}
 }

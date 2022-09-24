@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Nav from "$lib/Nav.svelte";
-	import { dev } from "$app/environment";
-	import Error from "$lib/tRPC/ClientError.svelte";
+	import Nav from "$lib/Nav.svelte"
+	import { dev } from "$app/environment" // it is used, but TypeScript doesn't know that for some reason
+	import Error from "$lib/tRPC/ClientError.svelte"
 
-	import "$lib/fonts.css";
+	import "$lib/fonts.css"
 
-	export const prerender = true;
+	export const prerender = true
 </script>
 
 <svelte:head>

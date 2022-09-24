@@ -15,5 +15,5 @@ model User {
     email    String @unique
     username String @unique
     password String
-    token    String
+    token    String @unique
 }

@@ -1,16 +1,16 @@
 <script lang="ts">
-	export let birdLocation: "top" | "side" = "top";
-	export let text = true;
+	export let birdLocation: "top" | "side" = "top"
+	export let text = true
 	export const svgSize = text
 		? birdLocation === "side"
 			? { width: 240, height: 40 }
 			: { width: 195, height: 80 }
-		: { width: 50, height: 40 };
+		: { width: 50, height: 40 }
 
 	// just to get better syntax highlighting and types
 	const matrix = (...args: [number, number, number, number, number, number]) => {
-		return `matrix(${args.join(",")})`;
-	};
+		return `matrix(${args.join(",")})`
+	}
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svgSize.width} {svgSize.height}" {...$$props}>

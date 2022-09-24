@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Logo from "$lib/Logo.svelte";
-	import { Menu, Settings } from "carbon-icons-svelte";
+	import Logo from "$lib/Logo.svelte"
+	import { Menu, Settings } from "carbon-icons-svelte"
 	// let showMobileNav: boolean;
 </script>
 

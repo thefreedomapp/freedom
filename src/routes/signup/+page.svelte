@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { ActionData } from "./$types";
-	export let form: ActionData | null;
+	import type { ActionData } from "./$types"
+	export let form: ActionData | null
 </script>
 
 <div class="form-container">
 	<h1>Sign Up</h1>
 	{#if form?.message}
-		<div class="message">{form.message}</div>
+		<div color="red">{form.message}</div>
 	{/if}
 	<form method="POST">
 		<input required name="email" type="email" placeholder="Email" />

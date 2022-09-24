@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
-	import Logo from "$lib/Logo.svelte";
+	import type { PageData } from "./$types"
+	import Logo from "$lib/Logo.svelte"
 
-	export let data: PageData;
-
-	console.log(data);
+	export let data: PageData
 </script>
 
 <div class="container">

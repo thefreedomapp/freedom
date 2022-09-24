@@ -1,11 +1,11 @@
-import type { Router } from "./server";
-import { type TRPCClient, createTRPCClient, TRPCClientError } from "@trpc/client";
-import { browser } from "$app/environment";
-import { writable } from "svelte/store";
+import type { Router } from "./server"
+import { type TRPCClient, createTRPCClient, TRPCClientError } from "@trpc/client"
+import { browser } from "$app/environment"
+import { writable } from "svelte/store"
 
-export const error = writable<string | null>(null);
+export const error = writable<string | null>(null)
 
-export type Client = TRPCClient<Router>;
+export type Client = TRPCClient<Router>
 
 const client: Client = browser
 	? new Proxy(
@@ -18,11 +18,11 @@ const client: Client = browser
 						? (((...args) =>
 								target.query(...args).catch((e) => {
 									if (e instanceof TRPCClientError) {
-										error.set(e.message);
-										return e;
+										error.set(e.message)
+										return e
 									} else {
 										// let the error bubble up
-										throw e;
+										throw e
 									}
 								})) as Client["query"])
 						: target[name]
@@ -34,6 +34,6 @@ const client: Client = browser
 			{
 				get: () => () => null
 			}
-	  ) as Client);
+	  ) as Client)
 
-export default client;
+export default client
