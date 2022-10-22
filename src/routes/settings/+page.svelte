@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { PageData } from "./$types"
-	import { Logout, ChevronRight, Locked } from "carbon-icons-svelte"
+	import { Logout, ChevronRight, Locked, Settings } from "carbon-icons-svelte"
 
-	let tab: "security"
+	let tab: "security" | "general";
 
-	export let data: PageData
+	export let data: PageData;
+	console.log('acc')
+	console.log(data.account)
 </script>
 
-{#if data.logged_in === false}
+{#if !data.logged_in}
 	<p class="nouser">Not logged in.</p>
 {:else if data.logged_in === true}
 	<div class="settings">
@@ -15,9 +17,22 @@
 		<div class="sidebar">
 			<div class="top">
 				<div class="user">
+					<!-- TODO(@TheBotlyNoob): dynamic avatars -->
 					<img class="av" src="./temp/av.png" alt="friend" />
-					<!-- TODO(@TheBotlyNoob): dynamic username -->
-					<span class="username">molai.dev</span>
+					<!-- Dynamic Username + Email Display ✔️ -->
+					<div class="text">
+						<span class="username">{data.account.username}</span>
+						<span class="email">{data.account.email}</span>
+					</div>
+				</div>
+				<div on:click={() => (tab = "general")} class="item">
+					<div class="label">
+						<Settings size={32} />
+						<span>General Settings</span>
+					</div>
+					<div class="arrow">
+						<ChevronRight size={32} />
+					</div>
 				</div>
 				<div on:click={() => (tab = "security")} class="item">
 					<div class="label">
@@ -41,15 +56,25 @@
 		</div>
 		<div class="openTab">
 			{#if tab === "security"}
-				<div class="securityTab">
+				<div class="tab">
 					<h1 class="title">Account Security</h1>
 					<!-- TODO(@mtgsquad): Settings Page Security Tab -->
-					<div class="twofa">
+					<div class="option">
 						<input type="checkbox" class="checkbox" />
 						<label for="switch" class="toggle" />
 						<span class="togglelabel"> Enable 2FA </span>
 					</div>
 				</div>
+			{:else if tab === "general"}
+			<div class="tab">
+				<h1 class="title">General Settings</h1>
+				<!-- TODO(@mtgsquad): Settings Page Security Tab -->
+				<div class="option">
+					<input type="checkbox" class="checkbox" />
+					<label for="switch" class="toggle" />
+					<span class="togglelabel"> Developer Mode </span>
+				</div>
+			</div>
 			{:else}
 				<div class="nothing">
 					<span>Please select from the sidebar on the left.</span>
@@ -120,10 +145,25 @@
 					width: 75px;
 				}
 
-				.username {
-					color: rgb(255, 255, 255);
-					font-size: 32px;
-					margin-right: 25px;
+				.text {
+					display: flex;
+					flex-direction: column;
+					gap: 5px;
+					align-items: center;
+					justify-content: center;
+
+					.username {
+						color: rgb(255, 255, 255);
+						font-size: 32px;
+						margin-right: 25px;
+						font-weight: bold;
+					}
+
+					.email {
+						color: rgb(255, 255, 255);
+						font-size: 18px;
+						margin-right: 25px;
+					}
 				}
 			}
 
@@ -178,7 +218,7 @@
 		}
 	}
 
-	.securityTab {
+	.tab {
 		width: calc(100vw - 500px);
 		height: calc(100vh - 160px);
 		flex-direction: column;
@@ -190,15 +230,20 @@
 			font-size: 52px;
 		}
 
-		.twofa {
+		.option {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-evenly;
-			width: 250px;
+			width: auto;
+			max-width: 325px;
+			text-align: center;
 
 			.togglelabel {
-				font-size: 24px;
+				font-size: 26px;
+				font-weight: bold;
+				vertical-align: center;
+				text-align: center;
 			}
 
 			.toggle {

@@ -4,5 +4,8 @@ import type { LayoutServerLoad } from "./$types"
 export const load: LayoutServerLoad = async ({ cookies }) => {
 	const { user } = await createContext({ cookies })
 	console.log(user)
-	return { logged_in: user !== null }
+	return {
+		logged_in: user !== null,
+		account: user
+	}
 }
