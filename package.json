@@ -19,6 +19,7 @@
 		"@playwright/test": "^1.27.1",
 		"@prisma/client": "^4.5.0",
 		"@sveltejs/adapter-netlify": "^1.0.0-next.81",
+		"@sveltejs/adapter-node": "^1.0.0-next.99",
 		"@sveltejs/kit": "^1.0.0-next.522",
 		"@trpc/client": "^9.27.4",
 		"@trpc/server": "^9.27.4",
