@@ -1,6 +1,6 @@
 // @ts-check
 
-import adapter from "@sveltejs/adapter-node"
+import adapter from "@sveltejs/adapter-auto"
 import { optimizeImports } from "carbon-preprocess-svelte"
 import preprocess from "svelte-preprocess"
 
