@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ActionData } from "./$types"
-	export let form: ActionData | null
+	export let form: ActionData | null;
 </script>
 
 <div class="form-container">
@@ -21,11 +21,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		font-family: "Josefin Sans", sans-serif;
 	}
 
 	h1 {
 		margin-top: 50px;
 		font-size: 64px;
+		font-family: "Josefin Sans", sans-serif;
 	}
 
 	form {
@@ -33,6 +35,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		font-family: "Josefin Sans", sans-serif;
 	}
 
 	input {
@@ -43,6 +46,7 @@
 		font-size: 24px;
 		border: none;
 		border-radius: 15px;
+		font-family: "Josefin Sans", sans-serif;
 	}
 
 	input[type="submit"] {
@@ -51,6 +55,7 @@
 		font-size: 24px;
 		background: #4169e1;
 		height: 75px;
+		font-family: "Josefin Sans", sans-serif;
 		border-radius: 10px;
 		border: none;
 		color: white;
