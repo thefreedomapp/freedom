@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ActionData } from "./$types"
-	export let form: ActionData | null;
+	export let form: ActionData | null
 </script>
 
 <div class="form-container">

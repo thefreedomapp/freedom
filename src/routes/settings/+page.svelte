@@ -2,10 +2,10 @@
 	import type { PageData } from "./$types"
 	import { Logout, ChevronRight, Locked, Settings } from "carbon-icons-svelte"
 
-	let tab: "security" | "general";
+	let tab: "security" | "general"
 
-	export let data: PageData;
-	console.log('acc')
+	export let data: PageData
+	console.log("acc")
 	console.log(data.account)
 </script>
 
@@ -66,15 +66,15 @@
 					</div>
 				</div>
 			{:else if tab === "general"}
-			<div class="tab">
-				<h1 class="title">General Settings</h1>
-				<!-- TODO(@mtgsquad): Settings Page Security Tab -->
-				<div class="option">
-					<input type="checkbox" class="checkbox" />
-					<label for="switch" class="toggle" />
-					<span class="togglelabel"> Developer Mode </span>
+				<div class="tab">
+					<h1 class="title">General Settings</h1>
+					<!-- TODO(@mtgsquad): Settings Page Security Tab -->
+					<div class="option">
+						<input type="checkbox" class="checkbox" />
+						<label for="switch" class="toggle" />
+						<span class="togglelabel"> Developer Mode </span>
+					</div>
 				</div>
-			</div>
 			{:else}
 				<div class="nothing">
 					<span>Please select from the sidebar on the left.</span>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte"
 	import Sidebar from "$lib/Sidebar.svelte"
-	import { page } from '$app/stores';
+	import { page } from "$app/stores"
 	import { dev } from "$app/environment" // it is used, but TypeScript doesn't know that for some reason
 	import Error from "$lib/tRPC/ClientError.svelte"
 
@@ -35,7 +35,7 @@
 	</style>
 </svelte:head>
 
-{#if $page.routeId?.startsWith('/login')}
+{#if $page.routeId?.startsWith("/login")}
 	<div class="accountsRoot">
 		<Sidebar />
 		<main class="accounts">
@@ -43,7 +43,7 @@
 			<slot />
 		</main>
 	</div>
-{:else if $page.routeId?.startsWith('/signup')}
+{:else if $page.routeId?.startsWith("/signup")}
 	<div class="accountsRoot">
 		<Sidebar />
 		<main class="accounts">
