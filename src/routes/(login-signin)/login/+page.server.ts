@@ -10,8 +10,6 @@ export const actions: Actions = {
 		const email_or_username = data.get("email_or_username") as string
 		const password = data.get("password") as string
 
-		console.log(email_or_username)
-
 		const user = await prisma.user.findFirst({
 			where: {
 				OR: [{ email: email_or_username }, { username: email_or_username }]
@@ -19,7 +17,6 @@ export const actions: Actions = {
 		})
 
 		if (!user || !(await compare(password, user.password))) {
-			console.log("u", user)
 			return invalid(401, { message: "Invalid credentials" })
 		}
 

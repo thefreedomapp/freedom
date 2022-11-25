@@ -27,13 +27,6 @@ export const actions: Actions = {
 			}
 		})
 
-		console.log({
-			email,
-			username,
-			password,
-			token
-		})
-
 		cookies.set("token", token, {
 			path: "/",
 			httpOnly: true,

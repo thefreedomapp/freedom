@@ -5,8 +5,6 @@
 	let tab: "security" | "general"
 
 	export let data: PageData
-	console.log("acc")
-	console.log(data.account)
 </script>
 
 {#if !data.logged_in}

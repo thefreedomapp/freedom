@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Nav from "$lib/Nav.svelte"
-	import Sidebar from "$lib/Sidebar.svelte"
-	import { page } from "$app/stores"
-	import { dev } from "$app/environment" // it is used, but TypeScript doesn't know that for some reason
+	import { dev } from "$app/environment"
 	import Error from "$lib/tRPC/ClientError.svelte"
 
 	import "$lib/fonts.css"
@@ -25,7 +23,7 @@
 	<!-- and we're already in dark mode. -->
 	<meta name="darkreader" />
 
-	<style>
+	<style lang="scss">
 		* {
 			margin: 0;
 			padding: 0;
@@ -35,33 +33,15 @@
 	</style>
 </svelte:head>
 
-{#if $page.routeId?.startsWith("/login")}
-	<div class="accountsRoot">
-		<Sidebar />
-		<main class="accounts">
-			<Error />
-			<slot />
-		</main>
-	</div>
-{:else if $page.routeId?.startsWith("/signup")}
-	<div class="accountsRoot">
-		<Sidebar />
-		<main class="accounts">
-			<Error />
-			<slot />
-		</main>
-	</div>
-{:else}
-	<div class="root">
-		<Nav />
-		<main class="app">
-			<Error />
-			<slot />
-		</main>
-	</div>
-{/if}
+<div class="root">
+	<Nav />
+	<main class="app">
+		<Error />
+		<slot />
+	</main>
+</div>
 
-<style>
+<style lang="scss">
 	div.root {
 		display: flex;
 		flex-direction: column;
@@ -72,31 +52,10 @@
 		background: #292929;
 		overflow-x: hidden;
 	}
-	div.accountsRoot {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		gap: 5px;
-		width: 100vw;
-		height: 100vh;
-		background: #292929;
-		overflow-x: hidden;
-	}
 	main.app {
 		width: 100vw;
 		height: calc(100vh - 110px);
-		display: flex;
-		flex-direction: column;
 		align-items: center;
-		color: white;
-	}
-	main.accounts {
-		width: calc(100vw - 650px);
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		color: white;
 	}
 </style>

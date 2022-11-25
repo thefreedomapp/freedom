@@ -13,8 +13,13 @@
 	}
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svgSize.width} {svgSize.height}" {...$$props}>
-	<style>
+<svg
+	class="svg"
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 {svgSize.width} {svgSize.height}"
+	{...$$props}
+>
+	<style lang="scss">
 		text {
 			fill: white;
 			font-family: Fonarto, sans-serif;

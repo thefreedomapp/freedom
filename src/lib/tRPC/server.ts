@@ -6,15 +6,12 @@ import prisma from "$lib/prisma"
 
 export const createContext = async ({ cookies }: { cookies: Cookies }) => {
 	const token = cookies.get("token")
-	console.log(token)
 
 	const user = token
 		? await prisma.user.findUnique({
 				where: { token }
 		  })
 		: null
-
-	console.log("user", user)
 
 	return { user }
 }

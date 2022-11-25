@@ -5,9 +5,7 @@
 
 <div class="form-container">
 	<h1>Log In</h1>
-	{#if form?.message}
-		<div color="red">{form.message}</div>
-	{/if}
+	<div color="red">{form?.message ?? ""}</div>
 	<form method="POST">
 		<input required name="email_or_username" type="text" placeholder="Email or Username" />
 		<input required name="password" type="password" placeholder="Password" />
